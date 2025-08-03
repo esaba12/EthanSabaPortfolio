@@ -1,0 +1,8 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="diagonal-stripes" patternUnits="userSpaceOnUse" width="32" height="32">
+      <path d="M0 32L32 0H24L0 24M8 32L32 8H24L8 24" stroke="rgba(255,255,255,0.03)" stroke-width="1" fill="none"/>
+    </pattern>
+  </defs>
+  <rect width="32" height="32" fill="url(#diagonal-stripes)"/>
+</svg> 
