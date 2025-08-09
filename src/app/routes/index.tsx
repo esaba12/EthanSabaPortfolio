@@ -1,11 +1,13 @@
 import Image from "next/image";
-import TestTailwind from "./test-tailwind";
+import TestTailwind from "../test-tailwind";
 import Saba_Ethan_Photo from "../../public/Saba_Ethan_Photo.jpg";
-import ProjectsCarousel from "./components/ProjectsCarousel";
+import Navbar from "../components/navbar";
+import ProjectsCarousel from "../components/ProjectsCarousel";
 
 export default function Home() {
   return (
     <div>
+      <Navbar />
       <div className="relative min-h-screen bg-gray-950 text-white">
         {/* Main content */}
         <div className="container flex flex-col justify-center items-center">
