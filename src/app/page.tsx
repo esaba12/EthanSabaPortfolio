@@ -6,10 +6,10 @@ import ProjectsCarousel from "./components/ProjectsCarousel";
 export default function Home() {
   return (
     <div>
-      <div className="relative min-h-screen bg-gray-950 text-white">
+      <div className="relative min-h-screen bg-brand-bg text-brand-text">
         {/* Main content */}
         <div className="container flex flex-col justify-center items-center">
-          <div className="bg-gray-950 min-h-screen">
+          <div className="bg-brand-bg min-h-screen">
             <div className="container mx-auto px-8 py-16">
               {/* introduction */}
               <div className="flex flex-row items-center justify-center gap-8 mb-30">
