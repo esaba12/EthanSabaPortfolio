@@ -1,7 +1,9 @@
 import Image from "next/image";
 import TestTailwind from "./test-tailwind";
 import Saba_Ethan_Photo from "../../public/Saba_Ethan_Photo.jpg";
-import ProjectsCarousel from "./components/ProjectsCarousel";
+import ProjectsGrid from "./components/ProjectsGrid";
+import WaveUnderline from "./components/WaveUnderline";
+import Badge from "./components/Badge";
 
 export default function Home() {
   return (
@@ -15,12 +17,13 @@ export default function Home() {
               <div className="flex flex-row items-center justify-center gap-8 mb-30">
                 <div className="flex-1">
                   <h1 className="sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6">Hi. I'm Ethan, and this is the work that I'm proud of.</h1>
-                  <h3 className="text-xl text-gray-300 leading-relaxed">
+                  <WaveUnderline />
+                  <h3 className="text-xl text-gray-300 leading-relaxed mt-6">
                     I'm in my Sophomore year at the University of Michigan learning about Computer Science (Major), Real Estate (minor), and everything in between.
                   </h3>
                 </div>
                 <div className="flex-shrink-0">
-                  <Image src={Saba_Ethan_Photo} alt="Ethan Saba" width={400} height={400} className="rounded-xl mix-blend-lighten bg-slate-900 p-1 shadow-xl" />
+                  <Image src={Saba_Ethan_Photo} alt="Ethan Saba" width={400} height={400} className="rounded-xl mix-blend-lighten bg-brand-surface p-1 shadow-card" />
                 </div>
               </div>
 
@@ -40,20 +43,11 @@ export default function Home() {
                     {/* left side */}
                     <div className="container">
                       <h3 className="text-xl">Programming skills</h3>
-                      <ul className="space-y-2">
-                        <li className="flex items-center">
-                          <input type="checkbox" checked readOnly className="mr-2 h-4 w-4 text-gray-950 bg-gray-950 border-gray-600 rounded focus:ring-gray-500" />
-                          <span>C++/C</span>
-                        </li>
-                        <li className="flex items-center">
-                          <input type="checkbox" checked readOnly className="mr-2 h-4 w-4 text-gray-950 bg-gray-950 border-gray-600 rounded focus:ring-gray-500" />
-                          <span>Python</span>
-                        </li>
-                        <li className="flex items-center">
-                          <input type="checkbox" checked readOnly className="mr-2 h-4 w-4 text-gray-950 bg-gray-950 border-gray-600 rounded focus:ring-gray-500" />
-                          <span>JavaScript</span>
-                        </li>
-                      </ul>
+                      <div className="flex flex-wrap gap-2 mt-2">
+                        <Badge>C++/C</Badge>
+                        <Badge>Python</Badge>
+                        <Badge>JavaScript</Badge>
+                      </div>
                     </div>
 
                     {/* right side */}
@@ -68,7 +62,10 @@ export default function Home() {
               </div>
 
               {/* projects */}
-              <ProjectsCarousel />
+              <div className="container">
+                <h2 className="text-2xl text-left mb-6">Featured Projects</h2>
+                <ProjectsGrid limit={3} />
+              </div>
             </div>
           </div>
         </div>

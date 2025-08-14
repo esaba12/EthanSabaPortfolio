@@ -1,0 +1,82 @@
+[
+  {
+    "slug": "real-estate-analytics",
+    "title": "Real Estate Analytics Platform",
+    "summary": "Machine learning model for property valuation and market analysis",
+    "tags": ["Python", "Machine Learning", "Real Estate", "Data Science"],
+    "cover": "/project1.jpg",
+    "links": {
+      "demo": "https://demo.example.com",
+      "repo": "https://github.com/example/repo"
+    },
+    "highlights": [
+      "Built predictive models using TensorFlow and scikit-learn",
+      "Processed 10,000+ property records for training data",
+      "Achieved 92% accuracy in price prediction"
+    ]
+  },
+  {
+    "slug": "portfolio-website",
+    "title": "Personal Portfolio Website",
+    "summary": "Modern portfolio built with Next.js and Tailwind CSS",
+    "tags": ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+    "cover": "/project2.jpg",
+    "links": {
+      "demo": "https://portfolio.example.com",
+      "repo": "https://github.com/example/portfolio"
+    },
+    "highlights": [
+      "Responsive design with mobile-first approach",
+      "Optimized for performance and accessibility",
+      "Integrated with modern development tools"
+    ]
+  },
+  {
+    "slug": "mobile-app",
+    "title": "Real Estate Management App",
+    "summary": "Mobile application for property management and client communication",
+    "tags": ["React Native", "Firebase", "TypeScript", "Mobile"],
+    "cover": "/project3.jpg",
+    "links": {
+      "demo": "https://app.example.com",
+      "repo": "https://github.com/example/mobile-app"
+    },
+    "highlights": [
+      "Cross-platform mobile app for iOS and Android",
+      "Real-time data synchronization with Firebase",
+      "Push notifications for property updates"
+    ]
+  },
+  {
+    "slug": "data-visualization",
+    "title": "Market Data Visualization",
+    "summary": "Interactive dashboard for real estate market trends and insights",
+    "tags": ["JavaScript", "D3.js", "Data Visualization", "Analytics"],
+    "cover": "/project4.jpg",
+    "links": {
+      "demo": "https://dashboard.example.com",
+      "repo": "https://github.com/example/dashboard"
+    },
+    "highlights": [
+      "Interactive charts and graphs using D3.js",
+      "Real-time data updates and filtering",
+      "Export functionality for reports"
+    ]
+  },
+  {
+    "slug": "api-service",
+    "title": "Real Estate API Service",
+    "summary": "RESTful API for property data and market information",
+    "tags": ["Node.js", "Express", "MongoDB", "API"],
+    "cover": "/project5.jpg",
+    "links": {
+      "demo": "https://api.example.com",
+      "repo": "https://github.com/example/api-service"
+    },
+    "highlights": [
+      "RESTful API with comprehensive documentation",
+      "MongoDB database with optimized queries",
+      "Rate limiting and authentication"
+    ]
+  }
+]
