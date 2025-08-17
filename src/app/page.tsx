@@ -16,7 +16,9 @@ export default function Home() {
               {/* introduction */}
               <div className="flex flex-row items-center justify-center gap-8 mb-30">
                 <div className="flex-1">
-                  <h1 className="sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6">Hi. I'm Ethan, and this is the work that I'm proud of.</h1>
+                  <h1 className="sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-blue-500 to-violet-600 tracking-tight">
+                    Hi. I'm Ethan, and this is the work that I'm proud of.
+                  </h1>
                   <WaveUnderline />
                   <h3 className="text-xl text-gray-300 leading-relaxed mt-6">
                     I'm in my Sophomore year at the University of Michigan learning about Computer Science (Major), Real Estate (minor), and everything in between.
@@ -47,6 +49,7 @@ export default function Home() {
                         <Badge>C++/C</Badge>
                         <Badge>Python</Badge>
                         <Badge>JavaScript</Badge>
+                        <Badge>Java</Badge>
                       </div>
                     </div>
 

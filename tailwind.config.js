@@ -30,15 +30,22 @@ module.exports = {
       },
       colors: {
         brand: {
-          bg: '#0F172A',
-          surface: '#0B1220',
-          text: '#E2E8F0',
-          accent: '#6C63FF',
-          pulse: '#00E5FF',
+          bg: '#0a0a0a',
+          surface: '#1a1a1a',
+          'surface-light': '#2a2a2a',
+          text: '#ffffff',
+          'text-secondary': '#a0a0a0',
+          'text-muted': '#6b7280',
+          accent: '#3b82f6',
+          'accent-hover': '#2563eb',
+          pulse: '#06b6d4',
+          border: '#374151',
+          'border-light': '#4b5563',
         },
       },
       boxShadow: {
-        card: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+        card: '0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2)',
+        'card-hover': '0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3)',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

@@ -1,0 +1,63 @@
+{
+  "photography": {
+    "title": "Photography",
+    "description": "Capturing moments through the lens of my Canon AE-1. I focus on automotive photography, landscapes, and candid moments that tell stories of everyday life.",
+    "photos": [
+      {
+        "src": "/creative/photo-1.jpg",
+        "alt":"", 
+        "camera": "Canon AE-1",
+        "stock": "Kodak Portra 400",
+        "location": "Glamis, CA",
+        "date": "2024-07-15"
+      },
+      {
+        "src": "/creative/photo-2.jpg",
+        "alt":"",
+        "camera": "Canon AE-1",
+        "stock": "Kodak ColorPlus 200",
+        "location": "Los Angeles, CA",
+        "date": "2023-06-24"
+      },
+      {
+        "src": "/creative/photo-3.jpg",
+        "alt": "",
+        "camera": "Canon AE-1",
+        "stock": "Kodak Portra 400",
+        "location": "Yoesemite, CA",
+        "date": "2025-07-27"
+      },
+      {
+        "src": "/creative/photo-4.jpg",
+        "alt": "",
+        "camera": "Canon AE-1",
+        "stock": "Fujifilm Superia 400",
+        "location": "Los Angeles, CA",
+        "date": "2023-12-15"
+      },
+      {
+        "src": "/creative/photo-5.jpg",
+        "alt": "",
+        "camera": "Canon AE-1",
+        "stock": "Kodak Portra 400",
+        "location": "Napa Valley, CA",
+        "date": "2024-12-27"
+      }
+    ]
+  },
+  "music": {
+    "title": "What I've Been Listening To",
+    "description": "A curated collection of tracks that have been inspiring me lately.",
+    "tracks": [
+      {
+        "title": "Example",
+        "artist": "Example",
+        "platform": "soundcloud",
+        "url": "google.com",
+        "cover": "",
+        "duration": "1000",
+        "genre": "Deep House"
+      }
+    ]
+  }
+}

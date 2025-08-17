@@ -55,6 +55,7 @@ export default function Home() {
                           <input type="checkbox" checked readOnly className="mr-2 h-4 w-4 text-gray-950 bg-gray-950 border-gray-600 rounded focus:ring-gray-500" />
                           <span>JavaScript</span>
                         </li>
+                    
                       </ul>
                     </div>
 
