@@ -14,7 +14,7 @@ export default function Home() {
           <div className="bg-gray-950 min-h-screen">
             <div className="container mx-auto px-8 py-16">
               {/* introduction */}
-              <div className="flex flex-row items-center justify-center gap-8 mb-30">
+              <div className="flex flex-row items-center justify-center gap-8 mb-30 pt-30">
                 <div className="flex-1">
                   <h1 className="sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6">Hi. I'm Ethan, and this is the work that I'm proud of.</h1>
                   <h3 className="text-xl text-gray-300 leading-relaxed">

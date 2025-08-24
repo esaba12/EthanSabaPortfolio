@@ -12,7 +12,7 @@ export default function Home() {
         {/* Main content */}
         <div className="container flex flex-col justify-center items-center">
           <div className="bg-brand-bg min-h-screen">
-            <div className="container mx-auto px-8 py-16">
+            <div className="container mx-auto px-8 pt-32 pb-16">
               {/* introduction */}
               <div className="flex flex-row items-center justify-center gap-8 mb-30">
                 <div className="flex-1">
