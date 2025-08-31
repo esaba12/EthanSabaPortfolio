@@ -5,7 +5,6 @@ import { Linkedin, Github, Mail } from 'lucide-react';
 
 const navigation = [
   { name: 'About', href: '/about' },
-  { name: 'Vision', href: '/vision' },
   { name: 'Projects', href: '/projects' },
   { name: 'Creative', href: '/creative' },
   { name: 'Contact', href: '/contact' },
@@ -14,19 +13,19 @@ const navigation = [
 const socialLinks = [
   {
     name: 'LinkedIn',
-    href: 'https://linkedin.com',
+    href: 'https://linkedin.com/in/ethansaba',
     icon: Linkedin,
     ariaLabel: 'Visit LinkedIn profile',
   },
   {
     name: 'GitHub',
-    href: 'https://github.com',
+    href: 'https://github.com/esaba12',
     icon: Github,
     ariaLabel: 'Visit GitHub profile',
   },
   {
     name: 'Email',
-    href: 'mailto:me@example.com',
+    href: 'mailto:ethansaba12@gmail.com',
     icon: Mail,
     ariaLabel: 'Send email',
   },
