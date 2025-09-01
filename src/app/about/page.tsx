@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Saba_Ethan_Photo from "../../../public/Saba_Ethan_Photo.jpg";
 import Badge from "../components/Badge";
-import { GraduationCap, MapPin, Calendar, Code, Building, Users, Award, BookOpen } from 'lucide-react';
+import { GraduationCap, MapPin, Calendar, Code, Building, Users, Award } from 'lucide-react';
 
 const skills = {
   programming: ['Java', 'C++', 'Ruby', 'HTML/CSS', 'Python (Learning)'],
@@ -49,13 +49,13 @@ const education = [
     degree: 'Bachelor of Science in Engineering in Computer Science',
     school: 'University of Michigan College of Engineering',
     period: 'August 2024 - May 2028',
-    details: 'Real Estate Minor • GPA: 3.92/4.0 • Relevant Coursework: Discrete Math (EECS203), Intro to Programming and Data Structures (EECS280)'
+    details: 'Real Estate Minor • GPA: 3.92/4.0'
   },
   {
     degree: 'High School Diploma',
     school: 'Milken Community School',
     period: 'June 2024',
-    details: 'GPA: 4.49/4.0 • SAT: 1530/1600 • Rank: 3/130 • Relevant Coursework: Physics, Calculus, Computer Science, Economics, Chemistry, Finance'
+    details: 'GPA: 4.49/4.0 • SAT: 1530/1600 • Rank: 3/130'
   }
 ];
 
@@ -70,7 +70,7 @@ export default function About() {
               About Me
             </h1>
             <p className="text-xl text-brand-text/80 max-w-3xl mx-auto leading-relaxed">
-              I'm a passionate Computer Science student with a unique interest in the intersection of technology and business. 
+              I&apos;m a passionate Computer Science student with a unique interest in the intersection of technology and business. 
               I love building things that solve real problems, teaching others, and connecting with people who share similar interests.
             </p>
           </div>
@@ -80,8 +80,8 @@ export default function About() {
             <div className="space-y-6">
               <h2 className="text-3xl font-bold">Ethan Saba</h2>
                           <p className="text-lg text-brand-text/80 leading-relaxed">
-              I'm a freshman at the University of Michigan College of Engineering studying Computer Science with a minor in Real Estate. 
-              I'm passionate about the intersection of technology and business, with experience in web development, marketing, and teaching.
+              I&apos;m a freshman at the University of Michigan College of Engineering studying Computer Science with a minor in Real Estate. 
+              I&apos;m passionate about the intersection of technology and business, with experience in web development, marketing, and teaching.
             </p>
               
               <div className="space-y-4">
@@ -284,6 +284,14 @@ export default function About() {
                     <span className="text-brand-text/80">Data Structures and Algorithms</span>
                     <span className="text-brand-text/60 text-sm">EECS 281</span>
                   </div>
+                  <div className="flex justify-between">
+                    <span className="text-brand-text/80">Computational Linear Algebra</span>
+                    <span className="text-brand-text/60 text-sm">ROB 101</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-brand-text/80">Minds and Machines - AI vs Human Thought</span>
+                    <span className="text-brand-text/60 text-sm">PHIL 340</span>
+                  </div>
                 </div>
               </div>
 
@@ -293,10 +301,6 @@ export default function About() {
                   <div className="flex justify-between">
                     <span className="text-brand-text/80">Calculus I & II</span>
                     <span className="text-brand-text/60 text-sm">MATH 115, 116</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-brand-text/80">Physics I</span>
-                    <span className="text-brand-text/60 text-sm">PHYSICS 140</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-brand-text/80">Chemistry</span>

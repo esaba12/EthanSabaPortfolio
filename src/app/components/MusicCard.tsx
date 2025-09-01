@@ -43,50 +43,53 @@ export default function MusicCard({ track }: MusicCardProps) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
-      className="group card hover:shadow-card-hover transition-all duration-300 focus-within:ring-2 focus-within:ring-brand-accent focus-within:ring-offset-2 focus-within:ring-offset-brand-bg"
+      className="group h-full"
     >
-      {/* Cover image */}
-      <div className="relative h-48 bg-brand-surface overflow-hidden">
-        <Image
-          src={track.cover}
-          alt={`${track.title} by ${track.artist}`}
-          fill
-          className="object-cover group-hover:scale-105 transition-transform duration-300"
-        />
-        
-        {/* Platform badge */}
-        <div className="absolute top-3 right-3 bg-black/80 text-white px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1">
-          {getPlatformIcon()}
-          {getPlatformName()}
-        </div>
-      </div>
-
-      {/* Content */}
-      <div className="p-6 space-y-4">
-        <div>
-          <h3 className="text-lg font-semibold text-brand-text group-hover:text-brand-accent transition-colors duration-200">
-            {track.title}
-          </h3>
-          <p className="text-brand-text-secondary text-sm">{track.artist}</p>
+      <a
+        href={track.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex flex-col h-full card hover:shadow-card-hover transition-all duration-300 focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-bg focus:outline-none cursor-pointer"
+        aria-label={`Listen to ${track.title} by ${track.artist} on ${getPlatformName()}`}
+      >
+        {/* Cover image */}
+        <div className="relative h-48 bg-brand-surface overflow-hidden flex-shrink-0">
+          <Image
+            src={track.cover}
+            alt={`${track.title} by ${track.artist}`}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-300"
+          />
+          
+          {/* Platform badge */}
+          <div className="absolute top-3 right-3 bg-black/80 text-white px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1">
+            {getPlatformIcon()}
+            {getPlatformName()}
+          </div>
         </div>
 
-        <div className="flex items-center justify-between text-sm">
-          <span className="bg-brand-surface-light text-brand-text-secondary px-3 py-1 rounded-full">{track.genre}</span>
-          <span className="text-brand-text-muted">{track.duration}</span>
-        </div>
+        {/* Content */}
+        <div className="flex flex-col flex-grow p-6">
+          <div className="flex-grow">
+            <h3 className="text-lg font-semibold text-brand-text group-hover:text-brand-accent transition-colors duration-200 mb-2 overflow-hidden" style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>
+              {track.title}
+            </h3>
+            <p className="text-brand-text-secondary text-sm mb-4 overflow-hidden" style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>{track.artist}</p>
+          </div>
 
-        <a
-          href={track.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 text-brand-accent hover:text-brand-accent-hover transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-surface rounded"
-        >
-          <span>Listen on {getPlatformName()}</span>
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-          </svg>
-        </a>
-      </div>
+          <div className="flex items-center justify-between text-sm mb-4">
+            <span className="bg-brand-surface-light text-brand-text-secondary px-3 py-1 rounded-full text-xs">{track.genre}</span>
+            <span className="text-brand-text-muted">{track.duration}</span>
+          </div>
+
+          <div className="inline-flex items-center gap-2 text-brand-accent group-hover:text-brand-accent-hover transition-colors duration-200 mt-auto">
+            <span>Listen on {getPlatformName()}</span>
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </div>
+        </div>
+      </a>
     </motion.article>
   );
 }

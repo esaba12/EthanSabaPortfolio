@@ -1,8 +1,9 @@
 'use client';
 
-import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { usePathname } from 'next/navigation'
+import Link from 'next/link'
 
 const navigation = [
   { name: 'About', href: '/about' },
@@ -37,13 +38,13 @@ export default function Navbar() {
             
             <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
               <div className="flex shrink-0 items-center">
-                <a 
-                  href='/' 
+                <Link 
+                  href='/'
                   className="text-xl font-bold bg-brand-accent text-white hover:bg-brand-accent-hover focus:bg-brand-accent-hover focus:ring-2 focus:ring-brand-accent focus:outline-hidden rounded-full px-4 py-2 transition-colors duration-200"
                   aria-label="Go to homepage"
                 >
                   ES
-                </a>
+                </Link>
               </div>
             </div>
             
@@ -53,7 +54,7 @@ export default function Navbar() {
                   {navigation.map((item) => {
                     const isActive = pathname === item.href;
                     return (
-                      <a
+                      <Link
                         key={item.name}
                         href={item.href}
                         aria-current={isActive ? 'page' : undefined}
@@ -63,7 +64,7 @@ export default function Navbar() {
                         )}
                       >
                         {item.name}
-                      </a>
+                      </Link>
                     );
                   })}
                 </div>
@@ -79,7 +80,7 @@ export default function Navbar() {
               return (
                 <DisclosureButton
                   key={item.name}
-                  as="a"
+                  as={Link}
                   href={item.href}
                   aria-current={isActive ? 'page' : undefined}
                   className={classNames(

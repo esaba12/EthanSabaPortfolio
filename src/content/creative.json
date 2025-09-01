@@ -5,7 +5,7 @@
     "photos": [
       {
         "src": "/creative/photo-1.jpg",
-        "alt":"", 
+        "alt":"Desert landscape at Glamis sand dunes with dramatic lighting", 
         "camera": "Canon AE-1",
         "stock": "Kodak Portra 400",
         "location": "Glamis, CA",
@@ -13,7 +13,7 @@
       },
       {
         "src": "/creative/photo-2.jpg",
-        "alt":"",
+        "alt":"Urban street scene in Los Angeles with vintage aesthetic",
         "camera": "Canon AE-1",
         "stock": "Kodak ColorPlus 200",
         "location": "Los Angeles, CA",
@@ -21,15 +21,15 @@
       },
       {
         "src": "/creative/photo-3.jpg",
-        "alt": "",
+        "alt": "Mountain landscape at Yosemite National Park with natural lighting",
         "camera": "Canon AE-1",
         "stock": "Kodak Portra 400",
-        "location": "Yoesemite, CA",
-        "date": "2025-07-27"
+        "location": "Yosemite, CA",
+        "date": "2024-07-27"
       },
       {
         "src": "/creative/photo-4.jpg",
-        "alt": "",
+        "alt": "Architectural detail in Los Angeles with film photography aesthetic",
         "camera": "Canon AE-1",
         "stock": "Fujifilm Superia 400",
         "location": "Los Angeles, CA",
@@ -37,7 +37,7 @@
       },
       {
         "src": "/creative/photo-5.jpg",
-        "alt": "",
+        "alt": "Vineyard landscape in Napa Valley during golden hour",
         "camera": "Canon AE-1",
         "stock": "Kodak Portra 400",
         "location": "Napa Valley, CA",
@@ -49,14 +49,77 @@
     "title": "What I've Been Listening To",
     "description": "A curated collection of tracks that have been inspiring me lately.",
     "tracks": [
+      { 
+        "title": "New Sky - Live from Joshua Tree", 
+        "artist": "Rüfüs Du Sol", 
+        "platform": "spotify",
+        "url": "https://open.spotify.com/track/0ebu8hPrbhvVNeH9RTsDA2?si=c17cddf97de54869", 
+        "cover": "/creative/NewSky.jpeg", 
+        "duration": "5:27", 
+        "genre": "Melodic House" 
+      },
       {
-        "title": "Example",
-        "artist": "Example",
-        "platform": "soundcloud",
-        "url": "google.com",
-        "cover": "",
-        "duration": "1000",
-        "genre": "Deep House"
+        "title": "Silenced",
+        "artist": "CamelPhat, Jem Cooke",
+        "platform": "spotify",
+        "url": "https://open.spotify.com/track/2sUkEAXJBIvh9EvuuOOKuW",
+        "cover": "/creative/silenced.jpg",
+        "duration": "3:45",
+        "genre": "Melodic Tech-House"
+      },
+      {
+        "title": "Lately - Enamour Remix",
+        "artist": "RÜFÜS DU SOL, Enamour",
+        "platform": "spotify",
+        "url": "https://open.spotify.com/track/4PlWzEGBOX1pQfXDsFC3GU",
+        "cover": "/creative/lately.jpg",
+        "duration": "4:22",
+        "genre": "Electronic / Remix"
+      },
+      {
+        "title": "Expressing What Matters",
+        "artist": "Disclosure",
+        "platform": "spotify",
+        "url": "https://open.spotify.com/track/5m2oL8v2RglZQ3j3tYylZy",
+        "cover": "/creative/expressingWhatMatters.jpeg",
+        "duration": "3:05",
+        "genre": "House"
+      },
+      {
+        "title": "Woman",
+        "artist": "Barry Can't Swim, Låpsley",
+        "platform": "spotify",
+        "url": "https://open.spotify.com/track/1aQomRWlzoU2ZRZG7fpFZD",
+        "cover": "/creative/Woman.jpeg",
+        "duration": "3:52",
+        "genre": "Electronic / House"
+      },
+      {
+        "title": "Water",
+        "artist": "BICEP, Clara La San",
+        "platform": "spotify",
+        "url": "https://open.spotify.com/track/09cgbbadzZSKFd1hGN23p5",
+        "cover": "/creative/water.jpg",
+        "duration": "4:16",
+        "genre": "Electronic"
+      },
+      {
+        "title": "Sone",
+        "artist": "Pyramid",
+        "platform": "spotify",
+        "url": "https://open.spotify.com/track/392ffSBxSVL4vWXiNRQmPw",
+        "cover": "/creative/sone.jpeg",
+        "duration": "3:52",
+        "genre": "Electronic"
+      },
+      {
+        "title": "Mordecai",
+        "artist": "Khåen",
+        "platform": "spotify",
+        "url": "https://open.spotify.com/track/2EhOGYZ7QvOmGs8r6G1JLc",
+        "cover": "/creative/mordecai.jpg",
+        "duration": "5:04",
+        "genre": "Electronic"
       }
     ]
   }

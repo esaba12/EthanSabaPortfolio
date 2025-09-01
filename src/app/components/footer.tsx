@@ -2,6 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 import { Linkedin, Github, Mail } from 'lucide-react';
+import Link from 'next/link';
 
 const navigation = [
   { name: 'About', href: '/about' },
@@ -45,13 +46,13 @@ export default function Footer() {
           {/* Branding Section */}
           <div className="flex flex-col items-start space-y-6">
             <div>
-              <a 
+              <Link 
                 href="/" 
                 className="text-2xl font-bold text-brand-text hover:text-brand-accent transition-colors duration-200"
                 aria-label="Go to homepage"
               >
                 ES
-              </a>
+              </Link>
             </div>
             
             {/* Social Icons */}
@@ -83,7 +84,7 @@ export default function Footer() {
             {navigation.map((item) => {
               const isActive = pathname === item.href;
               return (
-                <a
+                <Link
                   key={item.name}
                   href={item.href}
                   aria-current={isActive ? 'page' : undefined}
@@ -93,7 +94,7 @@ export default function Footer() {
                   )}
                 >
                   {item.name}
-                </a>
+                </Link>
               );
             })}
           </div>

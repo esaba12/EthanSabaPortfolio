@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Mail, Linkedin, Github, MapPin, Phone, Send } from 'lucide-react';
+import { Mail, Linkedin, Github, MapPin, Send } from 'lucide-react';
 
 const contactMethods = [
   {
@@ -85,11 +85,11 @@ export default function Contact() {
           {/* Header */}
           <div className="text-center mb-16">
             <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-cyan-300 via-blue-500 to-violet-600 bg-clip-text text-transparent">
-              Let's Connect
+              Let&apos;s Connect
             </h1>
             <p className="text-xl text-brand-text/80 max-w-3xl mx-auto leading-relaxed">
-              I'm always interested in new opportunities, collaborations, and interesting conversations. 
-              Whether you want to discuss a project, grab coffee, or just say hello, I'd love to hear from you.
+              I&apos;m always interested in new opportunities, collaborations, and interesting conversations. 
+              Whether you want to discuss a project, grab coffee, or just say hello, I&apos;d love to hear from you.
             </p>
           </div>
 
@@ -207,7 +207,7 @@ export default function Contact() {
           {/* Additional Info */}
           <div className="mt-16 text-center">
             <div className="bg-brand-surface rounded-lg p-8 max-w-2xl mx-auto">
-              <h3 className="text-xl font-bold mb-4">What I'm Looking For</h3>
+              <h3 className="text-xl font-bold mb-4">What I&apos;m Looking For</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
                 <div>
                   <h4 className="font-medium text-brand-accent mb-2">Internships</h4>

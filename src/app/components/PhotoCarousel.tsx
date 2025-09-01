@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { PhotoItem } from '../../types/creative';
@@ -11,6 +11,8 @@ interface PhotoCarouselProps {
 
 export default function PhotoCarousel({ photos }: PhotoCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const nextPhoto = () => {
     setCurrentIndex((prev) => (prev + 1) % photos.length);
@@ -24,10 +26,55 @@ export default function PhotoCarousel({ photos }: PhotoCarouselProps) {
     setCurrentIndex(index);
   };
 
+  const startAutoPlay = () => {
+    if (photos.length > 1) {
+      intervalRef.current = setInterval(() => {
+        setCurrentIndex((prev) => (prev + 1) % photos.length);
+      }, 4000); // Change photo every 4 seconds
+    }
+  };
+
+  const stopAutoPlay = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+  };
+
+  const toggleAutoPlay = () => {
+    setIsAutoPlaying(!isAutoPlaying);
+  };
+
+  useEffect(() => {
+    if (isAutoPlaying) {
+      startAutoPlay();
+    } else {
+      stopAutoPlay();
+    }
+
+    return () => stopAutoPlay();
+  }, [isAutoPlaying, photos.length]);
+
+  const handleMouseEnter = () => {
+    if (isAutoPlaying) {
+      stopAutoPlay();
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (isAutoPlaying) {
+      startAutoPlay();
+    }
+  };
+
   return (
     <div className="relative w-full max-w-4xl mx-auto">
       {/* Main photo display */}
-      <div className="relative h-96 md:h-[500px] bg-brand-surface rounded-lg overflow-hidden shadow-card">
+      <div 
+        className="relative h-96 md:h-[500px] bg-brand-surface rounded-lg overflow-hidden shadow-card"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
         <AnimatePresence mode="wait">
           <motion.div
             key={currentIndex}
@@ -87,6 +134,23 @@ export default function PhotoCarousel({ photos }: PhotoCarouselProps) {
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
+            </button>
+
+            {/* Play/Pause button */}
+            <button
+              onClick={toggleAutoPlay}
+              className="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black/80 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-brand-accent"
+              aria-label={isAutoPlaying ? "Pause slideshow" : "Play slideshow"}
+            >
+              {isAutoPlaying ? (
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6" />
+                </svg>
+              ) : (
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+              )}
             </button>
           </>
         )}

@@ -1,4 +1,4 @@
-import TestTailwind from "./test-tailwind";
+
 import ProjectsGrid from "./components/ProjectsGrid";
 import WaveUnderline from "./components/WaveUnderline";
 import Badge from "./components/Badge";
@@ -14,11 +14,11 @@ export default function Home() {
               {/* introduction */}
               <div className="text-center mb-30">
                 <h1 className="sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-blue-500 to-violet-600 tracking-tight">
-                  Hi. I'm Ethan, and this is the work that I'm proud of.
+                  Hi. I&apos;m Ethan, and this is the work that I&apos;m proud of.
                 </h1>
                 <WaveUnderline />
                 <h3 className="text-xl text-gray-300 leading-relaxed mt-6 max-w-4xl mx-auto">
-                  I'm in my Sophomore year at the University of Michigan learning about Computer Science (Major), Real Estate (minor), and everything in between.
+                  I&apos;m in my Sophomore year at the University of Michigan learning about Computer Science (Major), Real Estate (minor), and everything in between.
                 </h3>
               </div>
 
@@ -26,7 +26,7 @@ export default function Home() {
               <div className="container">
                 <h2 className="text-2xl text-left">About Me</h2>
                 <p className="text-gray-300">
-                  I'm a Sophomore at the University of Michigan studying Computer Science and Real Estate. I'm interested in the intersection of technology and real estate, and I'm always looking for new opportunities to learn and grow.
+                  I&apos;m a Sophomore at the University of Michigan studying Computer Science and Real Estate. I&apos;m interested in the intersection of technology and real estate, and I&apos;m always looking for new opportunities to learn and grow.
                 </p>
               </div>
 
@@ -50,7 +50,7 @@ export default function Home() {
                     <div className="container">
                       <h3 className="text-xl">Real Estate</h3>
                       <p className="text-gray-300">
-                        I'm proficient in Python, Java, C++, and JavaScript. I'm also familiar with HTML, CSS, and SQL.
+                        I&apos;m proficient in Python, Java, C++, and JavaScript. I&apos;m also familiar with HTML, CSS, and SQL.
                       </p>
                     </div>
                   </div>

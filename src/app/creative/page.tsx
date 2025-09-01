@@ -2,6 +2,16 @@ import PhotoCarousel from '../components/PhotoCarousel';
 import MusicCard from '../components/MusicCard';
 import creativeData from '../../content/creative.json';
 
+interface MusicTrack {
+  title: string;
+  artist: string;
+  platform: 'soundcloud' | 'spotify';
+  url: string;
+  cover: string;
+  duration: string;
+  genre: string;
+}
+
 export default function Creative() {
   return (
     <div className="min-h-screen bg-brand-bg text-brand-text">
@@ -30,7 +40,7 @@ export default function Creative() {
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {creativeData.music.tracks.map((track, index) => (
-                <MusicCard key={index} track={track} />
+                <MusicCard key={index} track={track as MusicTrack} />
               ))}
             </div>
           </section>

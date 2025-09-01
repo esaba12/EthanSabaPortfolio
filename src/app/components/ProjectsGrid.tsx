@@ -124,8 +124,27 @@ export default function ProjectsGrid({ limit }: ProjectsGridProps) {
               initial="hidden"
               animate="visible"
               exit="exit"
-              className="group bg-brand-surface rounded-lg overflow-hidden shadow-card hover:shadow-lg transition-shadow duration-300 focus-within:ring-2 focus-within:ring-brand-accent focus-within:ring-offset-2 focus-within:ring-offset-brand-bg"
+              className="group bg-brand-surface rounded-lg overflow-hidden shadow-card hover:shadow-lg transition-shadow duration-300 focus-within:ring-2 focus-within:ring-brand-accent focus-within:ring-offset-2 focus-within:ring-offset-brand-bg cursor-pointer"
               tabIndex={0}
+              onClick={() => {
+                if (project.links.repo) {
+                  window.open(project.links.repo, '_blank', 'noopener,noreferrer');
+                } else if (project.links.demo) {
+                  window.open(project.links.demo, '_blank', 'noopener,noreferrer');
+                }
+              }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  if (project.links.repo) {
+                    window.open(project.links.repo, '_blank', 'noopener,noreferrer');
+                  } else if (project.links.demo) {
+                    window.open(project.links.demo, '_blank', 'noopener,noreferrer');
+                  }
+                }
+              }}
+              role="button"
+              aria-label={`View ${project.title} project`}
             >
               {/* Project Image */}
               <div className="relative h-48 bg-gray-800 overflow-hidden">
@@ -156,28 +175,12 @@ export default function ProjectsGrid({ limit }: ProjectsGridProps) {
                   ))}
                 </div>
 
-                {/* Links */}
-                <div className="flex gap-3 pt-2">
-                  {project.links.demo && (
-                    <a
-                      href={project.links.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-brand-accent hover:text-brand-pulse text-sm font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-bg rounded"
-                    >
-                      Demo →
-                    </a>
-                  )}
-                  {project.links.repo && (
-                    <a
-                      href={project.links.repo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-brand-accent hover:text-brand-pulse text-sm font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-bg rounded"
-                    >
-                      Code →
-                    </a>
-                  )}
+                {/* Click indicator */}
+                <div className="flex items-center gap-2 pt-2 text-brand-accent text-sm">
+                  <span>Click to view project</span>
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
                 </div>
               </div>
             </motion.article>

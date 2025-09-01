@@ -2,45 +2,49 @@
   {
     "slug": "real-estate-news",
     "title": "Real Estate News Reporter",
-    "summary": "Script for getting and reporting recent real estate news",
+    "summary": "Automated Python script that aggregates and analyzes real estate market news using web scraping and natural language processing to provide daily market insights.",
     "tags": ["Python", "Machine Learning", "API", "Real Estate"],
     "cover": "/project1.jpg",
     "links": {
-      "demo": "https://demo.example.com",
-      "repo": "https://github.com/example/repo"
+      "repo": "https://github.com/esaba12/real-estate-news"
     },
     "highlights": [
-      "TBD"
+      "Automated news aggregation from multiple real estate sources",
+      "Natural language processing for sentiment analysis",
+      "Daily email reports with market insights"
     ]
   },
   {
     "slug": "portfolio-website",
     "title": "Personal Portfolio Website",
-    "summary": "Modern portfolio built with Next.js and Tailwind CSS",
+    "summary": "Modern, responsive portfolio website showcasing my projects, experience, and creative work. Built with performance and accessibility in mind.",
     "tags": ["React", "Next.js", "TypeScript", "Tailwind CSS"],
     "cover": "/project2.jpg",
     "links": {
-      "demo": "https://portfolio.example.com",
-      "repo": "https://github.com/example/portfolio"
+      "demo": "https://ethansaba.com",
+      "repo": "https://github.com/esaba12/EthanSabaPortfolio"
     },
     "highlights": [
       "Responsive design with mobile-first approach",
-      "Integrated with modern development tools"
+      "Optimized for performance and accessibility",
+      "Interactive animations with Framer Motion",
+      "Contact form integration with Formspree"
     ]
   },
   {
     "slug": "bookreview-app",
     "title": "Book Keeper",
-    "summary": "App for sharing and reviewing books",
+    "summary": "Full-stack application for book enthusiasts to track reading progress, share reviews, and discover new books through community recommendations.",
     "tags": ["React Native", "MongoDB", "Express", "Next.js"],
     "cover": "/project3.jpg",
     "links": {
-      "demo": "https://app.example.com",
-      "repo": "https://github.com/example/mobile-app"
+      "repo": "https://github.com/esaba12/bookstore-learning"
     },
     "highlights": [
       "Cross-platform mobile app for iOS and Android",
-      "Real-time data synchronization"
+      "Real-time data synchronization with MongoDB",
+      "Community-driven book recommendations",
+      "Progress tracking and reading goals"
     ]
   }
 ]
