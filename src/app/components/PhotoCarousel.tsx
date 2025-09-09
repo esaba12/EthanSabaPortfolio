@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { PhotoItem } from '../../types/creative';
@@ -12,6 +12,8 @@ interface PhotoCarouselProps {
 export default function PhotoCarousel({ photos }: PhotoCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set());
+  const [isInitialLoading, setIsInitialLoading] = useState(true);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const nextPhoto = () => {
@@ -26,34 +28,60 @@ export default function PhotoCarousel({ photos }: PhotoCarouselProps) {
     setCurrentIndex(index);
   };
 
-  const startAutoPlay = () => {
+  // Preload all images
+  useEffect(() => {
+    const preloadImages = async () => {
+      const imagePromises = photos.map((photo, index) => {
+        return new Promise<void>((resolve) => {
+          const img = new window.Image();
+          img.onload = () => {
+            setLoadedImages(prev => new Set([...prev, index]));
+            resolve();
+          };
+          img.onerror = () => resolve(); // Still resolve to not block other images
+          img.src = photo.src;
+        });
+      });
+
+      // Wait for all images to load or timeout after 10 seconds
+      try {
+        await Promise.allSettled(imagePromises);
+      } finally {
+        setIsInitialLoading(false);
+      }
+    };
+
+    preloadImages();
+  }, [photos]);
+
+  const startAutoPlay = useCallback(() => {
     if (photos.length > 1) {
       intervalRef.current = setInterval(() => {
         setCurrentIndex((prev) => (prev + 1) % photos.length);
       }, 4000); // Change photo every 4 seconds
     }
-  };
+  }, [photos.length]);
 
-  const stopAutoPlay = () => {
+  const stopAutoPlay = useCallback(() => {
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
       intervalRef.current = null;
     }
-  };
+  }, []);
 
   const toggleAutoPlay = () => {
     setIsAutoPlaying(!isAutoPlaying);
   };
 
   useEffect(() => {
-    if (isAutoPlaying) {
+    if (isAutoPlaying && !isInitialLoading) {
       startAutoPlay();
     } else {
       stopAutoPlay();
     }
 
     return () => stopAutoPlay();
-  }, [isAutoPlaying, photos.length]);
+  }, [isAutoPlaying, isInitialLoading, startAutoPlay, stopAutoPlay]);
 
   const handleMouseEnter = () => {
     if (isAutoPlaying) {
@@ -69,6 +97,32 @@ export default function PhotoCarousel({ photos }: PhotoCarouselProps) {
 
   return (
     <div className="relative w-full max-w-4xl mx-auto">
+      {/* Loading indicator */}
+      {isInitialLoading && (
+        <div className="absolute inset-0 z-10 flex items-center justify-center bg-brand-surface rounded-lg">
+          <div className="flex flex-col items-center gap-4">
+            <div className="w-8 h-8 border-2 border-brand-accent border-t-transparent rounded-full animate-spin"></div>
+            <p className="text-brand-text-secondary text-sm">
+              Loading images... ({loadedImages.size}/{photos.length})
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* Hidden preload images */}
+      <div className="hidden">
+        {photos.map((photo, index) => (
+          <Image
+            key={`preload-${index}`}
+            src={photo.src}
+            alt=""
+            width={1}
+            height={1}
+            priority={index < 3} // Priority for first 3 images
+          />
+        ))}
+      </div>
+
       {/* Main photo display */}
       <div 
         className="relative h-96 md:h-[500px] bg-brand-surface rounded-lg overflow-hidden shadow-card"
@@ -89,7 +143,9 @@ export default function PhotoCarousel({ photos }: PhotoCarouselProps) {
               alt={photos[currentIndex].alt}
               fill
               className="object-cover"
-              priority
+              priority={currentIndex === 0}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1000px"
+              quality={90}
             />
             
             {/* Photo info overlay */}
@@ -159,12 +215,43 @@ export default function PhotoCarousel({ photos }: PhotoCarouselProps) {
       {/* Thumbnail navigation */}
       {photos.length > 1 && (
         <div className="mt-6">
-          <div className="flex justify-center space-x-2">
-            {photos.map((_, index) => (
+          {/* Thumbnail strip */}
+          <div className="flex justify-center space-x-2 mb-4 overflow-x-auto pb-2">
+            {photos.map((photo, index) => (
               <button
                 key={index}
                 onClick={() => goToPhoto(index)}
-                className={`w-3 h-3 rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-brand-accent ${
+                className={`relative flex-shrink-0 w-16 h-12 rounded-lg overflow-hidden transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-accent ${
+                  index === currentIndex 
+                    ? 'ring-2 ring-brand-accent scale-110' 
+                    : 'opacity-70 hover:opacity-100 hover:scale-105'
+                }`}
+                aria-label={`Go to photo ${index + 1}`}
+              >
+                <Image
+                  src={photo.src}
+                  alt=""
+                  fill
+                  className="object-cover"
+                  sizes="64px"
+                  quality={60}
+                />
+                {!loadedImages.has(index) && (
+                  <div className="absolute inset-0 bg-brand-surface flex items-center justify-center">
+                    <div className="w-4 h-4 border border-brand-accent border-t-transparent rounded-full animate-spin"></div>
+                  </div>
+                )}
+              </button>
+            ))}
+          </div>
+
+          {/* Dot navigation (fallback) */}
+          <div className="flex justify-center space-x-2">
+            {photos.map((_, index) => (
+              <button
+                key={`dot-${index}`}
+                onClick={() => goToPhoto(index)}
+                className={`w-2 h-2 rounded-full transition-colors duration-200 focus:outline-none focus:ring-1 focus:ring-brand-accent ${
                   index === currentIndex ? 'bg-brand-accent' : 'bg-brand-border hover:bg-brand-border-light'
                 }`}
                 aria-label={`Go to photo ${index + 1}`}
@@ -175,6 +262,11 @@ export default function PhotoCarousel({ photos }: PhotoCarouselProps) {
           {/* Photo counter */}
           <div className="text-center mt-2 text-sm text-brand-text-muted">
             {currentIndex + 1} / {photos.length}
+            {isInitialLoading && (
+              <span className="ml-2 text-brand-accent">
+                • Loading...
+              </span>
+            )}
           </div>
         </div>
       )}

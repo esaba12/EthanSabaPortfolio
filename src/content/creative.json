@@ -4,7 +4,7 @@
     "description": "Capturing moments through the lens of my Canon AE-1. I focus on automotive photography, landscapes, and candid moments that tell stories of everyday life.",
     "photos": [
       {
-        "src": "/creative/photos/photo-1.webp",
+        "src": "/creative/Photos/photo-1.webp",
         "alt":"Desert landscape at Glamis sand dunes with dramatic lighting", 
         "camera": "Canon AE-1",
         "stock": "Kodak Portra 400",
@@ -12,7 +12,7 @@
         "date": "2024-07-15"
       },
       {
-        "src": "/creative/photos/photo-2.webp",
+        "src": "/creative/Photos/photo-2.webp",
         "alt":"Urban street scene in Los Angeles with vintage aesthetic",
         "camera": "Canon AE-1",
         "stock": "Kodak ColorPlus 200",
@@ -20,7 +20,7 @@
         "date": "2023-06-24"
       },
       {
-        "src": "/creative/photos/photo-3.webp",
+        "src": "/creative/Photos/photo-3.webp",
         "alt": "Mountain landscape at Yosemite National Park with natural lighting",
         "camera": "Canon AE-1",
         "stock": "Kodak Portra 400",
@@ -28,7 +28,7 @@
         "date": "2024-07-27"
       },
       {
-        "src": "/creative/photos/photo-4.webp",
+        "src": "/creative/Photos/photo-4.webp",
         "alt": "Architectural detail in Los Angeles with film photography aesthetic",
         "camera": "Canon AE-1",
         "stock": "Fujifilm Superia 400",
@@ -36,7 +36,7 @@
         "date": "2023-12-15"
       },
       {
-        "src": "/creative/photos/photo-5.webp",
+        "src": "/creative/Photos/photo-5.webp",
         "alt": "Vineyard landscape in Napa Valley during golden hour",
         "camera": "Canon AE-1",
         "stock": "Kodak Portra 400",
