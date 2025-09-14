@@ -21,15 +21,14 @@ export default function Navbar() {
 
   return (
     <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-4xl px-4">
-      <Disclosure as="nav" className="bg-brand-bg/95 backdrop-blur-md rounded-full border border-white/20 shadow-2xl opacity-95" style={{boxShadow: '0 0 40px rgba(255, 255, 255, 0.3), 0 25px 50px -12px rgba(0, 0, 0, 0.25)'}}>
+      <Disclosure as="nav" className="bg-brand-bg/95 backdrop-blur-md rounded-full data-[open]:rounded-2xl border border-white/20 shadow-2xl opacity-95 transition-all duration-300" style={{boxShadow: '0 0 40px rgba(255, 255, 255, 0.3), 0 25px 50px -12px rgba(0, 0, 0, 0.25)'}}>
         <div className="px-4 py-3">
           <div className="relative flex items-center justify-between">
             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
               {/* Mobile menu button*/}
               <DisclosureButton className="group relative inline-flex items-center justify-center 
               rounded-full p-2 text-brand-text hover:bg-brand-surface hover:text-white 
-              focus:ring-2 focus:ring-brand-accent focus:outline-hidden focus:ring-inset">
-                <span className="absolute -inset-0.5" />
+              focus:ring-2 focus:ring-brand-accent focus:outline-none focus:ring-offset-2 focus:ring-offset-transparent">
                 <span className="sr-only">Open main menu</span>
                 <Bars3Icon aria-hidden="true" className="block size-6 group-data-open:hidden" />
                 <XMarkIcon aria-hidden="true" className="hidden size-6 group-data-open:block" />

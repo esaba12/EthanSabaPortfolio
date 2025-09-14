@@ -26,7 +26,7 @@ export default function Home() {
               <div className="container">
                 <h2 className="text-2xl text-left mt-8 mb-4">Skills</h2>
                 <div className="container border-gray-700 border-2 rounded-lg mx-auto px-2 py-2">
-                  <div className="grid grid-cols-2 gap-0">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-0">
                     {/* left side */}
                     <div className="container">
                       <h3 className="text-xl">Programming skills</h3>
