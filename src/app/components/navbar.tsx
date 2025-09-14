@@ -21,7 +21,7 @@ export default function Navbar() {
 
   return (
     <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-4xl px-4">
-      <Disclosure as="nav" className="bg-brand-bg/80 backdrop-blur-md rounded-full border border-brand-border/50 shadow-lg opacity-90">
+      <Disclosure as="nav" className="bg-brand-bg/95 backdrop-blur-md rounded-full border border-white/20 shadow-2xl opacity-95" style={{boxShadow: '0 0 40px rgba(255, 255, 255, 0.3), 0 25px 50px -12px rgba(0, 0, 0, 0.25)'}}>
         <div className="px-4 py-3">
           <div className="relative flex items-center justify-between">
             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -40,10 +40,14 @@ export default function Navbar() {
               <div className="flex shrink-0 items-center">
                 <Link 
                   href='/'
-                  className="text-xl font-bold bg-brand-accent text-white hover:bg-brand-accent-hover focus:bg-brand-accent-hover focus:ring-2 focus:ring-brand-accent focus:outline-hidden rounded-full px-4 py-2 transition-colors duration-200"
+                  className="flex items-center justify-center hover:opacity-80 transition-opacity duration-200"
                   aria-label="Go to homepage"
                 >
-                  ES
+                  <img
+                    src="/logo.svg"
+                    alt="ES Logo"
+                    className="w-10 h-10"
+                  />
                 </Link>
               </div>
             </div>

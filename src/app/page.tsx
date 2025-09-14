@@ -22,17 +22,9 @@ export default function Home() {
                 </h3>
               </div>
 
-              {/* about me */}
-              <div className="container">
-                <h2 className="text-2xl text-left">About Me</h2>
-                <p className="text-gray-300">
-                  I&apos;m a Sophomore at the University of Michigan studying Computer Science and Real Estate. I&apos;m interested in the intersection of technology and real estate, and I&apos;m always looking for new opportunities to learn and grow.
-                </p>
-              </div>
-
               {/* skills */}
               <div className="container">
-                <h2 className="text-2xl text-left">Skills</h2>
+                <h2 className="text-2xl text-left mt-8 mb-4">Skills</h2>
                 <div className="container border-gray-700 border-2 rounded-lg mx-auto px-2 py-2">
                   <div className="grid grid-cols-2 gap-0">
                     {/* left side */}
@@ -50,7 +42,7 @@ export default function Home() {
                     <div className="container">
                       <h3 className="text-xl">Real Estate</h3>
                       <p className="text-gray-300">
-                        I&apos;m proficient in Python, Java, C++, and JavaScript. I&apos;m also familiar with HTML, CSS, and SQL.
+                        I&apos;m proficient in Excel and have expericence underwriting properties and making financial models.
                       </p>
                     </div>
                   </div>
@@ -59,7 +51,7 @@ export default function Home() {
 
               {/* projects */}
               <div className="container">
-                <h2 className="text-2xl text-left mb-6">Featured Projects</h2>
+                <h2 className="text-2xl text-left mt-8 mb-4">Featured Projects</h2>
                 <ProjectsGrid limit={3} />
               </div>
             </div>

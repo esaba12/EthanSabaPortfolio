@@ -15,7 +15,7 @@ interface MusicTrack {
 export default function Creative() {
   return (
     <div className="min-h-screen bg-brand-bg text-brand-text">
-      <div className="container mx-auto px-8 py-16">
+      <div className="container mx-auto px-8 py-40">
         <div className="max-w-6xl mx-auto space-y-20">
           {/* Photography Section */}
           <section>

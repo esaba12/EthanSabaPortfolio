@@ -48,10 +48,14 @@ export default function Footer() {
             <div>
               <Link 
                 href="/" 
-                className="text-2xl font-bold text-brand-text hover:text-brand-accent transition-colors duration-200"
+                className="flex items-center justify-center w-16 h-16 hover:opacity-80 transition-opacity duration-200"
                 aria-label="Go to homepage"
               >
-                ES
+                <img
+                  src="/logo.svg"
+                  alt="ES Logo"
+                  className="w-12 h-12"
+                />
               </Link>
             </div>
             

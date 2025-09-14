@@ -26,17 +26,34 @@ export const metadata: Metadata = {
   keywords: ["Ethan Saba", "Computer Science", "University of Michigan", "Developer", "Real Estate", "Portfolio"],
   authors: [{ name: "Ethan Saba" }],
   creator: "Ethan Saba",
+  icons: {
+    icon: [
+      {
+        url: "/favicon.svg",
+        type: "image/svg+xml",
+      },
+    ],
+  },
   openGraph: {
     title: "Ethan Saba - Computer Science Student & Developer",
     description: "Portfolio of Ethan Saba, Computer Science student at University of Michigan with interests in technology, real estate, and creative projects.",
     url: "https://ethansaba.com",
     siteName: "Ethan Saba Portfolio",
     type: "website",
+    images: [
+      {
+        url: "/logo.svg",
+        width: 200,
+        height: 200,
+        alt: "Ethan Saba Logo",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Ethan Saba - Computer Science Student & Developer",
     description: "Portfolio of Ethan Saba, Computer Science student at University of Michigan with interests in technology, real estate, and creative projects.",
+    images: ["/logo.svg"],
   },
 };
 
