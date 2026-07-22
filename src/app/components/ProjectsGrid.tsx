@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import Badge from './Badge';
+import Panel from './Panel';
 import projectsData from '../../content/projects.json';
 
 interface Project {
@@ -86,10 +87,10 @@ export default function ProjectsGrid({ limit }: ProjectsGridProps) {
       <div className="flex flex-wrap gap-2">
         <button
           onClick={() => setSelectedTag('all')}
-          className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-bg ${
-            selectedTag === 'all' 
-              ? 'bg-brand-accent text-white' 
-              : 'bg-white/5 text-brand-text hover:bg-white/10'
+          className={`px-4 py-2 rounded-sm font-mono text-[13px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-bg ${
+            selectedTag === 'all'
+              ? 'bg-brand-accent text-white'
+              : 'bg-brand-surface text-brand-text hover:bg-white/10'
           }`}
         >
           All
@@ -98,10 +99,10 @@ export default function ProjectsGrid({ limit }: ProjectsGridProps) {
           <button
             key={tag}
             onClick={() => setSelectedTag(tag)}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-bg ${
-              selectedTag === tag 
-                ? 'bg-brand-accent text-white' 
-                : 'bg-white/5 text-brand-text hover:bg-white/10'
+            className={`px-4 py-2 rounded-sm font-mono text-[13px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-bg ${
+              selectedTag === tag
+                ? 'bg-brand-accent text-white'
+                : 'bg-brand-surface text-brand-text hover:bg-white/10'
             }`}
           >
             {tag}
@@ -124,7 +125,7 @@ export default function ProjectsGrid({ limit }: ProjectsGridProps) {
               initial="hidden"
               animate="visible"
               exit="exit"
-              className="group bg-brand-surface rounded-lg overflow-hidden shadow-card hover:shadow-lg transition-shadow duration-300 focus-within:ring-2 focus-within:ring-brand-accent focus-within:ring-offset-2 focus-within:ring-offset-brand-bg cursor-pointer"
+              className="group focus-within:ring-2 focus-within:ring-brand-accent focus-within:ring-offset-2 focus-within:ring-offset-brand-bg cursor-pointer"
               tabIndex={0}
               onClick={() => {
                 if (project.links.repo) {
@@ -146,43 +147,45 @@ export default function ProjectsGrid({ limit }: ProjectsGridProps) {
               role="button"
               aria-label={`View ${project.title} project`}
             >
-              {/* Project Image */}
-              <div className="relative h-48 bg-gray-800 overflow-hidden">
-                <Image
-                  src={project.cover}
-                  alt={project.title}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-
-              {/* Project Content */}
-              <div className="p-6 space-y-4">
-                <h3 className="text-xl font-semibold text-brand-text group-hover:text-brand-accent transition-colors duration-200">
-                  {project.title}
-                </h3>
-                
-                <p className="text-gray-300 text-sm leading-relaxed">
-                  {project.summary}
-                </p>
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map(tag => (
-                    <Badge key={tag} className="text-xs">
-                      {tag}
-                    </Badge>
-                  ))}
+              <Panel bracketsOnHover className="h-full overflow-hidden flex flex-col shadow-card hover:shadow-card-hover transition-shadow duration-300">
+                {/* Project Image */}
+                <div className="relative h-48 bg-gray-800 overflow-hidden">
+                  <Image
+                    src={project.cover}
+                    alt={project.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
                 </div>
 
-                {/* Click indicator */}
-                <div className="flex items-center gap-2 pt-2 text-brand-accent text-sm">
-                  <span>Click to view project</span>
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
+                {/* Project Content */}
+                <div className="p-6 space-y-4">
+                  <h3 className="text-xl font-semibold text-brand-text group-hover:text-brand-accent transition-colors duration-200">
+                    {project.title}
+                  </h3>
+
+                  <p className="text-gray-300 text-sm leading-relaxed">
+                    {project.summary}
+                  </p>
+
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map(tag => (
+                      <Badge key={tag} className="text-xs">
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+
+                  {/* Click indicator */}
+                  <div className="flex items-center gap-2 pt-2 text-brand-accent text-sm">
+                    <span>Click to view project</span>
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </div>
                 </div>
-              </div>
+              </Panel>
             </motion.article>
           ))}
         </AnimatePresence>
