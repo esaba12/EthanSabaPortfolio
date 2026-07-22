@@ -117,10 +117,11 @@ export default function ProjectsGrid({ limit }: ProjectsGridProps) {
         animate="visible"
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
       >
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="popLayout">
           {filteredProjects.map((project: Project) => (
             <motion.article
               key={project.slug}
+              layout
               variants={cardVariants}
               initial="hidden"
               animate="visible"
@@ -154,6 +155,7 @@ export default function ProjectsGrid({ limit }: ProjectsGridProps) {
                     src={project.cover}
                     alt={project.title}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>

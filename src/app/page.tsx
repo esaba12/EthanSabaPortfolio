@@ -10,14 +10,20 @@ import { gsap, useGSAP, SplitText, ScrollTrigger, prefersReducedMotion } from ".
 
 export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
+  const heroContentRef = useRef<HTMLDivElement>(null);
+  const ghostNumeralRef = useRef<HTMLDivElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const waveUnderlineRef = useRef<WaveUnderlineHandle>(null);
   const scrollCueRef = useRef<HTMLDivElement>(null);
-  const skillsRef = useRef<HTMLDivElement>(null);
+  const skillsSectionRef = useRef<HTMLDivElement>(null);
+  const skillsLeftRef = useRef<HTMLDivElement>(null);
+  const skillsRightRef = useRef<HTMLDivElement>(null);
   const projectsRef = useRef<HTMLDivElement>(null);
 
   // Hero: SplitText line-wipe reveal synced with the WaveUnderline stroke draw-in,
   // followed by the SCROLL cue fading in and fading out on first scroll input.
+  // Also drives a scroll-scrubbed parallax on the headline vs. the giant ghost
+  // numeral so the hero has depth once you start scrolling, not just a static load-in.
   useGSAP(() => {
     if (prefersReducedMotion()) {
       if (scrollCueRef.current) {
@@ -42,6 +48,11 @@ export default function Home() {
       duration: 1.2,
       stagger: 0.08,
     });
+    tl.from(ghostNumeralRef.current, {
+      opacity: 0,
+      xPercent: 8,
+      duration: 1.4,
+    }, '<0.1');
     tl.call(() => {
       waveUnderlineRef.current?.draw({ duration: 1.2, ease: 'power3.out' });
     }, [], '<0.3');
@@ -52,102 +63,137 @@ export default function Home() {
     };
     window.addEventListener('scroll', handleFirstScroll, { once: true });
 
+    // Parallax depth: headline content drifts up slower than the viewport,
+    // the giant background numeral drifts up faster — separation between the
+    // two layers is what reads as depth while scrolling out of the hero.
+    gsap.to(heroContentRef.current, {
+      yPercent: -12,
+      ease: 'none',
+      scrollTrigger: { trigger: heroRef.current, start: 'top top', end: 'bottom top', scrub: true },
+    });
+    gsap.to(ghostNumeralRef.current, {
+      yPercent: -28,
+      ease: 'none',
+      scrollTrigger: { trigger: heroRef.current, start: 'top top', end: 'bottom top', scrub: true },
+    });
+
     return () => {
       window.removeEventListener('scroll', handleFirstScroll);
       split.revert();
     };
   }, { scope: heroRef });
 
-  // Section entries: Skills panel and Featured Projects fade+rise into view.
+  // Skills: a short pinned scroll-scrubbed moment where the two skill panels
+  // slide in from opposite edges and settle — richer than a plain fade+rise,
+  // and it's the one other "choreographed" scroll beat on the page besides
+  // the hero load-in, per the restraint-elsewhere rule.
   useGSAP(() => {
     if (prefersReducedMotion()) return;
+    if (!skillsSectionRef.current || !skillsLeftRef.current || !skillsRightRef.current) return;
 
-    if (skillsRef.current) {
-      gsap.from(skillsRef.current, {
-        opacity: 0,
-        y: 8,
-        duration: 0.4,
-        ease: 'power2.out',
-        scrollTrigger: { trigger: skillsRef.current, start: 'top 80%' },
-      });
-    }
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: skillsSectionRef.current,
+        start: 'top top',
+        end: '+=500',
+        pin: true,
+        scrub: 1,
+      },
+    })
+      .from(skillsLeftRef.current, { xPercent: -25, opacity: 0, scale: 0.95, ease: 'power2.out' })
+      .from(skillsRightRef.current, { xPercent: 25, opacity: 0, scale: 0.95, ease: 'power2.out' }, '<0.1');
+  }, []);
 
-    if (projectsRef.current) {
-      gsap.from(projectsRef.current, {
-        opacity: 0,
-        y: 8,
-        duration: 0.4,
-        ease: 'power2.out',
-        scrollTrigger: { trigger: projectsRef.current, start: 'top 80%' },
-      });
-    }
+  // Projects: fade + rise into view, slightly more pronounced than a
+  // micro-interaction to match the heavier motion vocabulary established above.
+  useGSAP(() => {
+    if (prefersReducedMotion()) return;
+    if (!projectsRef.current) return;
+
+    gsap.from(projectsRef.current, {
+      opacity: 0,
+      y: 32,
+      duration: 0.6,
+      ease: 'power2.out',
+      scrollTrigger: { trigger: projectsRef.current, start: 'top 80%' },
+    });
   }, []);
 
   return (
-    <div>
-      <div className="relative min-h-screen bg-brand-bg text-brand-text">
-        {/* Main content */}
-        <div className="container flex flex-col justify-center items-center">
-          <div className="bg-brand-bg min-h-screen">
-            <div className="container mx-auto px-8 pt-32 pb-16">
-              {/* introduction */}
-              <div ref={heroRef} className="text-center mb-30">
-                <CoordinateLabel className="block mb-4">{'[ 00 ] INTRO'}</CoordinateLabel>
-                <h1
-                  ref={headlineRef}
-                  className="text-[40px] lg:text-[64px] font-display font-bold leading-[1.05] tracking-tight mb-6 text-brand-text"
-                >
-                  Hi. I&apos;m Ethan, and this is the work that I&apos;m proud of.
-                </h1>
-                <WaveUnderline ref={waveUnderlineRef} />
-                <h3 className="text-xl text-gray-300 leading-relaxed mt-6 max-w-4xl mx-auto">
-                  I&apos;m in my Sophomore year at the University of Michigan learning about Computer Science (Major), Real Estate (minor), and everything in between.
-                </h3>
-                <div ref={scrollCueRef} className="mt-12 flex flex-col items-center gap-2 opacity-0">
-                  <CoordinateLabel>SCROLL</CoordinateLabel>
-                  <div className="w-px h-6 bg-brand-border" aria-hidden="true" />
-                </div>
-              </div>
+    <div className="bg-brand-bg text-brand-text">
+      {/* HERO — full viewport, full-bleed, asymmetric */}
+      <div ref={heroRef} className="relative min-h-screen overflow-hidden flex items-center">
+        <div
+          ref={ghostNumeralRef}
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-12 top-1/2 -translate-y-1/2 select-none font-display font-bold text-brand-accent/[0.05] text-[340px] sm:text-[420px] lg:text-[520px] leading-none z-0"
+        >
+          00
+        </div>
 
-              {/* skills */}
-              <div className="container">
-                <CoordinateLabel className="block mt-8 mb-2">{'[ 01 ] SKILLS'}</CoordinateLabel>
-                <h2 className="text-[22px] sm:text-[28px] font-display font-bold leading-[1.2] text-left mb-4">Skills</h2>
-                <div ref={skillsRef}>
-                  <Panel className="mx-auto px-6 py-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-0">
-                      {/* left side */}
-                      <div className="container">
-                        <h3 className="text-xl">Programming skills</h3>
-                        <div className="flex flex-wrap gap-2 mt-2">
-                          <Badge>C++/C</Badge>
-                          <Badge>Python</Badge>
-                          <Badge>JavaScript</Badge>
-                          <Badge>Java</Badge>
-                        </div>
-                      </div>
+        <div ref={heroContentRef} className="relative z-10 w-full px-6 sm:px-12 lg:px-20 xl:px-28 pt-32 pb-24">
+          <CoordinateLabel className="block mb-6">{'[ 00 ] INTRO'}</CoordinateLabel>
+          <h1
+            ref={headlineRef}
+            className="text-[44px] sm:text-[64px] lg:text-[96px] xl:text-[120px] font-display font-bold leading-[0.95] tracking-tight max-w-5xl text-brand-text"
+          >
+            Hi. I&apos;m Ethan, and this is the work that I&apos;m proud of.
+          </h1>
+          <div className="max-w-md mt-8">
+            <WaveUnderline ref={waveUnderlineRef} />
+          </div>
+          <h3 className="text-lg sm:text-xl text-brand-text-secondary leading-relaxed mt-6 max-w-md">
+            I&apos;m in my Sophomore year at the University of Michigan learning about Computer Science (Major), Real Estate (minor), and everything in between.
+          </h3>
 
-                      {/* right side */}
-                      <div className="container">
-                        <h3 className="text-xl">Real Estate</h3>
-                        <p className="text-gray-300">
-                          I&apos;m proficient in Excel and have expericence underwriting properties and making financial models.
-                        </p>
-                      </div>
-                    </div>
-                  </Panel>
-                </div>
-              </div>
-
-              {/* projects */}
-              <div ref={projectsRef} className="container">
-                <CoordinateLabel className="block mt-8 mb-2">{'[ 02 ] PROJECTS'}</CoordinateLabel>
-                <h2 className="text-[22px] sm:text-[28px] font-display font-bold leading-[1.2] text-left mb-4">Featured Projects</h2>
-                <ProjectsGrid limit={3} />
-              </div>
-            </div>
+          <div ref={scrollCueRef} className="mt-20 flex flex-col items-start gap-2 opacity-0">
+            <CoordinateLabel>SCROLL</CoordinateLabel>
+            <div className="w-px h-6 bg-brand-border" aria-hidden="true" />
           </div>
         </div>
+      </div>
+
+      {/* SKILLS — pinned reveal, asymmetric split, break from the centered column */}
+      <div ref={skillsSectionRef} className="relative min-h-screen flex flex-col justify-center px-6 sm:px-12 lg:px-20 xl:px-28 py-24">
+        <CoordinateLabel className="block mb-2">{'[ 01 ] SKILLS'}</CoordinateLabel>
+        <h2 className="text-[28px] sm:text-[40px] font-display font-bold leading-[1.05] mb-12">Skills</h2>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div ref={skillsLeftRef} className="lg:col-span-5">
+            <Panel className="p-8 h-full">
+              <CoordinateLabel className="block mb-3">{'A'}</CoordinateLabel>
+              <h3 className="text-xl font-display font-bold mb-4">Languages</h3>
+              <div className="flex flex-wrap gap-2">
+                <Badge>C++</Badge>
+                <Badge>Java</Badge>
+                <Badge>Python</Badge>
+                <Badge>TypeScript</Badge>
+                <Badge>JavaScript</Badge>
+                <Badge>SQL</Badge>
+              </div>
+            </Panel>
+          </div>
+
+          <div ref={skillsRightRef} className="lg:col-span-7 lg:mt-16">
+            <Panel className="p-8 h-full">
+              <CoordinateLabel className="block mb-3">{'B'}</CoordinateLabel>
+              <h3 className="text-xl font-display font-bold mb-4">Tools &amp; Frameworks</h3>
+              <div className="flex flex-wrap gap-2">
+                <Badge>React</Badge>
+                <Badge>Node.js</Badge>
+                <Badge>Postgres</Badge>
+                <Badge>Git</Badge>
+              </div>
+            </Panel>
+          </div>
+        </div>
+      </div>
+
+      {/* PROJECTS */}
+      <div ref={projectsRef} className="px-6 sm:px-12 lg:px-20 xl:px-28 py-24 max-w-[1800px] mx-auto">
+        <CoordinateLabel className="block mb-2">{'[ 02 ] PROJECTS'}</CoordinateLabel>
+        <h2 className="text-[28px] sm:text-[40px] font-display font-bold leading-[1.05] mb-12">Featured Projects</h2>
+        <ProjectsGrid limit={3} />
       </div>
     </div>
   );
