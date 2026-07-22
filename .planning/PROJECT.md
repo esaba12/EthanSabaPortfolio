@@ -16,13 +16,18 @@ The site must feel unmistakably distinctive and impressive on first load — mot
 - ✓ Content data-driven via `src/content/projects.json` and `src/content/creative.json` — existing
 - ✓ framer-motion, Tailwind, headlessui/heroicons, lucide-react already installed — existing
 
+### Validated
+
+- ✓ Design system: "Engineering Blueprint" — charcoal/near-black canvas with persistent faint blueprint grid, bold technical display type + monospace annotations, single signal-amber accent, corner-bracket/coordinate-label motifs — applied uniformly across all 5 pages
+- ✓ Motion system: framer-motion (micro-interactions) + GSAP/ScrollTrigger (hero line-wipe, pinned Skills reveal, scroll parallax) + Lenis (smooth inertia scroll)
+- ✓ Home page rebuilt (v2, escalated layout — full-viewport hero, asymmetric Skills panels), approved live
+- ✓ About, Projects, Creative, Contact pages rebuilt on the same system
+- ✓ Creative page photography displayed as "technical specimens" — camera/film stock/location/date rendered as mono annotation callouts on the photo carousel
+
 ### Active
 
-- [ ] Design system: "Engineering Blueprint" — charcoal/near-black canvas with persistent faint blueprint grid, bold technical display type + monospace annotations, single signal-amber accent, corner-bracket/coordinate-label motifs — applied uniformly across every page (not per-page themes)
-- [ ] Motion system: framer-motion (micro-interactions, hover/tap) + GSAP/ScrollTrigger (line-draw reveals, pinned sections, scroll-scrubbed choreography) + Lenis (smooth inertia scroll) — Lando Norris (OFF+BRAND) caliber cinematic scroll, one big scroll-stopping moment early, restraint elsewhere
-- [ ] Home page rebuilt with the new system as proof of concept, approved live before rollout
-- [ ] About, Projects, Creative, Contact pages rebuilt with the same locked system
-- [ ] Creative page photography displayed as "technical specimens" using existing EXIF-like metadata (camera, film stock, location, date) as annotation callouts — not a separate darkroom/contact-sheet theme
+- [ ] About page's Experience/Leadership content is stale relative to the user's current resume (still shows the Marcus and Millichap real estate internship, no Axonius/Alias Intelligence/TAMID/Birthright/Beverly Hills entries, no Shishi/Outpost/Nest projects) — visual restyle is done but content refresh not yet done, needs explicit user go-ahead before rewriting someone's work history
+- [ ] Projects page/data (`projects.json`) doesn't yet include the resume's newer projects (Shishi, Outpost, Nest) — same content-refresh question as About
 
 ### Out of Scope
 
