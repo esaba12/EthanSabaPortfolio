@@ -1,10 +1,11 @@
 ---
 phase: 1
 slug: design-system-home-page
-status: draft
+status: approved
 shadcn_initialized: false
 preset: none
 created: 2026-07-22
+reviewed_at: 2026-07-22
 ---
 
 # Phase 1 — UI Design Contract
@@ -175,11 +176,11 @@ Content lock: per PROJECT.md Out of Scope, existing prose copy does not change. 
 
 ## Checker Sign-Off
 
-- [ ] Dimension 1 Copywriting: PASS
-- [ ] Dimension 2 Visuals: PASS
-- [ ] Dimension 3 Color: PASS
-- [ ] Dimension 4 Typography: PASS
-- [ ] Dimension 5 Spacing: PASS
-- [ ] Dimension 6 Registry Safety: PASS
+- [x] Dimension 1 Copywriting: PASS
+- [x] Dimension 2 Visuals: FLAG (non-blocking — add `aria-label` to icon-only mobile hamburger + footer social icons)
+- [x] Dimension 3 Color: PASS
+- [x] Dimension 4 Typography: PASS
+- [x] Dimension 5 Spacing: PASS
+- [x] Dimension 6 Registry Safety: PASS
 
-**Approval:** pending
+**Approval:** APPROVED (1 non-blocking FLAG, 2026-07-22)
