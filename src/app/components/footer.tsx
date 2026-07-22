@@ -70,7 +70,7 @@ export default function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.ariaLabel}
-                    className="w-10 h-10 bg-brand-surface rounded-lg flex items-center justify-center text-brand-text/70 hover:text-brand-accent hover:bg-brand-surface-light transition-all duration-200"
+                    className="w-10 h-10 bg-brand-surface rounded-sm flex items-center justify-center text-brand-text/70 hover:text-brand-accent hover:bg-brand-surface-light transition-all duration-200"
                   >
                     <IconComponent className="w-5 h-5" aria-hidden="true" />
                   </a>
