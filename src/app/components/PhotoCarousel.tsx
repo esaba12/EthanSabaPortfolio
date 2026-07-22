@@ -99,7 +99,7 @@ export default function PhotoCarousel({ photos }: PhotoCarouselProps) {
     <div className="relative w-full max-w-4xl mx-auto">
       {/* Loading indicator */}
       {isInitialLoading && (
-        <div className="absolute inset-0 z-10 flex items-center justify-center bg-brand-surface rounded-lg">
+        <div className="absolute inset-0 z-10 flex items-center justify-center bg-brand-surface rounded-sm">
           <div className="flex flex-col items-center gap-4">
             <div className="w-8 h-8 border-2 border-brand-accent border-t-transparent rounded-full animate-spin"></div>
             <p className="text-brand-text-secondary text-sm">
@@ -124,11 +124,15 @@ export default function PhotoCarousel({ photos }: PhotoCarouselProps) {
       </div>
 
       {/* Main photo display */}
-      <div 
-        className="relative h-96 md:h-[500px] bg-brand-surface rounded-lg overflow-hidden shadow-card"
+      <div
+        className="relative h-96 md:h-[500px] bg-brand-surface rounded-sm overflow-hidden border border-brand-border"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
+        <span aria-hidden="true" className="absolute top-2 left-2 w-6 h-6 border-t-2 border-l-2 border-brand-accent z-20" />
+        <span aria-hidden="true" className="absolute top-2 right-2 w-6 h-6 border-t-2 border-r-2 border-brand-accent z-20" />
+        <span aria-hidden="true" className="absolute bottom-2 left-2 w-6 h-6 border-b-2 border-l-2 border-brand-accent z-20" />
+        <span aria-hidden="true" className="absolute bottom-2 right-2 w-6 h-6 border-b-2 border-r-2 border-brand-accent z-20" />
         <AnimatePresence mode="wait">
           <motion.div
             key={currentIndex}
@@ -148,21 +152,28 @@ export default function PhotoCarousel({ photos }: PhotoCarouselProps) {
               quality={90}
             />
             
-            {/* Photo info overlay */}
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-6 text-white">
-           {  /* <h3 className="text-lg font-semibold mb-2">{photos[currentIndex].alt}</h3> title if wanted */}
-              <div className="flex flex-wrap gap-4 text-sm text-brand-text-secondary">
+            {/* Photo info overlay — technical-specimen annotation callouts */}
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-6 pt-12">
+              <div className="flex flex-wrap gap-x-6 gap-y-1 font-mono text-[13px] uppercase tracking-[0.04em]">
                 {photos[currentIndex].camera && (
-                  <span>{photos[currentIndex].camera}</span>
+                  <span className="text-white/90">
+                    <span className="text-brand-accent">CAM</span> {photos[currentIndex].camera}
+                  </span>
                 )}
                 {photos[currentIndex].stock && (
-                  <span>{photos[currentIndex].stock}</span>
+                  <span className="text-white/90">
+                    <span className="text-brand-accent">STOCK</span> {photos[currentIndex].stock}
+                  </span>
                 )}
                 {photos[currentIndex].location && (
-                  <span>{photos[currentIndex].location}</span>
+                  <span className="text-white/90">
+                    <span className="text-brand-accent">LOC</span> {photos[currentIndex].location}
+                  </span>
                 )}
                 {photos[currentIndex].date && (
-                  <span>{new Date(photos[currentIndex].date!).toLocaleDateString()}</span>
+                  <span className="text-white/90">
+                    <span className="text-brand-accent">DATE</span> {new Date(photos[currentIndex].date!).toLocaleDateString()}
+                  </span>
                 )}
               </div>
             </div>
@@ -221,7 +232,7 @@ export default function PhotoCarousel({ photos }: PhotoCarouselProps) {
               <button
                 key={index}
                 onClick={() => goToPhoto(index)}
-                className={`relative flex-shrink-0 w-16 h-12 rounded-lg overflow-hidden transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-accent ${
+                className={`relative flex-shrink-0 w-16 h-12 rounded-sm overflow-hidden transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-accent ${
                   index === currentIndex 
                     ? 'ring-2 ring-brand-accent scale-110' 
                     : 'opacity-70 hover:opacity-100 hover:scale-105'

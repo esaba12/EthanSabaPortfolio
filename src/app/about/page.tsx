@@ -1,14 +1,19 @@
 'use client';
 
+import { useRef } from "react";
 import Image from "next/image";
 import Saba_Ethan_Photo from "../../../public/Saba_Ethan_Photo.jpg";
 import Badge from "../components/Badge";
+import Panel from "../components/Panel";
+import CoordinateLabel from "../components/CoordinateLabel";
+import HairlineRule from "../components/HairlineRule";
+import { gsap, useGSAP, prefersReducedMotion } from "../lib/motion-utils";
 import { GraduationCap, MapPin, Calendar, Code, Building, Users, Award } from 'lucide-react';
 
 const skills = {
-  programming: ['Java', 'C++', 'Ruby', 'HTML/CSS', 'Python (Learning)'],
+  programming: ['C++', 'Java', 'Python', 'TypeScript', 'JavaScript', 'SQL'],
   design: ['Photoshop', 'Figma', 'CAD'],
-  tools: ['Excel', 'Shopify', 'Arduino', 'Raspberry Pi'],
+  tools: ['Git', 'React', 'Node.js', 'Postgres'],
   languages: ['English', 'Farsi (Persian)', 'Hebrew']
 };
 
@@ -59,259 +64,258 @@ const education = [
   }
 ];
 
-export default function About() {
-  return (
-    <div className="min-h-screen bg-brand-bg text-brand-text">
-      <div className="container mx-auto px-8 pt-32 pb-16">
-        <div className="max-w-6xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-cyan-300 via-blue-500 to-violet-600 bg-clip-text text-transparent">
-              About Me
-            </h1>
-            <p className="text-xl text-brand-text/80 max-w-3xl mx-auto leading-relaxed">
-              I&apos;m a passionate Computer Science student with a unique interest in the intersection of technology and business. 
-              I love building things that solve real problems, teaching others, and connecting with people who share similar interests.
-            </p>
-          </div>
+const skillPanels = [
+  { label: 'A', icon: Code, title: 'Programming', items: skills.programming },
+  { label: 'B', icon: Award, title: 'Design & Tools', items: skills.design },
+  { label: 'C', icon: Building, title: 'Tools & Hardware', items: skills.tools },
+  { label: 'D', icon: Users, title: 'Languages', items: skills.languages },
+];
 
-          {/* Hero Section */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-            <div className="space-y-6">
-              <h2 className="text-3xl font-bold">Ethan Saba</h2>
-                          <p className="text-lg text-brand-text/80 leading-relaxed">
-              I&apos;m a freshman at the University of Michigan College of Engineering studying Computer Science with a minor in Real Estate. 
-              I&apos;m passionate about the intersection of technology and business, with experience in web development, marketing, and teaching.
+function useRevealOnScroll<T extends HTMLElement>(count: number) {
+  const refs = useRef<(T | null)[]>([]);
+  useGSAP(() => {
+    if (prefersReducedMotion()) return;
+    refs.current.forEach((el, i) => {
+      if (!el) return;
+      gsap.from(el, {
+        opacity: 0,
+        y: 24,
+        duration: 0.5,
+        ease: 'power2.out',
+        scrollTrigger: { trigger: el, start: 'top 85%' },
+      });
+    });
+  }, [count]);
+  return refs;
+}
+
+export default function About() {
+  const sectionRefs = useRevealOnScroll<HTMLDivElement>(5);
+
+  return (
+    <div className="bg-brand-bg text-brand-text min-h-screen">
+      <div className="px-6 sm:px-12 lg:px-20 xl:px-28 pt-32 pb-24">
+        {/* Header */}
+        <CoordinateLabel className="block mb-4">{'[ 01 ] ABOUT'}</CoordinateLabel>
+        <h1 className="text-[40px] sm:text-[64px] lg:text-[88px] font-display font-bold leading-[0.95] tracking-tight max-w-4xl mb-6">
+          About Me
+        </h1>
+        <p className="text-lg sm:text-xl text-brand-text-secondary leading-relaxed max-w-xl mb-20">
+          I&apos;m a passionate Computer Science student with a unique interest in the intersection of technology and business. I love building things that solve real problems, teaching others, and connecting with people who share similar interests.
+        </p>
+
+        {/* Hero: intro + photo, asymmetric */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-24 items-start">
+          <div className="lg:col-span-7 space-y-6">
+            <h2 className="text-2xl font-display font-bold">Ethan Saba</h2>
+            <p className="text-lg text-brand-text-secondary leading-relaxed max-w-xl">
+              I&apos;m a sophomore at the University of Michigan College of Engineering studying Computer Science with a minor in Real Estate. I&apos;m passionate about the intersection of technology and business, with experience in web development, marketing, and teaching.
             </p>
-              
-              <div className="space-y-4">
-                <div className="flex items-center space-x-3">
-                  <GraduationCap className="w-5 h-5 text-brand-accent" />
-                  <span className="text-brand-text/80">University of Michigan</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <MapPin className="w-5 h-5 text-brand-accent" />
-                  <span className="text-brand-text/80">Ann Arbor, MI & Los Angeles, CA</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <Calendar className="w-5 h-5 text-brand-accent" />
-                  <span className="text-brand-text/80">Class of 2028</span>
-                </div>
+
+            <div className="space-y-3 pt-2">
+              <div className="flex items-center gap-3">
+                <GraduationCap className="w-5 h-5 text-brand-accent" />
+                <span className="text-brand-text-secondary">University of Michigan</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <MapPin className="w-5 h-5 text-brand-accent" />
+                <span className="text-brand-text-secondary">Ann Arbor, MI &amp; Los Angeles, CA</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Calendar className="w-5 h-5 text-brand-accent" />
+                <span className="text-brand-text-secondary">Class of 2028</span>
               </div>
             </div>
-            
-            <div className="flex justify-center lg:justify-end">
-              <Image 
-                src={Saba_Ethan_Photo} 
-                alt="Ethan Saba" 
-                width={400} 
-                height={400} 
-                className="rounded-xl mix-blend-lighten bg-brand-surface p-1 shadow-card" 
+          </div>
+
+          <div className="lg:col-span-5 lg:mt-12 flex justify-start lg:justify-end">
+            <div className="relative w-full max-w-sm">
+              <span aria-hidden="true" className="absolute -top-3 -left-3 w-8 h-8 border-t-2 border-l-2 border-brand-accent" />
+              <span aria-hidden="true" className="absolute -bottom-3 -right-3 w-8 h-8 border-b-2 border-r-2 border-brand-accent" />
+              <Image
+                src={Saba_Ethan_Photo}
+                alt="Ethan Saba"
+                width={400}
+                height={400}
+                className="w-full mix-blend-lighten bg-brand-surface p-1 rounded-sm"
               />
             </div>
           </div>
+        </div>
 
-          {/* Skills Section */}
-          <div className="mb-16">
-            <h2 className="text-3xl font-bold mb-8 text-center">Skills & Expertise</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="bg-brand-surface rounded-lg p-6 border border-brand-border">
-                <div className="flex items-center space-x-3 mb-4">
-                  <Code className="w-6 h-6 text-brand-accent" />
-                  <h3 className="text-xl font-semibold">Programming</h3>
+        {/* Skills & Expertise */}
+        <div ref={(el) => { sectionRefs.current[0] = el; }} className="mb-24">
+          <CoordinateLabel className="block mb-2">{'[ SKILLS ]'}</CoordinateLabel>
+          <h2 className="text-[28px] sm:text-[40px] font-display font-bold leading-[1.05] mb-10">Skills &amp; Expertise</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {skillPanels.map(({ label, icon: Icon, title, items }, i) => (
+              <Panel key={title} className={`p-6 ${i % 2 === 1 ? 'lg:mt-8' : ''}`}>
+                <div className="flex items-center justify-between mb-4">
+                  <CoordinateLabel>{label}</CoordinateLabel>
+                  <Icon className="w-5 h-5 text-brand-accent" />
                 </div>
+                <h3 className="text-lg font-display font-bold mb-4">{title}</h3>
                 <div className="flex flex-wrap gap-2">
-                  {skills.programming.map((skill) => (
+                  {items.map((skill) => (
                     <Badge key={skill}>{skill}</Badge>
                   ))}
                 </div>
-              </div>
+              </Panel>
+            ))}
+          </div>
+        </div>
 
-              <div className="bg-brand-surface rounded-lg p-6 border border-brand-border">
-                <div className="flex items-center space-x-3 mb-4">
-                  <Award className="w-6 h-6 text-brand-accent" />
-                  <h3 className="text-xl font-semibold">Design & Tools</h3>
+        {/* Experience */}
+        <div ref={(el) => { sectionRefs.current[1] = el; }} className="mb-24">
+          <CoordinateLabel className="block mb-2">{'[ EXPERIENCE ]'}</CoordinateLabel>
+          <h2 className="text-[28px] sm:text-[40px] font-display font-bold leading-[1.05] mb-10">Experience</h2>
+          <div className="space-y-4">
+            {experiences.map((experience, index) => (
+              <Panel key={index} className="p-6" bracketsOnHover>
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3 gap-2">
+                  <div>
+                    <h3 className="text-lg font-semibold text-brand-accent">{experience.title}</h3>
+                    <p className="text-brand-text-secondary">{experience.company}</p>
+                  </div>
+                  <CoordinateLabel>{experience.period}</CoordinateLabel>
                 </div>
+                {experience.description && (
+                  <p className="text-brand-text-secondary mb-4">{experience.description}</p>
+                )}
                 <div className="flex flex-wrap gap-2">
-                  {skills.design.map((skill) => (
+                  {experience.skills.map((skill) => (
                     <Badge key={skill}>{skill}</Badge>
                   ))}
                 </div>
-              </div>
-
-              <div className="bg-brand-surface rounded-lg p-6 border border-brand-border">
-                <div className="flex items-center space-x-3 mb-4">
-                  <Building className="w-6 h-6 text-brand-accent" />
-                  <h3 className="text-xl font-semibold">Tools & Hardware</h3>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {skills.tools.map((tool) => (
-                    <Badge key={tool}>{tool}</Badge>
-                  ))}
-                </div>
-              </div>
-
-              <div className="bg-brand-surface rounded-lg p-6 border border-brand-border">
-                <div className="flex items-center space-x-3 mb-4">
-                  <Users className="w-6 h-6 text-brand-accent" />
-                  <h3 className="text-xl font-semibold">Languages</h3>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {skills.languages.map((language) => (
-                    <Badge key={language}>{language}</Badge>
-                  ))}
-                </div>
-              </div>
-            </div>
+              </Panel>
+            ))}
           </div>
+        </div>
 
-          {/* Experience Section */}
-          <div className="mb-16">
-            <h2 className="text-3xl font-bold mb-8 text-center">Experience</h2>
-            <div className="space-y-6">
-              {experiences.map((experience, index) => (
-                <div key={index} className="bg-brand-surface rounded-lg p-6 border border-brand-border hover:bg-brand-surface-light transition-all duration-200">
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                    <div>
-                      <h3 className="text-xl font-semibold text-brand-accent">{experience.title}</h3>
-                      <p className="text-brand-text/80">{experience.company}</p>
-                    </div>
-                    <span className="text-sm text-brand-text/60 mt-2 md:mt-0">{experience.period}</span>
-                  </div>
-                  <p className="text-brand-text/80 mb-4">{experience.description}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {experience.skills.map((skill) => (
-                      <Badge key={skill}>{skill}</Badge>
-                    ))}
-                  </div>
+        {/* Leadership & Involvement */}
+        <div ref={(el) => { sectionRefs.current[2] = el; }} className="mb-24">
+          <CoordinateLabel className="block mb-2">{'[ LEADERSHIP ]'}</CoordinateLabel>
+          <h2 className="text-[28px] sm:text-[40px] font-display font-bold leading-[1.05] mb-10">Leadership &amp; Involvement</h2>
+          <div className="space-y-4">
+            <Panel className="p-6" bracketsOnHover>
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3 gap-2">
+                <div>
+                  <h3 className="text-lg font-semibold text-brand-accent">Member</h3>
+                  <p className="text-brand-text-secondary">Michigan Blockchain Club</p>
                 </div>
-              ))}
-            </div>
-          </div>
+                <CoordinateLabel>January 2025 - Present</CoordinateLabel>
+              </div>
+              <p className="text-brand-text-secondary mb-4">Exploring blockchain technology and financial technology, collaborating on research of blockchain trends and emerging technologies, participating in workshops focused on smart contract development and Web3.</p>
+              <div className="flex flex-wrap gap-2">
+                <Badge>Blockchain</Badge>
+                <Badge>Smart Contracts</Badge>
+                <Badge>Web3</Badge>
+                <Badge>FinTech</Badge>
+              </div>
+            </Panel>
 
-          {/* Leadership Section */}
-          <div className="mb-16">
-            <h2 className="text-3xl font-bold mb-8 text-center">Leadership & Involvement</h2>
-            <div className="space-y-6">
-              <div className="bg-brand-surface rounded-lg p-6 border border-brand-border hover:bg-brand-surface-light transition-all duration-200">
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+            <Panel className="p-6" bracketsOnHover>
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3 gap-2">
+                <div>
+                  <h3 className="text-lg font-semibold text-brand-accent">Student Body President, Vice President, and House Representative</h3>
+                  <p className="text-brand-text-secondary">Milken Student Government</p>
+                </div>
+                <CoordinateLabel>August 2021 - May 2024</CoordinateLabel>
+              </div>
+              <p className="text-brand-text-secondary mb-4">Organized school-wide events including dances, pep rallies, and graduation celebrations. Served as liaison for all student-faculty relations and directed all student media including social media content and announcements.</p>
+              <div className="flex flex-wrap gap-2">
+                <Badge>Leadership</Badge>
+                <Badge>Event Planning</Badge>
+                <Badge>Student Government</Badge>
+                <Badge>Media Management</Badge>
+              </div>
+            </Panel>
+
+            <Panel className="p-6" bracketsOnHover>
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3 gap-2">
+                <div>
+                  <h3 className="text-lg font-semibold text-brand-accent">President and Fund Manager</h3>
+                  <p className="text-brand-text-secondary">Milken Investment Leadership Club</p>
+                </div>
+                <CoordinateLabel>August 2021 - May 2024</CoordinateLabel>
+              </div>
+              <p className="text-brand-text-secondary mb-4">Maintained $5000 club portfolio as primary manager of stocks, bonds, and mutual funds. Taught investment workshops and organized recruitment for new investors.</p>
+              <div className="flex flex-wrap gap-2">
+                <Badge>Portfolio Management</Badge>
+                <Badge>Investment Analysis</Badge>
+                <Badge>Teaching</Badge>
+                <Badge>Leadership</Badge>
+              </div>
+            </Panel>
+          </div>
+        </div>
+
+        {/* Education */}
+        <div ref={(el) => { sectionRefs.current[3] = el; }} className="mb-24">
+          <CoordinateLabel className="block mb-2">{'[ EDUCATION ]'}</CoordinateLabel>
+          <h2 className="text-[28px] sm:text-[40px] font-display font-bold leading-[1.05] mb-10">Education</h2>
+          <div className="space-y-4">
+            {education.map((edu, index) => (
+              <Panel key={index} className="p-6">
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
                   <div>
-                    <h3 className="text-xl font-semibold text-brand-accent">Member</h3>
-                    <p className="text-brand-text/80">Michigan Blockchain Club</p>
+                    <h3 className="text-lg font-semibold text-brand-accent">{edu.degree}</h3>
+                    <p className="text-brand-text-secondary">{edu.school}</p>
+                    <p className="text-brand-text-muted text-sm">{edu.details}</p>
                   </div>
-                  <span className="text-sm text-brand-text/60 mt-2 md:mt-0">January 2025 - Present</span>
+                  <CoordinateLabel>{edu.period}</CoordinateLabel>
                 </div>
-                <p className="text-brand-text/80 mb-4">Exploring blockchain technology and financial technology, collaborating on research of blockchain trends and emerging technologies, participating in workshops focused on smart contract development and Web3.</p>
-                <div className="flex flex-wrap gap-2">
-                  <Badge>Blockchain</Badge>
-                  <Badge>Smart Contracts</Badge>
-                  <Badge>Web3</Badge>
-                  <Badge>FinTech</Badge>
-                </div>
-              </div>
-
-              <div className="bg-brand-surface rounded-lg p-6 border border-brand-border hover:bg-brand-surface-light transition-all duration-200">
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                  <div>
-                    <h3 className="text-xl font-semibold text-brand-accent">Student Body President, Vice President, and House Representative</h3>
-                    <p className="text-brand-text/80">Milken Student Government</p>
-                  </div>
-                  <span className="text-sm text-brand-text/60 mt-2 md:mt-0">August 2021 - May 2024</span>
-                </div>
-                <p className="text-brand-text/80 mb-4">Organized school-wide events including dances, pep rallies, and graduation celebrations. Served as liaison for all student-faculty relations and directed all student media including social media content and announcements.</p>
-                <div className="flex flex-wrap gap-2">
-                  <Badge>Leadership</Badge>
-                  <Badge>Event Planning</Badge>
-                  <Badge>Student Government</Badge>
-                  <Badge>Media Management</Badge>
-                </div>
-              </div>
-
-              <div className="bg-brand-surface rounded-lg p-6 border border-brand-border hover:bg-brand-surface-light transition-all duration-200">
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                  <div>
-                    <h3 className="text-xl font-semibold text-brand-accent">President and Fund Manager</h3>
-                    <p className="text-brand-text/80">Milken Investment Leadership Club</p>
-                  </div>
-                  <span className="text-sm text-brand-text/60 mt-2 md:mt-0">August 2021 - May 2024</span>
-                </div>
-                <p className="text-brand-text/80 mb-4">Maintained $5000 club portfolio as primary manager of stocks, bonds, and mutual funds. Taught investment workshops and organized recruitment for new investors.</p>
-                <div className="flex flex-wrap gap-2">
-                  <Badge>Portfolio Management</Badge>
-                  <Badge>Investment Analysis</Badge>
-                  <Badge>Teaching</Badge>
-                  <Badge>Leadership</Badge>
-                </div>
-              </div>
-            </div>
+              </Panel>
+            ))}
           </div>
+        </div>
 
-          {/* Education Section */}
-          <div className="mb-16">
-            <h2 className="text-3xl font-bold mb-8 text-center">Education</h2>
-            <div className="bg-brand-surface rounded-lg p-6 border border-brand-border">
-              {education.map((edu, index) => (
-                <div key={index} className="space-y-4">
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-                    <div>
-                      <h3 className="text-xl font-semibold text-brand-accent">{edu.degree}</h3>
-                      <p className="text-brand-text/80">{edu.school}</p>
-                      <p className="text-brand-text/60 text-sm">{edu.details}</p>
-                    </div>
-                    <span className="text-sm text-brand-text/60 mt-2 md:mt-0">{edu.period}</span>
-                  </div>
+        {/* Relevant Coursework */}
+        <div ref={(el) => { sectionRefs.current[4] = el; }}>
+          <HairlineRule className="mb-12" />
+          <CoordinateLabel className="block mb-2">{'[ COURSEWORK ]'}</CoordinateLabel>
+          <h2 className="text-[28px] sm:text-[40px] font-display font-bold leading-[1.05] mb-10">Relevant Coursework</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Panel className="p-6">
+              <CoordinateLabel className="block mb-3">Computer Science</CoordinateLabel>
+              <div className="space-y-2">
+                <div className="flex justify-between">
+                  <span className="text-brand-text-secondary">Discrete Math</span>
+                  <span className="text-brand-text-muted text-sm font-mono">EECS 203</span>
                 </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Relevant Courses Section */}
-          <div className="mb-16">
-            <h2 className="text-3xl font-bold mb-8 text-center">Relevant Coursework</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-brand-surface rounded-lg p-6 border border-brand-border">
-                <h3 className="text-lg font-semibold text-brand-accent mb-3">Computer Science</h3>
-                <div className="space-y-2">
-                  <div className="flex justify-between">
-                    <span className="text-brand-text/80">Discrete Math</span>
-                    <span className="text-brand-text/60 text-sm">EECS 203</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-brand-text/80">Programming & Data Structures</span>
-                    <span className="text-brand-text/60 text-sm">EECS 280</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-brand-text/80">Data Structures and Algorithms</span>
-                    <span className="text-brand-text/60 text-sm">EECS 281</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-brand-text/80">Computational Linear Algebra</span>
-                    <span className="text-brand-text/60 text-sm">ROB 101</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-brand-text/80">Minds and Machines - AI vs Human Thought</span>
-                    <span className="text-brand-text/60 text-sm">PHIL 340</span>
-                  </div>
+                <div className="flex justify-between">
+                  <span className="text-brand-text-secondary">Programming &amp; Data Structures</span>
+                  <span className="text-brand-text-muted text-sm font-mono">EECS 280</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-brand-text-secondary">Data Structures and Algorithms</span>
+                  <span className="text-brand-text-muted text-sm font-mono">EECS 281</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-brand-text-secondary">Computational Linear Algebra</span>
+                  <span className="text-brand-text-muted text-sm font-mono">ROB 101</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-brand-text-secondary">Minds and Machines - AI vs Human Thought</span>
+                  <span className="text-brand-text-muted text-sm font-mono">PHIL 340</span>
                 </div>
               </div>
+            </Panel>
 
-              <div className="bg-brand-surface rounded-lg p-6 border border-brand-border">
-                <h3 className="text-lg font-semibold text-brand-accent mb-3">Mathematics & Sciences</h3>
-                <div className="space-y-2">
-                  <div className="flex justify-between">
-                    <span className="text-brand-text/80">Calculus I & II</span>
-                    <span className="text-brand-text/60 text-sm">MATH 115, 116</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-brand-text/80">Chemistry</span>
-                    <span className="text-brand-text/60 text-sm">CHEM 130</span>
-                  </div>
+            <Panel className="p-6 md:mt-8">
+              <CoordinateLabel className="block mb-3">Mathematics &amp; Sciences</CoordinateLabel>
+              <div className="space-y-2">
+                <div className="flex justify-between">
+                  <span className="text-brand-text-secondary">Calculus I &amp; II</span>
+                  <span className="text-brand-text-muted text-sm font-mono">MATH 115, 116</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-brand-text-secondary">Chemistry</span>
+                  <span className="text-brand-text-muted text-sm font-mono">CHEM 130</span>
                 </div>
               </div>
-            </div>
+            </Panel>
           </div>
-
-
         </div>
       </div>
     </div>
