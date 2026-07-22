@@ -19,34 +19,50 @@ const skills = {
 
 const experiences = [
   {
-    title: 'Real Estate Analyst Intern',
-    company: 'Marcus and  Millichap',
-    period: 'July 2025 - August 2025',
-    description: '',
-    skills: ['Excel', 'Financial Modeling', 'Python', 'AI']
+    title: 'Software Engineering Intern',
+    company: 'Axonius',
+    period: 'June 2026 - Present',
+    description: 'Building internal developer tooling with MCP, Claude Skills, and LangGraph to automate low-priority bug fixes from Jira tickets. Joined the front-end testing suite migration, cutting suite runtime 40%+, and shipped accessible reusable front-end components.',
+    skills: ['TypeScript', 'Python', 'YAML', 'MCP', 'LangGraph']
+  },
+  {
+    title: 'Software Engineer',
+    company: 'Alias Intelligence',
+    period: 'October 2025 - May 2026',
+    description: "Built internal tools for Alias's due diligence platform. Implemented an automated scoring system that compares draft and final reports to flag missed findings and errors, and a coverage map that surfaces gaps in investigative data.",
+    skills: ['Python', 'SQL', 'TypeScript', 'Postgres']
+  },
+];
 
+const leadership = [
+  {
+    title: 'Consulting Analyst and Associate Project Manager',
+    company: 'TAMID at Michigan',
+    period: 'September 2025 - Present',
+    description: 'Advising EIT Hub Israel on European startup benchmarking, pricing, and VC partnership strategy. Also consulting for Tailor Brands, an LLC formation service, on market entry for the college-aged demographic.',
+    skills: ['Consulting', 'Market Research', 'Project Management']
   },
   {
-    title: 'Marketing Intern',
-    company: 'Gifts for Good',
-    period: 'Jun 2023 - Aug 2023',
-    description: 'Prospected eco-friendly corporate partners, improved automated marketing technology, and developed front-end product pages for buyer-to-consumer sales.',
-    skills: ['Marketing', 'Partnership Development', 'Front-end Development', 'Email Marketing']
+    title: 'Member',
+    company: "City of Beverly Hills - Mayor's Innovation Circle",
+    period: 'May 2025 - Present',
+    description: "Planned citywide events for LA Tech Week and helped create Beverly Blends, a music and coffee meetup that brought 1000+ young professionals, artists, and entrepreneurs together with local firms.",
+    skills: ['Event Planning', 'Community Building']
   },
   {
-    title: 'Web Development Intern',
-    company: 'YAD International',
-    period: 'May 2023 - Aug 2023',
-    description: 'Performed market research, developed full-stack Shopify website and online POS system, and initiated conversations with 50+ potential partners.',
-    skills: ['Shopify', 'Full-stack Development', 'Market Research', 'Client Relations']
+    title: 'Fellow',
+    company: 'Birthright Israel Excel',
+    period: 'June 2026 - Present',
+    description: 'One of 80 selected from 2,000+ applicants to join a community of entrepreneurs and 15+ unicorn founders.',
+    skills: ['Entrepreneurship']
   },
   {
-    title: 'Head Counselor – Engineering and Design',
-    company: 'Camp X',
-    period: 'Jun 2021 - Aug 2021',
-    description: 'Instructed lessons on 3D modeling, programming, and computer hardware (Arduino and Raspberry Pi) for students in grades 3-8.',
-    skills: ['Teaching', 'CAD', 'Arduino', 'Raspberry Pi', 'Design Thinking']
-  }
+    title: 'Student Body President, Vice President, and House Representative',
+    company: 'Milken Student Government',
+    period: 'August 2021 - May 2024',
+    description: 'Organized school-wide events, served as liaison for student-faculty relations, and directed student media and communications.',
+    skills: ['Leadership', 'Event Planning', 'Media Management']
+  },
 ];
 
 const education = [
@@ -54,7 +70,7 @@ const education = [
     degree: 'Bachelor of Science in Engineering in Computer Science',
     school: 'University of Michigan College of Engineering',
     period: 'August 2024 - May 2028',
-    details: 'Real Estate Minor • GPA: 3.92/4.0'
+    details: 'Real Estate Minor • GPA: 3.90/4.0'
   },
   {
     degree: 'High School Diploma',
@@ -62,6 +78,11 @@ const education = [
     period: 'June 2024',
     details: 'GPA: 4.49/4.0 • SAT: 1530/1600 • Rank: 3/130'
   }
+];
+
+const coursework = [
+  'EECS 484', 'EECS 445', 'EECS 376', 'EECS 370',
+  'EECS 281', 'EECS 280', 'EECS 203', 'ROB 101',
 ];
 
 const skillPanels = [
@@ -101,7 +122,7 @@ export default function About() {
           About Me
         </h1>
         <p className="text-lg sm:text-xl text-brand-text-secondary leading-relaxed max-w-xl mb-20">
-          I&apos;m a passionate Computer Science student with a unique interest in the intersection of technology and business. I love building things that solve real problems, teaching others, and connecting with people who share similar interests.
+          I&apos;m a CS student at Michigan who spends most of my time building things — internal tools at work, side projects on nights and weekends, and a lot of half-finished ideas in between.
         </p>
 
         {/* Hero: intro + photo, asymmetric */}
@@ -109,7 +130,7 @@ export default function About() {
           <div className="lg:col-span-7 space-y-6">
             <h2 className="text-2xl font-display font-bold">Ethan Saba</h2>
             <p className="text-lg text-brand-text-secondary leading-relaxed max-w-xl">
-              I&apos;m a sophomore at the University of Michigan College of Engineering studying Computer Science with a minor in Real Estate. I&apos;m passionate about the intersection of technology and business, with experience in web development, marketing, and teaching.
+              I&apos;m a sophomore studying Computer Science at the University of Michigan College of Engineering, with a minor in Real Estate. Right now that means internal tooling at Axonius, due-diligence infrastructure at Alias Intelligence, and consulting work through TAMID — plus a few side projects I ship on my own time.
             </p>
 
             <div className="space-y-3 pt-2">
@@ -197,56 +218,23 @@ export default function About() {
           <CoordinateLabel className="block mb-2">{'[ LEADERSHIP ]'}</CoordinateLabel>
           <h2 className="text-[28px] sm:text-[40px] font-display font-bold leading-[1.05] mb-10">Leadership &amp; Involvement</h2>
           <div className="space-y-4">
-            <Panel className="p-6" bracketsOnHover>
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3 gap-2">
-                <div>
-                  <h3 className="text-lg font-semibold text-brand-accent">Member</h3>
-                  <p className="text-brand-text-secondary">Michigan Blockchain Club</p>
+            {leadership.map((role, index) => (
+              <Panel key={index} className="p-6" bracketsOnHover>
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3 gap-2">
+                  <div>
+                    <h3 className="text-lg font-semibold text-brand-accent">{role.title}</h3>
+                    <p className="text-brand-text-secondary">{role.company}</p>
+                  </div>
+                  <CoordinateLabel>{role.period}</CoordinateLabel>
                 </div>
-                <CoordinateLabel>January 2025 - Present</CoordinateLabel>
-              </div>
-              <p className="text-brand-text-secondary mb-4">Exploring blockchain technology and financial technology, collaborating on research of blockchain trends and emerging technologies, participating in workshops focused on smart contract development and Web3.</p>
-              <div className="flex flex-wrap gap-2">
-                <Badge>Blockchain</Badge>
-                <Badge>Smart Contracts</Badge>
-                <Badge>Web3</Badge>
-                <Badge>FinTech</Badge>
-              </div>
-            </Panel>
-
-            <Panel className="p-6" bracketsOnHover>
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3 gap-2">
-                <div>
-                  <h3 className="text-lg font-semibold text-brand-accent">Student Body President, Vice President, and House Representative</h3>
-                  <p className="text-brand-text-secondary">Milken Student Government</p>
+                <p className="text-brand-text-secondary mb-4">{role.description}</p>
+                <div className="flex flex-wrap gap-2">
+                  {role.skills.map((skill) => (
+                    <Badge key={skill}>{skill}</Badge>
+                  ))}
                 </div>
-                <CoordinateLabel>August 2021 - May 2024</CoordinateLabel>
-              </div>
-              <p className="text-brand-text-secondary mb-4">Organized school-wide events including dances, pep rallies, and graduation celebrations. Served as liaison for all student-faculty relations and directed all student media including social media content and announcements.</p>
-              <div className="flex flex-wrap gap-2">
-                <Badge>Leadership</Badge>
-                <Badge>Event Planning</Badge>
-                <Badge>Student Government</Badge>
-                <Badge>Media Management</Badge>
-              </div>
-            </Panel>
-
-            <Panel className="p-6" bracketsOnHover>
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3 gap-2">
-                <div>
-                  <h3 className="text-lg font-semibold text-brand-accent">President and Fund Manager</h3>
-                  <p className="text-brand-text-secondary">Milken Investment Leadership Club</p>
-                </div>
-                <CoordinateLabel>August 2021 - May 2024</CoordinateLabel>
-              </div>
-              <p className="text-brand-text-secondary mb-4">Maintained $5000 club portfolio as primary manager of stocks, bonds, and mutual funds. Taught investment workshops and organized recruitment for new investors.</p>
-              <div className="flex flex-wrap gap-2">
-                <Badge>Portfolio Management</Badge>
-                <Badge>Investment Analysis</Badge>
-                <Badge>Teaching</Badge>
-                <Badge>Leadership</Badge>
-              </div>
-            </Panel>
+              </Panel>
+            ))}
           </div>
         </div>
 
@@ -275,47 +263,14 @@ export default function About() {
           <HairlineRule className="mb-12" />
           <CoordinateLabel className="block mb-2">{'[ COURSEWORK ]'}</CoordinateLabel>
           <h2 className="text-[28px] sm:text-[40px] font-display font-bold leading-[1.05] mb-10">Relevant Coursework</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Panel className="p-6">
-              <CoordinateLabel className="block mb-3">Computer Science</CoordinateLabel>
-              <div className="space-y-2">
-                <div className="flex justify-between">
-                  <span className="text-brand-text-secondary">Discrete Math</span>
-                  <span className="text-brand-text-muted text-sm font-mono">EECS 203</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-brand-text-secondary">Programming &amp; Data Structures</span>
-                  <span className="text-brand-text-muted text-sm font-mono">EECS 280</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-brand-text-secondary">Data Structures and Algorithms</span>
-                  <span className="text-brand-text-muted text-sm font-mono">EECS 281</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-brand-text-secondary">Computational Linear Algebra</span>
-                  <span className="text-brand-text-muted text-sm font-mono">ROB 101</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-brand-text-secondary">Minds and Machines - AI vs Human Thought</span>
-                  <span className="text-brand-text-muted text-sm font-mono">PHIL 340</span>
-                </div>
-              </div>
-            </Panel>
-
-            <Panel className="p-6 md:mt-8">
-              <CoordinateLabel className="block mb-3">Mathematics &amp; Sciences</CoordinateLabel>
-              <div className="space-y-2">
-                <div className="flex justify-between">
-                  <span className="text-brand-text-secondary">Calculus I &amp; II</span>
-                  <span className="text-brand-text-muted text-sm font-mono">MATH 115, 116</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-brand-text-secondary">Chemistry</span>
-                  <span className="text-brand-text-muted text-sm font-mono">CHEM 130</span>
-                </div>
-              </div>
-            </Panel>
-          </div>
+          <Panel className="p-6 max-w-xl">
+            <CoordinateLabel className="block mb-3">EECS &amp; Robotics</CoordinateLabel>
+            <div className="flex flex-wrap gap-2">
+              {coursework.map((course) => (
+                <Badge key={course}>{course}</Badge>
+              ))}
+            </div>
+          </Panel>
         </div>
       </div>
     </div>

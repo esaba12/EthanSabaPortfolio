@@ -10,7 +10,7 @@ export default function Projects() {
           Projects
         </h1>
         <p className="text-lg sm:text-xl text-brand-text-secondary leading-relaxed max-w-xl mb-16">
-          Here are some of the projects I&apos;ve worked on, showcasing my skills in software development and building products end to end.
+          A mix of internal tools I&apos;ve built at work and side projects I&apos;ve shipped on my own time.
         </p>
 
         <ProjectsGrid />

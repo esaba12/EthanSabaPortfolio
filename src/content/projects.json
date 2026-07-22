@@ -1,5 +1,41 @@
 [
   {
+    "slug": "shishi",
+    "title": "Shishi",
+    "summary": "Nonprofit mobile app that connects hosts, guests, and donors to organize and fund free community Shabbat dinners — host-approved sign-ups, in-app messaging, and a safety feature that hides personal details.",
+    "tags": ["Expo", "TypeScript", "Postgres", "Stripe"],
+    "links": {},
+    "highlights": [
+      "Host-approved sign-up flow for guests and donors",
+      "In-app messaging between hosts and guests",
+      "Safety feature that hides personal details until approved"
+    ]
+  },
+  {
+    "slug": "outpost",
+    "title": "Outpost",
+    "summary": "Fashion platform with taste-aware product recommendations — compares prices across 18+ retailers and alerts users to price drops. Built a \"Product DNA\" tagging system over a catalog of ~8,000 products.",
+    "tags": ["TypeScript", "Supabase", "Postgres", "Deno Edge Functions"],
+    "links": {},
+    "highlights": [
+      "Price comparison across 18+ retailers",
+      "\"Product DNA\" tagging system over ~8,000 products",
+      "Price-drop alerts"
+    ]
+  },
+  {
+    "slug": "nest",
+    "title": "Nest",
+    "summary": "AI-powered document management platform for small businesses — digitizes and organizes files automatically using OCR, natural language processing, and intelligent tagging.",
+    "tags": ["TypeScript", "Express", "Postgres", "Tesseract"],
+    "links": {},
+    "highlights": [
+      "Automatic document digitization via OCR",
+      "NLP-driven organization and tagging",
+      "Built for small-business document workflows"
+    ]
+  },
+  {
     "slug": "real-estate-news",
     "title": "Real Estate News Reporter",
     "summary": "Automated Python script that aggregates and analyzes real estate market news using web scraping and natural language processing to provide daily market insights.",
