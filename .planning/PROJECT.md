@@ -24,10 +24,15 @@ The site must feel unmistakably distinctive and impressive on first load — mot
 - ✓ About, Projects, Creative, Contact pages rebuilt on the same system
 - ✓ Creative page photography displayed as "technical specimens" — camera/film stock/location/date rendered as mono annotation callouts on the photo carousel
 
+### Validated (cont.)
+
+- ✓ About page Experience/Leadership/Education/Coursework refreshed from current resume (Axonius, Alias Intelligence, TAMID, Beverly Hills, Birthright); old real-estate-era entries removed
+- ✓ Projects data updated with Shishi, Outpost, Nest (no cover image yet — ProjectsGrid falls back to a technical index-number placeholder; no public repo/demo links yet either, so cards aren't falsely clickable)
+- ✓ Pass on copy sitewide to sound less AI-generic (dropped "passionate about the intersection of technology and business" style phrasing)
+
 ### Active
 
-- [ ] About page's Experience/Leadership content is stale relative to the user's current resume (still shows the Marcus and Millichap real estate internship, no Axonius/Alias Intelligence/TAMID/Birthright/Beverly Hills entries, no Shishi/Outpost/Nest projects) — visual restyle is done but content refresh not yet done, needs explicit user go-ahead before rewriting someone's work history
-- [ ] Projects page/data (`projects.json`) doesn't yet include the resume's newer projects (Shishi, Outpost, Nest) — same content-refresh question as About
+(None open — site-wide visual + content refresh is done. Future asks: real cover images for Shishi/Outpost/Nest if/when available; repo/demo links once public.)
 
 ### Out of Scope
 
