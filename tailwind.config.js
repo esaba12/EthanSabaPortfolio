@@ -27,6 +27,7 @@ module.exports = {
       fontFamily: {
         display: ['var(--font-display)', 'system-ui', 'sans-serif'],
         sans: ['var(--font-geist-sans)', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-geist-mono)', 'ui-monospace', 'monospace'],
       },
       colors: {
         brand: {
@@ -36,9 +37,9 @@ module.exports = {
           text: '#ffffff',
           'text-secondary': '#a0a0a0',
           'text-muted': '#6b7280',
-          accent: '#3b82f6',
-          'accent-hover': '#2563eb',
-          pulse: '#06b6d4',
+          accent: '#FF7A1A',
+          'accent-hover': '#D96816',
+          danger: '#E5484D',
           border: '#374151',
           'border-light': '#4b5563',
         },
