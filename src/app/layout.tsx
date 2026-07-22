@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { Space_Grotesk } from "next/font/google";
+import { Chakra_Petch } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
+import BlueprintGrid from './components/BlueprintGrid';
+import SmoothScrollProvider from './components/SmoothScrollProvider';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,8 +17,9 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const spaceGrotesk = Space_Grotesk({
+const chakraPetch = Chakra_Petch({
   variable: "--font-display",
+  weight: ["300", "400", "500", "600", "700"],
   subsets: ["latin"],
 });
 
@@ -65,10 +68,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${chakraPetch.variable} antialiased`}
       >
+        <BlueprintGrid />
         <Navbar/>
-        {children}
+        <SmoothScrollProvider>{children}</SmoothScrollProvider>
         <Footer/>
       </body>
     </html>
