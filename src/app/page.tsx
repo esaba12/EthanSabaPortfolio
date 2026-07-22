@@ -1,7 +1,10 @@
+'use client';
 
 import ProjectsGrid from "./components/ProjectsGrid";
 import WaveUnderline from "./components/WaveUnderline";
 import Badge from "./components/Badge";
+import Panel from "./components/Panel";
+import CoordinateLabel from "./components/CoordinateLabel";
 
 export default function Home() {
   return (
@@ -13,7 +16,8 @@ export default function Home() {
             <div className="container mx-auto px-8 pt-32 pb-16">
               {/* introduction */}
               <div className="text-center mb-30">
-                <h1 className="sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-blue-500 to-violet-600 tracking-tight">
+                <CoordinateLabel className="block mb-4">{'[ 00 ] INTRO'}</CoordinateLabel>
+                <h1 className="text-[40px] lg:text-[64px] font-display font-bold leading-[1.05] tracking-tight mb-6 text-brand-text">
                   Hi. I&apos;m Ethan, and this is the work that I&apos;m proud of.
                 </h1>
                 <WaveUnderline />
@@ -24,8 +28,9 @@ export default function Home() {
 
               {/* skills */}
               <div className="container">
-                <h2 className="text-2xl text-left mt-8 mb-4">Skills</h2>
-                <div className="container border-gray-700 border-2 rounded-lg mx-auto px-2 py-2">
+                <CoordinateLabel className="block mt-8 mb-2">{'[ 01 ] SKILLS'}</CoordinateLabel>
+                <h2 className="text-[22px] sm:text-[28px] font-display font-bold leading-[1.2] text-left mb-4">Skills</h2>
+                <Panel className="mx-auto px-6 py-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-0">
                     {/* left side */}
                     <div className="container">
@@ -46,12 +51,13 @@ export default function Home() {
                       </p>
                     </div>
                   </div>
-                </div>
+                </Panel>
               </div>
 
               {/* projects */}
               <div className="container">
-                <h2 className="text-2xl text-left mt-8 mb-4">Featured Projects</h2>
+                <CoordinateLabel className="block mt-8 mb-2">{'[ 02 ] PROJECTS'}</CoordinateLabel>
+                <h2 className="text-[22px] sm:text-[28px] font-display font-bold leading-[1.2] text-left mb-4">Featured Projects</h2>
                 <ProjectsGrid limit={3} />
               </div>
             </div>
