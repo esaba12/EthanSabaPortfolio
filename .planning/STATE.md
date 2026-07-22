@@ -1,11 +1,19 @@
 ---
-gsd_state_version: '1.0'
+gsd_state_version: 1.0
+milestone: v1.0
+milestone_name: milestone
+current_phase: 1
+current_phase_name: Design System & Home Page
 status: executing
+stopped_at: Completed 01-01-PLAN.md
+last_updated: "2026-07-22T17:33:15.050Z"
+last_activity: 2026-07-22
+last_activity_desc: Phase 1 execution started
 progress:
   total_phases: 5
   completed_phases: 0
   total_plans: 3
-  completed_plans: 0
+  completed_plans: 1
   percent: 0
 ---
 
@@ -20,16 +28,17 @@ See: .planning/PROJECT.md (updated 2026-07-22)
 
 ## Current Position
 
-Phase: 1 of 5 (Design System & Home Page)
-Plan: 0 of 3 in current phase
+Phase: 1 (Design System & Home Page) — EXECUTING
+Plan: 2 of 3
 Status: Ready to execute
-Last activity: 2026-07-22 — UI-SPEC approved (checker: 1 non-blocking flag). 3 plans created (01-01 tokens/primitives/motion, 01-02 shell wiring, 01-03 Home page rebuild), 1 blocker + 3 warnings found by plan-checker and fixed, re-verified: VERIFICATION PASSED.
+Last activity: 2026-07-22 — Phase 1 execution started
 
 Progress: [░░░░░░░░░░] 0%
 
 ## Performance Metrics
 
 **Velocity:**
+
 - Total plans completed: 0
 - Average duration: — min
 - Total execution time: — hours
@@ -41,10 +50,12 @@ Progress: [░░░░░░░░░░] 0%
 | - | - | - | - |
 
 **Recent Trend:**
+
 - Last 5 plans: —
 - Trend: —
 
 *Updated after each plan completion*
+| Phase 01 P01 | 20min | 4 tasks | 10 files |
 
 ## Accumulated Context
 
@@ -56,6 +67,8 @@ Recent decisions affecting current work:
 - Phase 1: "Engineering Blueprint" chosen over "Contact Sheet" (pure artist) and "The Workshop" (pure builder) — user wants one uniform system, tech-identity central, artistic content expressed through the same technical frame
 - Phase 1: Animation stack is framer-motion + GSAP/ScrollTrigger + Lenis, not framer-motion alone
 - Phase 1: Home page ships first as an approved proof of concept before Phases 2-5 proceed
+- [Phase 01]: 01-01: accent-hover derived as ~15% darker amber (#D96816) — UI-SPEC didn't specify exact hover shade
+- [Phase 01]: 01-01: pre-existing tsc error in about/page.tsx (missing .jpg module declaration) logged to deferred-items.md, out of this plan's scope
 
 ### Pending Todos
 
@@ -73,6 +86,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-07-22
-Stopped at: Phase 1 plans verified and ready; about to run /gsd-execute-phase 1
+Last session: 2026-07-22T17:33:15.042Z
+Stopped at: Completed 01-01-PLAN.md
 Resume file: None
