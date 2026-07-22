@@ -32,12 +32,12 @@ Rebuild the existing 5-page portfolio site under one uniform "Engineering Bluepr
   4. framer-motion still drives hover/tap micro-interactions
   5. User has viewed the running Home page in a browser and approved it as the direction to roll out
 
-**Plans**: 1/3 plans executed
+**Plans**: 2/3 plans executed
 
 Plans:
 
 - [x] 01-01-PLAN.md — Design tokens (amber accent, mono font mapping), 4 structural primitives (BlueprintGrid/Panel/CoordinateLabel/HairlineRule), GSAP+Lenis motion module and smooth-scroll provider
-- [ ] 01-02-PLAN.md — Wire root layout (Chakra Petch font, BlueprintGrid mount, SmoothScrollProvider), restyle navbar/footer off glassmorphism
+- [x] 01-02-PLAN.md — Wire root layout (Chakra Petch font, BlueprintGrid mount, SmoothScrollProvider), restyle navbar/footer off glassmorphism
 - [ ] 01-03-PLAN.md — Rebuild Home page (layout/typography/Badge), GSAP hero choreography + ScrollTrigger reveals, restyle ProjectsGrid, live browser approval checkpoint
 
 ### Phase 2: About Page
@@ -115,7 +115,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Design System & Home Page | 1/3 | In Progress|  |
+| 1. Design System & Home Page | 2/3 | In Progress|  |
 | 2. About Page | 0/1 | Not started | - |
 | 3. Projects Page | 0/1 | Not started | - |
 | 4. Creative Page | 0/1 | Not started | - |

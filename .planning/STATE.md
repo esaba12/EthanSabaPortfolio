@@ -5,15 +5,15 @@ milestone_name: milestone
 current_phase: 1
 current_phase_name: Design System & Home Page
 status: executing
-stopped_at: Completed 01-01-PLAN.md
-last_updated: "2026-07-22T17:33:15.050Z"
+stopped_at: Completed 01-02-PLAN.md
+last_updated: "2026-07-22T18:10:38.471Z"
 last_activity: 2026-07-22
 last_activity_desc: Phase 1 execution started
 progress:
   total_phases: 5
   completed_phases: 0
   total_plans: 3
-  completed_plans: 1
+  completed_plans: 2
   percent: 0
 ---
 
@@ -29,7 +29,7 @@ See: .planning/PROJECT.md (updated 2026-07-22)
 ## Current Position
 
 Phase: 1 (Design System & Home Page) — EXECUTING
-Plan: 2 of 3
+Plan: 3 of 3
 Status: Ready to execute
 Last activity: 2026-07-22 — Phase 1 execution started
 
@@ -56,6 +56,7 @@ Progress: [░░░░░░░░░░] 0%
 
 *Updated after each plan completion*
 | Phase 01 P01 | 20min | 4 tasks | 10 files |
+| Phase 01 P02 | 5min | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -69,6 +70,8 @@ Recent decisions affecting current work:
 - Phase 1: Home page ships first as an approved proof of concept before Phases 2-5 proceed
 - [Phase 01]: 01-01: accent-hover derived as ~15% darker amber (#D96816) — UI-SPEC didn't specify exact hover shade
 - [Phase 01]: 01-01: pre-existing tsc error in about/page.tsx (missing .jpg module declaration) logged to deferred-items.md, out of this plan's scope
+- [Phase 01]: Kept navbar pill shape (rounded-full) rather than reducing to 4px cap — UI-SPEC radius cap is scoped to cards/panels, not nav chrome — Plan's own stated reasoning: nav chrome treated as distinct category from card/panel radius cap
+- [Phase 01]: Used single-quoted import strings for BlueprintGrid/SmoothScrollProvider imports in layout.tsx — Matches the plan's literal automated verification grep pattern; other pre-existing imports in the file left untouched
 
 ### Pending Todos
 
@@ -86,6 +89,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-07-22T17:33:15.042Z
-Stopped at: Completed 01-01-PLAN.md
+Last session: 2026-07-22T18:10:38.464Z
+Stopped at: Completed 01-02-PLAN.md
 Resume file: None
