@@ -12,6 +12,9 @@ const navigation = [
   { name: 'Contact', href: '/contact' },
 ]
 
+// Chamfered/octagonal shell — all 4 corners cut at 45deg instead of rounded.
+const NAV_CLIP = '[clip-path:polygon(22px_0,calc(100%-22px)_0,100%_22px,100%_calc(100%-22px),calc(100%-22px)_100%,22px_100%,0_calc(100%-22px),0_22px)]';
+
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
@@ -21,12 +24,11 @@ export default function Navbar() {
 
   return (
     <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-4xl px-4">
-      <Disclosure as="nav" className="relative bg-brand-bg/95 rounded-sm border border-brand-border transition-all duration-300">
-        <span aria-hidden="true" className="absolute top-1.5 left-1.5 w-4 h-4 border-t-2 border-l-2 border-brand-accent" />
-        <span aria-hidden="true" className="absolute top-1.5 right-1.5 w-4 h-4 border-t-2 border-r-2 border-brand-accent" />
-        <span aria-hidden="true" className="absolute bottom-1.5 left-1.5 w-4 h-4 border-b-2 border-l-2 border-brand-accent" />
-        <span aria-hidden="true" className="absolute bottom-1.5 right-1.5 w-4 h-4 border-b-2 border-r-2 border-brand-accent" />
-        <div className="px-4 py-3">
+      {/* Border layer: same chamfered clip-path, 1px larger — shows through as a
+          diagonal-following "border" since a rectangular border can't bend at the cuts. */}
+      <div className={classNames(NAV_CLIP, 'bg-brand-border p-px transition-all duration-300')}>
+        <Disclosure as="nav" className={classNames(NAV_CLIP, 'relative bg-brand-bg/95 transition-all duration-300')}>
+          <div className="px-4 py-3">
           <div className="relative flex items-center justify-between">
             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
               {/* Mobile menu button*/}
@@ -102,6 +104,7 @@ export default function Navbar() {
           </div>
         </DisclosurePanel>
       </Disclosure>
+      </div>
     </div>
   )
 }
