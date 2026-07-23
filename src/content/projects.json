@@ -36,6 +36,50 @@
     ]
   },
   {
+    "slug": "recruiting-os",
+    "title": "Recruiting OS",
+    "summary": "Near zero-touch recruiting operating system for a job search — a Notion-backed contact CRM and application tracker with a React dashboard, plus AI pipelines that watch Gmail for recruiting emails and auto-extract contacts, applications, and interview events with Claude.",
+    "tags": ["React", "Notion API", "Claude", "Automation"],
+    "links": {
+      "demo": "https://recruiting-os-phi.vercel.app",
+      "repo": "https://github.com/esaba12/recuiting-tool"
+    },
+    "highlights": [
+      "Notion-backed contact CRM with interaction history and a referral graph",
+      "AI email pipeline (Gmail + Claude) that auto-creates contacts, applications, and calendar events",
+      "Call-summary extraction into structured Notion records"
+    ]
+  },
+  {
+    "slug": "course-signal",
+    "title": "Course Signal",
+    "summary": "Advisor-facing course-planning signal built from historical enrollment data — configurable per institution, with UIUC as the live demo adapter.",
+    "tags": ["Python", "Data Analysis"],
+    "links": {
+      "demo": "https://uiuc-course-demand-tool.vercel.app",
+      "repo": "https://github.com/esaba12/class-analytics"
+    },
+    "highlights": [
+      "Institution-isolated data ingestion pipeline",
+      "Portable adapter pattern for adding new schools",
+      "Scoped explicitly as a planning signal, not a capacity forecast"
+    ]
+  },
+  {
+    "slug": "kitcreator",
+    "title": "kitCreator",
+    "summary": "Turns any song into a playable multi-octave sampler kit — separates stems, denoises, and slices hits into velocity-layered SFZ/DecentSampler presets for drums, bass, guitar, piano, and synth.",
+    "tags": ["Python", "Audio ML", "Demucs"],
+    "links": {
+      "repo": "https://github.com/esaba12/kitCreator"
+    },
+    "highlights": [
+      "Source separation via Demucs, denoising via DeepFilterNet3",
+      "Automatic drum sub-stem splitting (kick/snare/hi-hat/toms/cymbals) via LarsNet",
+      "Outputs ready-to-load SFZ and DecentSampler presets"
+    ]
+  },
+  {
     "slug": "real-estate-news",
     "title": "Real Estate News Reporter",
     "summary": "Automated Python script that aggregates and analyzes real estate market news using web scraping and natural language processing to provide daily market insights.",

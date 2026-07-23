@@ -83,25 +83,30 @@ export default function Home() {
     };
   }, { scope: heroRef });
 
-  // Skills: a short pinned scroll-scrubbed moment where the two skill panels
-  // slide in from opposite edges and settle — richer than a plain fade+rise,
-  // and it's the one other "choreographed" scroll beat on the page besides
-  // the hero load-in, per the restraint-elsewhere rule.
+  // Skills: the two panels slide in from opposite edges as they enter the
+  // viewport. Plays once on entry (not pinned/scrubbed) — a pinned scrub was
+  // tried here first but left a large blank void if you landed early in its
+  // scroll range, since the panels started fully invisible for the whole
+  // pinned distance. This is simpler and never has a dead-space state.
   useGSAP(() => {
     if (prefersReducedMotion()) return;
-    if (!skillsSectionRef.current || !skillsLeftRef.current || !skillsRightRef.current) return;
+    if (!skillsLeftRef.current || !skillsRightRef.current) return;
 
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: skillsSectionRef.current,
-        start: 'top top',
-        end: '+=500',
-        pin: true,
-        scrub: 1,
-      },
-    })
-      .from(skillsLeftRef.current, { xPercent: -25, opacity: 0, scale: 0.95, ease: 'power2.out' })
-      .from(skillsRightRef.current, { xPercent: 25, opacity: 0, scale: 0.95, ease: 'power2.out' }, '<0.1');
+    gsap.from(skillsLeftRef.current, {
+      xPercent: -15,
+      opacity: 0,
+      duration: 0.6,
+      ease: 'power2.out',
+      scrollTrigger: { trigger: skillsLeftRef.current, start: 'top 85%' },
+    });
+    gsap.from(skillsRightRef.current, {
+      xPercent: 15,
+      opacity: 0,
+      duration: 0.6,
+      delay: 0.1,
+      ease: 'power2.out',
+      scrollTrigger: { trigger: skillsRightRef.current, start: 'top 85%' },
+    });
   }, []);
 
   // Projects: fade + rise into view, slightly more pronounced than a
@@ -143,7 +148,7 @@ export default function Home() {
             <WaveUnderline ref={waveUnderlineRef} />
           </div>
           <h3 className="text-lg sm:text-xl text-brand-text-secondary leading-relaxed mt-6 max-w-md">
-            I&apos;m in my Sophomore year at the University of Michigan learning about Computer Science (Major), Real Estate (minor), and everything in between.
+            I&apos;m in my Junior year at the University of Michigan learning about Computer Science (Major), Real Estate (minor), and everything in between.
           </h3>
 
           <div ref={scrollCueRef} className="mt-20 flex flex-col items-start gap-2 opacity-0">
@@ -154,7 +159,7 @@ export default function Home() {
       </div>
 
       {/* SKILLS — pinned reveal, asymmetric split, break from the centered column */}
-      <div ref={skillsSectionRef} className="relative min-h-screen flex flex-col justify-center px-6 sm:px-12 lg:px-20 xl:px-28 py-24">
+      <div ref={skillsSectionRef} className="relative px-6 sm:px-12 lg:px-20 xl:px-28 py-24 sm:py-32">
         <CoordinateLabel className="block mb-2">{'[ 01 ] SKILLS'}</CoordinateLabel>
         <h2 className="text-[28px] sm:text-[40px] font-display font-bold leading-[1.05] mb-12">Skills</h2>
 

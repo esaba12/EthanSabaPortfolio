@@ -130,7 +130,7 @@ export default function About() {
           <div className="lg:col-span-7 space-y-6">
             <h2 className="text-2xl font-display font-bold">Ethan Saba</h2>
             <p className="text-lg text-brand-text-secondary leading-relaxed max-w-xl">
-              I&apos;m a sophomore studying Computer Science at the University of Michigan College of Engineering, with a minor in Real Estate. Right now that means internal tooling at Axonius, due-diligence infrastructure at Alias Intelligence, and consulting work through TAMID — plus a few side projects I ship on my own time.
+              I&apos;m a junior studying Computer Science at the University of Michigan College of Engineering, with a minor in Real Estate. Right now that means internal tooling at Axonius, due-diligence infrastructure at Alias Intelligence, and consulting work through TAMID — plus a few side projects I ship on my own time.
             </p>
 
             <div className="space-y-3 pt-2">
