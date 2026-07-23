@@ -96,7 +96,7 @@ function useRevealOnScroll<T extends HTMLElement>(count: number) {
   const refs = useRef<(T | null)[]>([]);
   useGSAP(() => {
     if (prefersReducedMotion()) return;
-    refs.current.forEach((el, i) => {
+    refs.current.forEach((el) => {
       if (!el) return;
       gsap.from(el, {
         opacity: 0,

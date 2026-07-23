@@ -6,7 +6,7 @@ import WaveUnderline, { WaveUnderlineHandle } from "./components/WaveUnderline";
 import Badge from "./components/Badge";
 import Panel from "./components/Panel";
 import CoordinateLabel from "./components/CoordinateLabel";
-import { gsap, useGSAP, SplitText, ScrollTrigger, prefersReducedMotion } from "./lib/motion-utils";
+import { gsap, useGSAP, SplitText, prefersReducedMotion } from "./lib/motion-utils";
 
 export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
