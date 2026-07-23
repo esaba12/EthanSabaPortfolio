@@ -149,7 +149,7 @@ export default function About() {
             </div>
           </div>
 
-          <div className="lg:col-span-5 lg:mt-12 flex justify-start lg:justify-end">
+          <div className="lg:col-span-5 flex justify-start lg:justify-end">
             <div className="relative w-full max-w-sm">
               <span aria-hidden="true" className="absolute -top-3 -left-3 w-8 h-8 border-t-2 border-l-2 border-brand-accent" />
               <span aria-hidden="true" className="absolute -bottom-3 -right-3 w-8 h-8 border-b-2 border-r-2 border-brand-accent" />
