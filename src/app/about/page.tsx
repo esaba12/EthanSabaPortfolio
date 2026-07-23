@@ -158,7 +158,8 @@ export default function About() {
                 alt="Ethan Saba"
                 width={400}
                 height={400}
-                className="w-full mix-blend-lighten bg-brand-surface p-1 rounded-sm"
+                priority
+                className="w-full bg-brand-surface p-1 rounded-sm"
               />
             </div>
           </div>
