@@ -116,37 +116,16 @@ export default function About() {
   return (
     <div className="bg-brand-bg text-brand-text min-h-screen">
       <div className="px-6 sm:px-12 lg:px-20 xl:px-28 pt-32 pb-24">
-        {/* Header */}
-        <CoordinateLabel className="block mb-4">{'[ 01 ] ABOUT'}</CoordinateLabel>
-        <h1 className="text-[40px] sm:text-[64px] lg:text-[88px] font-display font-bold leading-[0.95] tracking-tight max-w-4xl mb-6">
-          About Me
-        </h1>
-        <p className="text-lg sm:text-xl text-brand-text-secondary leading-relaxed max-w-xl mb-20">
-          I&apos;m a CS student at Michigan who spends most of my time building things — internal tools at work, side projects on nights and weekends, and a lot of half-finished ideas in between.
-        </p>
-
-        {/* Hero: intro + photo, asymmetric */}
+        {/* Header: hero text + photo side by side, top-aligned */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-24 items-start">
-          <div className="lg:col-span-7 space-y-6">
-            <h2 className="text-2xl font-display font-bold">Ethan Saba</h2>
-            <p className="text-lg text-brand-text-secondary leading-relaxed max-w-xl">
-              I&apos;m a junior studying Computer Science at the University of Michigan College of Engineering, with a minor in Real Estate. Right now that means internal tooling at Axonius, due-diligence infrastructure at Alias Intelligence, and consulting work through TAMID — plus a few side projects I ship on my own time.
+          <div className="lg:col-span-7">
+            <CoordinateLabel className="block mb-4">{'[ 01 ] ABOUT'}</CoordinateLabel>
+            <h1 className="text-[40px] sm:text-[64px] lg:text-[88px] font-display font-bold leading-[0.95] tracking-tight mb-6">
+              About Me
+            </h1>
+            <p className="text-lg sm:text-xl text-brand-text-secondary leading-relaxed max-w-xl">
+              I&apos;m a CS student at Michigan who spends most of my time building things — internal tools at work, side projects on nights and weekends, and a lot of half-finished ideas in between.
             </p>
-
-            <div className="space-y-3 pt-2">
-              <div className="flex items-center gap-3">
-                <GraduationCap className="w-5 h-5 text-brand-accent" />
-                <span className="text-brand-text-secondary">University of Michigan</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <MapPin className="w-5 h-5 text-brand-accent" />
-                <span className="text-brand-text-secondary">Ann Arbor, MI &amp; Los Angeles, CA</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <Calendar className="w-5 h-5 text-brand-accent" />
-                <span className="text-brand-text-secondary">Class of 2028</span>
-              </div>
-            </div>
           </div>
 
           <div className="lg:col-span-5 flex justify-start lg:justify-end">
@@ -161,6 +140,29 @@ export default function About() {
                 priority
                 className="w-full bg-brand-surface p-1 rounded-sm"
               />
+            </div>
+          </div>
+        </div>
+
+        {/* Bio */}
+        <div className="mb-24 space-y-6">
+          <h2 className="text-2xl font-display font-bold">Ethan Saba</h2>
+          <p className="text-lg text-brand-text-secondary leading-relaxed max-w-xl">
+            I&apos;m a junior studying Computer Science at the University of Michigan College of Engineering, with a minor in Real Estate. Right now that means internal tooling at Axonius, due-diligence infrastructure at Alias Intelligence, and consulting work through TAMID — plus a few side projects I ship on my own time.
+          </p>
+
+          <div className="space-y-3 pt-2">
+            <div className="flex items-center gap-3">
+              <GraduationCap className="w-5 h-5 text-brand-accent" />
+              <span className="text-brand-text-secondary">University of Michigan</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <MapPin className="w-5 h-5 text-brand-accent" />
+              <span className="text-brand-text-secondary">Ann Arbor, MI &amp; Los Angeles, CA</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <Calendar className="w-5 h-5 text-brand-accent" />
+              <span className="text-brand-text-secondary">Class of 2028</span>
             </div>
           </div>
         </div>
