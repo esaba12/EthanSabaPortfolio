@@ -4,6 +4,8 @@
     "title": "Shishi",
     "summary": "Nonprofit mobile app that connects hosts, guests, and donors to organize and fund free community Shabbat dinners — host-approved sign-ups, in-app messaging, and a safety feature that hides personal details.",
     "tags": ["Expo", "TypeScript", "Postgres", "Stripe"],
+    "video": "/videos/shishi.mp4",
+    "videoPoster": "/videos/shishi-poster.jpg",
     "links": {},
     "highlights": [
       "Host-approved sign-up flow for guests and donors",
@@ -16,6 +18,8 @@
     "title": "Outpost",
     "summary": "Fashion platform with taste-aware product recommendations — compares prices across 18+ retailers and alerts users to price drops. Built a \"Product DNA\" tagging system over a catalog of ~8,000 products.",
     "tags": ["TypeScript", "Supabase", "Postgres", "Deno Edge Functions"],
+    "video": "/videos/outpost.mp4",
+    "videoPoster": "/videos/outpost-poster.jpg",
     "links": {},
     "highlights": [
       "Price comparison across 18+ retailers",
@@ -24,22 +28,12 @@
     ]
   },
   {
-    "slug": "nest",
-    "title": "Nest",
-    "summary": "AI-powered document management platform for small businesses — digitizes and organizes files automatically using OCR, natural language processing, and intelligent tagging.",
-    "tags": ["TypeScript", "Express", "Postgres", "Tesseract"],
-    "links": {},
-    "highlights": [
-      "Automatic document digitization via OCR",
-      "NLP-driven organization and tagging",
-      "Built for small-business document workflows"
-    ]
-  },
-  {
     "slug": "recruiting-os",
     "title": "Recruiting OS",
     "summary": "Near zero-touch recruiting operating system for a job search — a Notion-backed contact CRM and application tracker with a React dashboard, plus AI pipelines that watch Gmail for recruiting emails and auto-extract contacts, applications, and interview events with Claude.",
     "tags": ["React", "Notion API", "Claude", "Automation"],
+    "video": "/videos/recruiter.mp4",
+    "videoPoster": "/videos/recruiter-poster.jpg",
     "links": {
       "demo": "https://recruiting-os-phi.vercel.app",
       "repo": "https://github.com/esaba12/recuiting-tool"
@@ -55,6 +49,8 @@
     "title": "Course Signal",
     "summary": "Advisor-facing course-planning signal built from historical enrollment data — configurable per institution, with UIUC as the live demo adapter.",
     "tags": ["Python", "Data Analysis"],
+    "video": "/videos/coursesignal.mp4",
+    "videoPoster": "/videos/coursesignal-poster.jpg",
     "links": {
       "demo": "https://uiuc-course-demand-tool.vercel.app",
       "repo": "https://github.com/esaba12/class-analytics"
@@ -70,6 +66,8 @@
     "title": "kitCreator",
     "summary": "Turns any song into a playable multi-octave sampler kit — separates stems, denoises, and slices hits into velocity-layered SFZ/DecentSampler presets for drums, bass, guitar, piano, and synth.",
     "tags": ["Python", "Audio ML", "Demucs"],
+    "video": "/videos/kitcreator.mp4",
+    "videoPoster": "/videos/kitcreator-poster.jpg",
     "links": {
       "repo": "https://github.com/esaba12/kitCreator"
     },
@@ -77,54 +75,6 @@
       "Source separation via Demucs, denoising via DeepFilterNet3",
       "Automatic drum sub-stem splitting (kick/snare/hi-hat/toms/cymbals) via LarsNet",
       "Outputs ready-to-load SFZ and DecentSampler presets"
-    ]
-  },
-  {
-    "slug": "real-estate-news",
-    "title": "Real Estate News Reporter",
-    "summary": "Automated Python script that aggregates and analyzes real estate market news using web scraping and natural language processing to provide daily market insights.",
-    "tags": ["Python", "Machine Learning", "API", "Real Estate"],
-    "cover": "/project1.jpg",
-    "links": {
-      "repo": "https://github.com/esaba12/real-estate-news"
-    },
-    "highlights": [
-      "Automated news aggregation from multiple real estate sources",
-      "Natural language processing for sentiment analysis",
-      "Daily email reports with market insights"
-    ]
-  },
-  {
-    "slug": "portfolio-website",
-    "title": "Personal Portfolio Website",
-    "summary": "Modern, responsive portfolio website showcasing my projects, experience, and creative work. Built with performance and accessibility in mind.",
-    "tags": ["React", "Next.js", "TypeScript", "Tailwind CSS"],
-    "cover": "/project2.jpg",
-    "links": {
-      "demo": "https://ethansaba.com",
-      "repo": "https://github.com/esaba12/EthanSabaPortfolio"
-    },
-    "highlights": [
-      "Responsive design with mobile-first approach",
-      "Optimized for performance and accessibility",
-      "Interactive animations with Framer Motion",
-      "Contact form integration with Formspree"
-    ]
-  },
-  {
-    "slug": "bookreview-app",
-    "title": "Book Keeper",
-    "summary": "Full-stack application for book enthusiasts to track reading progress, share reviews, and discover new books through community recommendations.",
-    "tags": ["React Native", "MongoDB", "Express", "Next.js"],
-    "cover": "/project3.jpg",
-    "links": {
-      "repo": "https://github.com/esaba12/bookstore-learning"
-    },
-    "highlights": [
-      "Cross-platform mobile app for iOS and Android",
-      "Real-time data synchronization with MongoDB",
-      "Community-driven book recommendations",
-      "Progress tracking and reading goals"
     ]
   }
 ]

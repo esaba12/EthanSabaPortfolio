@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Badge from './Badge';
 import Panel from './Panel';
 import CoordinateLabel from './CoordinateLabel';
+import VideoModal from './VideoModal';
 import projectsData from '../../content/projects.json';
 
 interface Project {
@@ -14,6 +15,8 @@ interface Project {
   summary: string;
   tags: string[];
   cover?: string;
+  video?: string;
+  videoPoster?: string;
   links: {
     demo?: string;
     repo?: string;
@@ -27,6 +30,7 @@ interface ProjectsGridProps {
 
 export default function ProjectsGrid({ limit }: ProjectsGridProps) {
   const [selectedTag, setSelectedTag] = useState<string>('all');
+  const [activeVideo, setActiveVideo] = useState<Project | null>(null);
   
   // Get all unique tags from projects
   const allTags = useMemo(() => {
@@ -149,7 +153,31 @@ export default function ProjectsGrid({ limit }: ProjectsGridProps) {
               >
                 <Panel bracketsOnHover className="h-full overflow-hidden flex flex-col shadow-card hover:shadow-card-hover transition-shadow duration-300">
                   {/* Project Image */}
-                  {project.cover ? (
+                  {project.video && project.videoPoster ? (
+                    <div className="relative h-48 bg-gray-800 overflow-hidden">
+                      <Image
+                        src={project.videoPoster}
+                        alt={project.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setActiveVideo(project);
+                        }}
+                        aria-label={`Watch ${project.title} demo video`}
+                        className="absolute inset-0 flex items-center justify-center bg-black/20 hover:bg-black/40 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-inset"
+                      >
+                        <span className="w-14 h-14 rounded-full bg-brand-accent/90 flex items-center justify-center shadow-card-hover group-hover:scale-110 transition-transform duration-200">
+                          <svg className="w-6 h-6 text-white translate-x-0.5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z" />
+                          </svg>
+                        </span>
+                      </button>
+                    </div>
+                  ) : project.cover ? (
                     <div className="relative h-48 bg-gray-800 overflow-hidden">
                       <Image
                         src={project.cover}
@@ -218,6 +246,15 @@ export default function ProjectsGrid({ limit }: ProjectsGridProps) {
             No projects found with the selected filter.
           </p>
         </motion.div>
+      )}
+
+      {activeVideo?.video && activeVideo?.videoPoster && (
+        <VideoModal
+          src={activeVideo.video}
+          poster={activeVideo.videoPoster}
+          title={activeVideo.title}
+          onClose={() => setActiveVideo(null)}
+        />
       )}
     </div>
   );
