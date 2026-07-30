@@ -41,7 +41,7 @@ export default function VideoModal({ src, poster, title, onClose }: VideoModalPr
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.96, y: 12 }}
           transition={{ duration: 0.25, ease: 'easeOut' }}
-          className="relative w-full max-w-4xl"
+          className="relative w-full max-w-4xl mx-auto flex flex-col items-center justify-center"
           onClick={(e) => e.stopPropagation()}
         >
           <span
@@ -69,14 +69,14 @@ export default function VideoModal({ src, poster, title, onClose }: VideoModalPr
             Close ✕
           </button>
 
-          <div className="border border-brand-border rounded-sm bg-black overflow-hidden shadow-card-hover">
+          <div className="border border-brand-border rounded-sm bg-black overflow-hidden shadow-card-hover flex items-center justify-center max-h-[80vh]">
             <video
               key={src}
               src={src}
               poster={poster}
               controls
               autoPlay
-              className="w-full h-auto block"
+              className="w-auto h-auto max-w-full max-h-[80vh] block mx-auto"
             />
           </div>
         </motion.div>
