@@ -1,6 +1,6 @@
 # ethansaba.com
 
-My personal site — engineering projects, writing, and a creative section for photography
+My personal site: engineering projects, writing, and a creative section for photography
 and music.
 
 **[www.ethansaba.com](https://www.ethansaba.com)**
@@ -25,7 +25,7 @@ npm run dev     # http://localhost:3000
 
 | Path | What's there |
 |---|---|
-| `src/app/` | App Router pages — home, about, projects, creative, contact |
+| `src/app/` | App Router pages: home, about, projects, creative, contact |
 | `src/app/components/` | Layout and motif components (`BlueprintGrid`, `CoordinateLabel`, `WaveUnderline`, `PhotoCarousel`) |
 | `src/app/lib/motion-utils.ts` | Shared Framer Motion variants, so timing stays consistent across pages |
 | `src/content/` | Page content as JSON, kept out of the components |
