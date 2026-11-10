@@ -19,6 +19,8 @@ export interface Project {
   cover?: string;
   video?: string;
   videoPoster?: string;
+  /** Set while a demo video is being made; the card shows a work-in-progress panel. */
+  videoStatus?: 'in-progress';
   links: {
     demo?: string;
     repo?: string;

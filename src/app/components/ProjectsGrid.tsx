@@ -167,6 +167,34 @@ function ProjectCard({
             Watch demo
           </span>
         </button>
+      ) : project.videoStatus === 'in-progress' ? (
+        // Placeholder until the demo video exists: hatched "work area" with a
+        // blinking status light, in the same annotation language as the rest.
+        <div
+          className="relative h-48 overflow-hidden bg-brand-surface flex items-center justify-center"
+          style={{
+            backgroundImage:
+              'repeating-linear-gradient(135deg, rgb(255 255 255 / 0.035) 0 1px, transparent 1px 12px)',
+          }}
+        >
+          <span
+            aria-hidden="true"
+            className="absolute inset-4 border border-dashed border-brand-border rounded-sm"
+          />
+          <div className="relative flex flex-col items-center gap-3 text-center px-6">
+            <span className="inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.08em] text-brand-accent">
+              <span className="relative flex w-2 h-2" aria-hidden="true">
+                <span className="absolute inline-flex w-full h-full rounded-full bg-brand-accent opacity-75 motion-safe:animate-ping" />
+                <span className="relative inline-flex w-2 h-2 rounded-full bg-brand-accent" />
+              </span>
+              Work in progress
+            </span>
+            <span className="font-display font-bold text-2xl text-brand-text">{project.title}</span>
+            <span className="font-mono text-[12px] uppercase tracking-[0.04em] text-brand-text-muted">
+              Demo video in production
+            </span>
+          </div>
+        </div>
       ) : project.cover ? (
         <div className="relative h-48 bg-brand-surface overflow-hidden">
           <Image

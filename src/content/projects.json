@@ -1,13 +1,40 @@
 [
   {
+    "slug": "speakeasy",
+    "title": "SpeakEasy",
+    "summary": "FaceTime-style rehearsal for a conversation you've been putting off. Describe the situation, edit the fictional counterpart, then talk it through on a live video call that reacts, pushes back, and can be interrupted. Built solo at MHacks 2026.",
+    "tags": [
+      "Next.js",
+      "TypeScript",
+      "ElevenLabs",
+      "Tavus",
+      "Supabase"
+    ],
+    "category": "AI",
+    "year": 2026,
+    "featured": true,
+    "award": "MHacks 2026 · 2 prizes",
+    "videoStatus": "in-progress",
+    "links": {
+      "demo": "https://speakeasyapp.tech",
+      "repo": "https://github.com/esaba12/conversaton-practice"
+    },
+    "highlights": [
+      "Won Best Project Built with ElevenLabs and the .Tech domain prize at MHacks 2026",
+      "Live talking-video counterpart (Tavus over Daily) voiced by ElevenLabs",
+      "Private notes never reach the model: counterpart context is built from an allowlist",
+      "About 795 unit tests plus Playwright; CI checks no secrets reach the client bundle"
+    ]
+  },
+  {
     "slug": "recruiting-os",
     "title": "Recruiting OS",
-    "summary": "Near zero-touch recruiting operating system for a job search — a Notion-backed contact CRM and application tracker with a React dashboard, plus AI pipelines that watch Gmail for recruiting emails and auto-extract contacts, applications, and interview events with Claude.",
+    "summary": "Recruiting CRM, application tracker, and job-board aggregator for a student internship search. A Gmail scan keeps contacts and applications current, and reply drafts offer real open times from your calendar. Multi-tenant with bring-your-own-key AI and a no-signup demo.",
     "tags": [
       "React",
-      "Notion API",
+      "Supabase",
       "Claude",
-      "Automation"
+      "Gmail API"
     ],
     "category": "AI",
     "year": 2026,
@@ -19,19 +46,20 @@
       "repo": "https://github.com/esaba12/recruiting-tool"
     },
     "highlights": [
-      "Notion-backed contact CRM with interaction history and a referral graph",
-      "AI email pipeline (Gmail + Claude) that auto-creates contacts, applications, and calendar events",
-      "Call-summary extraction into structured Notion records"
+      "Gmail scan classifies recruiting email and advances applications automatically",
+      "Reply drafts propose three open times from call hours minus calendar busy blocks",
+      "Job-board aggregator with per-job AI fit analysis and deadline extraction",
+      "Multi-tenant on Supabase; each user brings their own AI keys and is never billed for anyone else"
     ]
   },
   {
     "slug": "shishi",
     "title": "Shishi",
-    "summary": "Nonprofit mobile app that connects hosts, guests, and donors to organize and fund free community Shabbat dinners — host-approved sign-ups, in-app messaging, and a safety feature that hides personal details.",
+    "summary": "Three-sided platform that funds and organizes Shabbat dinners in Tel Aviv: sponsors underwrite, hosts open their homes, attendees find a seat. One Expo codebase ships to iOS, Android, and web, with Stripe payments confirmed only by webhook.",
     "tags": [
       "Expo",
       "TypeScript",
-      "Postgres",
+      "Supabase",
       "Stripe"
     ],
     "category": "Mobile",
@@ -44,22 +72,23 @@
       "repo": "https://github.com/esaba12/Shishi"
     },
     "highlights": [
-      "Host-approved sign-up flow for guests and donors",
-      "In-app messaging between hosts and guests",
-      "Safety feature that hides personal details until approved"
+      "Stripe through Supabase Edge Functions; only the webhook marks a donation paid",
+      "20 Postgres tables with row-level security on every one",
+      "Map discovery, RSVPs, potluck claiming, dinner threads, and reporting",
+      "No-account /demo mode that runs the real flows for each role"
     ]
   },
   {
     "slug": "course-signal",
     "title": "Course Signal",
-    "summary": "Advisor-facing course-planning signal built from historical enrollment data — configurable per institution, with UIUC as the live demo adapter.",
+    "summary": "Advisor-facing course-planning signal built from historical enrollment data. Adding a school is a config file, not a code change, and each institution ingests into its own database. Built for OpenAI build week, with UIUC as the demo adapter.",
     "tags": [
       "Python",
+      "SQLite",
       "Data Analysis"
     ],
     "category": "Data",
     "year": 2026,
-    "featured": true,
     "video": "/videos/coursesignal.mp4",
     "videoPoster": "/videos/coursesignal-poster.jpg",
     "links": {
@@ -67,20 +96,20 @@
       "repo": "https://github.com/esaba12/course-signal"
     },
     "highlights": [
-      "Institution-isolated data ingestion pipeline",
-      "Portable adapter pattern for adding new schools",
+      "Institution-isolated ingestion: each school gets its own database",
+      "Adapter pattern: a school is a JSON config of sources and measurement definitions",
       "Scoped explicitly as a planning signal, not a capacity forecast"
     ]
   },
   {
     "slug": "outpost",
     "title": "Outpost",
-    "summary": "Fashion platform with taste-aware product recommendations — compares prices across 18+ retailers and alerts users to price drops. Built a \"Product DNA\" tagging system over a catalog of ~8,000 products.",
+    "summary": "Fashion shopping app that unifies one feed across 18+ retailers and surfaces the real price, with sale and price-drop alerts. A \"Product DNA\" tagging system drives taste-aware recommendations over about 8,000 products.",
     "tags": [
-      "TypeScript",
+      "React Native",
+      "Expo",
       "Supabase",
-      "Postgres",
-      "Deno Edge Functions"
+      "Postgres"
     ],
     "category": "Mobile",
     "year": 2026,
@@ -89,15 +118,15 @@
     "videoPoster": "/videos/outpost-poster.jpg",
     "links": {},
     "highlights": [
-      "Price comparison across 18+ retailers",
-      "\"Product DNA\" tagging system over ~8,000 products",
-      "Price-drop alerts"
+      "Price comparison and price-drop alerts across 18+ retailers",
+      "\"Product DNA\" tagging over about 8,000 products",
+      "31-table Postgres schema with row-level security throughout, plus CI and a test harness"
     ]
   },
   {
     "slug": "kitcreator",
     "title": "kitCreator",
-    "summary": "Turns any song into a playable multi-octave sampler kit — separates stems, denoises, and slices hits into velocity-layered SFZ/DecentSampler presets for drums, bass, guitar, piano, and synth.",
+    "summary": "Turns any song into a playable multi-octave sampler kit. It separates stems, denoises, and slices hits into velocity-layered SFZ and DecentSampler presets for drums, bass, guitar, piano, and synth.",
     "tags": [
       "Python",
       "Audio ML",
@@ -115,6 +144,30 @@
       "Source separation via Demucs, denoising via DeepFilterNet3",
       "Automatic drum sub-stem splitting (kick/snare/hi-hat/toms/cymbals) via LarsNet",
       "Outputs ready-to-load SFZ and DecentSampler presets"
+    ]
+  },
+  {
+    "slug": "openrestore",
+    "title": "OpenRestore",
+    "summary": "Bedside sunrise alarm and sound machine built from a smart bulb and a speaker you already own. Self-hosted and LAN-only, it replaces a $170 Hatch Restore plus a $60/year subscription for about $65 in parts.",
+    "tags": [
+      "Python",
+      "Raspberry Pi",
+      "MQTT",
+      "LIFX"
+    ],
+    "category": "Hardware",
+    "year": 2026,
+    "video": "/videos/openrestore.mp4",
+    "videoPoster": "/videos/openrestore-poster.jpg",
+    "links": {
+      "repo": "https://github.com/esaba12/openrestore"
+    },
+    "highlights": [
+      "Sunrise curves drive brightness and color temperature across a wake window",
+      "REST, WebSocket, and MQTT interfaces plus a web UI; nothing phones home",
+      "Defined behavior for DST changes, restarts, an unreachable bulb, and a dead network",
+      "Mock drivers so the whole system runs and is tested without hardware; mypy --strict"
     ]
   }
 ]
