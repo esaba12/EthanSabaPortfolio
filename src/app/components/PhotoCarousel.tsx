@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { PhotoItem } from '../../types/creative';
+import { formatShotDate } from '../lib/format';
 
 interface PhotoCarouselProps {
   photos: PhotoItem[];
@@ -28,31 +29,25 @@ export default function PhotoCarousel({ photos }: PhotoCarouselProps) {
     setCurrentIndex(index);
   };
 
-  // Preload all images
+  const handleImageLoad = useCallback((index: number) => {
+    setLoadedImages(prev => {
+      if (prev.has(index)) return prev;
+      const next = new Set(prev);
+      next.add(index);
+      return next;
+    });
+  }, []);
+
+  // Stop gating autoplay/spinner once every photo has reported in (loaded or
+  // errored), with a timeout fallback in case a request stalls.
   useEffect(() => {
-    const preloadImages = async () => {
-      const imagePromises = photos.map((photo, index) => {
-        return new Promise<void>((resolve) => {
-          const img = new window.Image();
-          img.onload = () => {
-            setLoadedImages(prev => new Set([...prev, index]));
-            resolve();
-          };
-          img.onerror = () => resolve(); // Still resolve to not block other images
-          img.src = photo.src;
-        });
-      });
-
-      // Wait for all images to load or timeout after 10 seconds
-      try {
-        await Promise.allSettled(imagePromises);
-      } finally {
-        setIsInitialLoading(false);
-      }
-    };
-
-    preloadImages();
-  }, [photos]);
+    if (loadedImages.size >= photos.length) {
+      setIsInitialLoading(false);
+      return;
+    }
+    const timeout = setTimeout(() => setIsInitialLoading(false), 10000);
+    return () => clearTimeout(timeout);
+  }, [loadedImages, photos.length]);
 
   const startAutoPlay = useCallback(() => {
     if (photos.length > 1) {
@@ -109,17 +104,22 @@ export default function PhotoCarousel({ photos }: PhotoCarouselProps) {
         </div>
       )}
 
-      {/* Hidden preload images */}
-      <div className="hidden">
+      {/* Hidden preload images — same sizes/quality as the main display so the
+          browser cache is warm by the time each photo is swapped in */}
+      <div className="sr-only">
         {photos.map((photo, index) => (
-          <Image
-            key={`preload-${index}`}
-            src={photo.src}
-            alt=""
-            width={1}
-            height={1}
-            priority={index < 3} // Priority for first 3 images
-          />
+          <div key={`preload-${index}`} className="relative w-full h-96 md:h-[500px]">
+            <Image
+              src={photo.src}
+              alt=""
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1000px"
+              quality={90}
+              priority={index < 2}
+              onLoad={() => handleImageLoad(index)}
+              onError={() => handleImageLoad(index)}
+            />
+          </div>
         ))}
       </div>
 
@@ -172,7 +172,7 @@ export default function PhotoCarousel({ photos }: PhotoCarouselProps) {
                 )}
                 {photos[currentIndex].date && (
                   <span className="text-white/90">
-                    <span className="text-brand-accent">DATE</span> {new Date(photos[currentIndex].date!).toLocaleDateString()}
+                    <span className="text-brand-accent">DATE</span> {formatShotDate(photos[currentIndex].date!)}
                   </span>
                 )}
               </div>
