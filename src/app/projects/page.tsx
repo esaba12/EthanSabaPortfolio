@@ -13,7 +13,7 @@ export default function Projects() {
           A mix of internal tools I&apos;ve built at work and side projects I&apos;ve shipped on my own time.
         </p>
 
-        <ProjectsGrid />
+        <ProjectsGrid showFilter />
       </div>
     </div>
   );

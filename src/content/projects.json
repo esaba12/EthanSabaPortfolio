@@ -1,40 +1,17 @@
 [
   {
-    "slug": "shishi",
-    "title": "Shishi",
-    "summary": "Nonprofit mobile app that connects hosts, guests, and donors to organize and fund free community Shabbat dinners — host-approved sign-ups, in-app messaging, and a safety feature that hides personal details.",
-    "tags": ["Expo", "TypeScript", "Postgres", "Stripe"],
-    "video": "/videos/shishi.mp4",
-    "videoPoster": "/videos/shishi-poster.jpg",
-    "links": {
-      "demo": "https://shishi-app.vercel.app/",
-      "repo": "https://github.com/esaba12/Shishi"
-    },
-    "highlights": [
-      "Host-approved sign-up flow for guests and donors",
-      "In-app messaging between hosts and guests",
-      "Safety feature that hides personal details until approved"
-    ]
-  },
-  {
-    "slug": "outpost",
-    "title": "Outpost",
-    "summary": "Fashion platform with taste-aware product recommendations — compares prices across 18+ retailers and alerts users to price drops. Built a \"Product DNA\" tagging system over a catalog of ~8,000 products.",
-    "tags": ["TypeScript", "Supabase", "Postgres", "Deno Edge Functions"],
-    "video": "/videos/outpost.mp4",
-    "videoPoster": "/videos/outpost-poster.jpg",
-    "links": {},
-    "highlights": [
-      "Price comparison across 18+ retailers",
-      "\"Product DNA\" tagging system over ~8,000 products",
-      "Price-drop alerts"
-    ]
-  },
-  {
     "slug": "recruiting-os",
     "title": "Recruiting OS",
     "summary": "Near zero-touch recruiting operating system for a job search — a Notion-backed contact CRM and application tracker with a React dashboard, plus AI pipelines that watch Gmail for recruiting emails and auto-extract contacts, applications, and interview events with Claude.",
-    "tags": ["React", "Notion API", "Claude", "Automation"],
+    "tags": [
+      "React",
+      "Notion API",
+      "Claude",
+      "Automation"
+    ],
+    "category": "AI",
+    "year": 2026,
+    "featured": true,
     "video": "/videos/recruiter.mp4",
     "videoPoster": "/videos/recruiter-poster.jpg",
     "links": {
@@ -48,10 +25,41 @@
     ]
   },
   {
+    "slug": "shishi",
+    "title": "Shishi",
+    "summary": "Nonprofit mobile app that connects hosts, guests, and donors to organize and fund free community Shabbat dinners — host-approved sign-ups, in-app messaging, and a safety feature that hides personal details.",
+    "tags": [
+      "Expo",
+      "TypeScript",
+      "Postgres",
+      "Stripe"
+    ],
+    "category": "Mobile",
+    "year": 2026,
+    "featured": true,
+    "video": "/videos/shishi.mp4",
+    "videoPoster": "/videos/shishi-poster.jpg",
+    "links": {
+      "demo": "https://shishi-app.vercel.app/",
+      "repo": "https://github.com/esaba12/Shishi"
+    },
+    "highlights": [
+      "Host-approved sign-up flow for guests and donors",
+      "In-app messaging between hosts and guests",
+      "Safety feature that hides personal details until approved"
+    ]
+  },
+  {
     "slug": "course-signal",
     "title": "Course Signal",
     "summary": "Advisor-facing course-planning signal built from historical enrollment data — configurable per institution, with UIUC as the live demo adapter.",
-    "tags": ["Python", "Data Analysis"],
+    "tags": [
+      "Python",
+      "Data Analysis"
+    ],
+    "category": "Data",
+    "year": 2026,
+    "featured": true,
     "video": "/videos/coursesignal.mp4",
     "videoPoster": "/videos/coursesignal-poster.jpg",
     "links": {
@@ -65,10 +73,38 @@
     ]
   },
   {
+    "slug": "outpost",
+    "title": "Outpost",
+    "summary": "Fashion platform with taste-aware product recommendations — compares prices across 18+ retailers and alerts users to price drops. Built a \"Product DNA\" tagging system over a catalog of ~8,000 products.",
+    "tags": [
+      "TypeScript",
+      "Supabase",
+      "Postgres",
+      "Deno Edge Functions"
+    ],
+    "category": "Mobile",
+    "year": 2026,
+    "visibility": "private",
+    "video": "/videos/outpost.mp4",
+    "videoPoster": "/videos/outpost-poster.jpg",
+    "links": {},
+    "highlights": [
+      "Price comparison across 18+ retailers",
+      "\"Product DNA\" tagging system over ~8,000 products",
+      "Price-drop alerts"
+    ]
+  },
+  {
     "slug": "kitcreator",
     "title": "kitCreator",
     "summary": "Turns any song into a playable multi-octave sampler kit — separates stems, denoises, and slices hits into velocity-layered SFZ/DecentSampler presets for drums, bass, guitar, piano, and synth.",
-    "tags": ["Python", "Audio ML", "Demucs"],
+    "tags": [
+      "Python",
+      "Audio ML",
+      "Demucs"
+    ],
+    "category": "Audio",
+    "year": 2026,
     "video": "/videos/kitcreator.mp4",
     "videoPoster": "/videos/kitcreator-poster.jpg",
     "links": {

@@ -198,7 +198,7 @@ export default function Home() {
       <div ref={projectsRef} className="px-6 sm:px-12 lg:px-20 xl:px-28 py-24 max-w-[1800px] mx-auto">
         <CoordinateLabel className="block mb-2">{'[ 02 ] PROJECTS'}</CoordinateLabel>
         <h2 className="text-[28px] sm:text-[40px] font-display font-bold leading-[1.05] mb-12">Featured Projects</h2>
-        <ProjectsGrid limit={3} />
+        <ProjectsGrid featuredOnly />
       </div>
     </div>
   );
