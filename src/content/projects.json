@@ -6,7 +6,10 @@
     "tags": ["Expo", "TypeScript", "Postgres", "Stripe"],
     "video": "/videos/shishi.mp4",
     "videoPoster": "/videos/shishi-poster.jpg",
-    "links": {},
+    "links": {
+      "demo": "https://shishi-app.vercel.app/",
+      "repo": "https://github.com/esaba12/Shishi"
+    },
     "highlights": [
       "Host-approved sign-up flow for guests and donors",
       "In-app messaging between hosts and guests",
@@ -36,7 +39,7 @@
     "videoPoster": "/videos/recruiter-poster.jpg",
     "links": {
       "demo": "https://recruiting-os-phi.vercel.app",
-      "repo": "https://github.com/esaba12/recuiting-tool"
+      "repo": "https://github.com/esaba12/recruiting-tool"
     },
     "highlights": [
       "Notion-backed contact CRM with interaction history and a referral graph",
@@ -52,8 +55,8 @@
     "video": "/videos/coursesignal.mp4",
     "videoPoster": "/videos/coursesignal-poster.jpg",
     "links": {
-      "demo": "https://uiuc-course-demand-tool.vercel.app",
-      "repo": "https://github.com/esaba12/class-analytics"
+      "demo": "https://course-signal-demo.vercel.app",
+      "repo": "https://github.com/esaba12/course-signal"
     },
     "highlights": [
       "Institution-isolated data ingestion pipeline",
@@ -69,6 +72,7 @@
     "video": "/videos/kitcreator.mp4",
     "videoPoster": "/videos/kitcreator-poster.jpg",
     "links": {
+      "demo": "https://kitcreator-app.vercel.app/",
       "repo": "https://github.com/esaba12/kitCreator"
     },
     "highlights": [

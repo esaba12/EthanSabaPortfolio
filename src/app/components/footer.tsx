@@ -26,7 +26,7 @@ const socialLinks = [
   },
   {
     name: 'Email',
-    href: 'mailto:ethansaba12@gmail.com',
+    href: 'mailto:essaba@umich.edu',
     icon: Mail,
     ariaLabel: 'Send email',
   },
