@@ -9,7 +9,25 @@ This plan **replaces old Phases 4 and 6** of `PLAN-2026-11-content-refresh.md` a
 their content work (skills, About refresh, contact form states). Old Phase 4.3 (résumé),
 Phase 5 (SEO) and Phase 7 (hygiene) still run after it; see "Order" at the end.
 
-Nothing here is implemented yet.
+Implementation status is tracked in the Status section below.
+
+## Status (updated 2026-11-11)
+
+| Phase | State | Where |
+|---|---|---|
+| V0 Foundations | Built, verified, **awaiting your review** | branch `feat/v0-v1-drawing` (commit 2750d02) |
+| V1 Home | Built, verified, **awaiting your review** | same branch (commit da07ffc) |
+| V2 Projects to V6 sweep | Not started | |
+
+**Next action for you:** open the Vercel preview for `feat/v0-v1-drawing`, look at Home at
+desktop and phone width, then say "merge" or list changes. V0 restyles the shell on every
+page, so About / Projects / Creative / Contact keep their old insides until V2 to V5.
+
+**Notes from the build:**
+- Résumé link is wired but hidden: set `RESUME_URL` in `src/app/components/navbar.tsx` once the PDF is in `/public`.
+- Loop clips live in `public/videos/loops/`. Cut them away from scene fades (check frame brightness at both ends) or they flash dark on every repeat.
+- Callout coordinates are percentages in `projects.json`; keep balloons clear of the bottom-left "Watch demo" button.
+- `npm run lint:copy` blocks em dashes and warns on stock phrases.
 
 ---
 
