@@ -6,6 +6,7 @@ import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 import BlueprintGrid from './components/BlueprintGrid';
 import SmoothScrollProvider from './components/SmoothScrollProvider';
+import Crosshair from './components/drawing/Crosshair';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -71,9 +72,21 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${chakraPetch.variable} antialiased`}
       >
         <BlueprintGrid />
-        <Navbar/>
-        <SmoothScrollProvider>{children}</SmoothScrollProvider>
-        <Footer/>
+        <div aria-hidden="true" className="grain pointer-events-none fixed inset-0 z-40" />
+        <Crosshair />
+        <a
+          href="#main"
+          className="label sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-20 focus:z-[60] focus:bg-brand-bg focus:px-3 focus:py-2 focus:text-brand-accent"
+        >
+          Skip to content
+        </a>
+        <Navbar />
+        <SmoothScrollProvider>
+          <div className="sheet-frame mx-auto max-w-[1320px]">
+            <main id="main">{children}</main>
+            <Footer />
+          </div>
+        </SmoothScrollProvider>
       </body>
     </html>
   );

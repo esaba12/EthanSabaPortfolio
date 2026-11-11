@@ -1,8 +1,21 @@
+/**
+ * Drafting paper behind every sheet: a 32px minor grid and a 160px major grid,
+ * both tinted blueprint cyan. Fixed, so it stays put while the sheet scrolls.
+ */
 export default function BlueprintGrid() {
   return (
     <div
       aria-hidden="true"
-      className="fixed inset-0 z-0 pointer-events-none bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:24px_24px] sm:bg-[size:32px_32px]"
+      className="pointer-events-none fixed inset-0 z-0"
+      style={{
+        backgroundImage: [
+          'linear-gradient(to right, rgba(143,180,198,0.075) 1px, transparent 1px)',
+          'linear-gradient(to bottom, rgba(143,180,198,0.075) 1px, transparent 1px)',
+          'linear-gradient(to right, rgba(143,180,198,0.045) 1px, transparent 1px)',
+          'linear-gradient(to bottom, rgba(143,180,198,0.045) 1px, transparent 1px)',
+        ].join(','),
+        backgroundSize: '160px 160px, 160px 160px, 32px 32px, 32px 32px',
+      }}
     />
   );
 }

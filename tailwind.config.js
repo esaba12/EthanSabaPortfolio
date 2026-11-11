@@ -31,17 +31,22 @@ module.exports = {
       },
       colors: {
         brand: {
-          bg: '#0a0a0a',
-          surface: '#1a1a1a',
-          'surface-light': '#2a2a2a',
-          text: '#ffffff',
-          'text-secondary': '#a0a0a0',
-          'text-muted': '#6b7280',
+          // "The drawing" palette. Warm near-black paper, warm greys, blueprint
+          // cyan for annotation, amber reserved for interactive and live things.
+          bg: '#0b0a09',
+          surface: '#14120f',
+          'surface-light': '#1c1915',
+          text: '#ece6dd',
+          'text-secondary': '#a59d92',
+          'text-muted': '#8f877c',
           accent: '#FF7A1A',
-          'accent-hover': '#D96816',
+          'accent-hover': '#ff9a4d',
           danger: '#E5484D',
-          border: '#374151',
-          'border-light': '#4b5563',
+          border: '#3d3630',
+          'border-light': '#4a423a',
+          line: '#2b2622',
+          annot: '#8fb4c6',
+          'annot-dim': 'rgba(143, 180, 198, 0.35)',
         },
       },
       boxShadow: {

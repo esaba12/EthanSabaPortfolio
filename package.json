@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint && node scripts/check-copy.mjs",
+    "lint:copy": "node scripts/check-copy.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

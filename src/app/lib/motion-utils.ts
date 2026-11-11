@@ -7,7 +7,7 @@ import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin';
 import { useGSAP } from '@gsap/react';
 
 // Single site-wide GSAP plugin registration point. No other file may call
-// gsap.registerPlugin — every consumer imports gsap/plugins/useGSAP from here.
+// gsap.registerPlugin; every consumer imports gsap/plugins/useGSAP from here.
 gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin, useGSAP);
 
 export { gsap, ScrollTrigger, SplitText, DrawSVGPlugin, useGSAP };

@@ -1,0 +1,9 @@
+[
+  { "category": "Languages", "parts": ["TypeScript", "Python", "C++", "Java", "SQL"] },
+  { "category": "Frameworks", "parts": ["React", "Next.js", "React Native / Expo", "FastAPI", "Node.js", "Tailwind"] },
+  { "category": "Data and infra", "parts": ["Postgres", "Supabase", "Vercel", "AWS", "SQLite", "MQTT"] },
+  { "category": "AI", "parts": ["Claude API", "LangGraph", "MCP", "PyTorch", "ElevenLabs", "Demucs"] },
+  { "category": "Quality", "parts": ["Vitest", "Playwright", "pytest", "mypy", "CI on every PR"] },
+  { "category": "Design", "parts": ["Figma", "Photoshop", "CAD"], "aboutOnly": true },
+  { "category": "Spoken", "parts": ["English", "Farsi", "Hebrew"], "aboutOnly": true }
+]

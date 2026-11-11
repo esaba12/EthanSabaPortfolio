@@ -114,7 +114,7 @@ export default function About() {
   const sectionRefs = useRevealOnScroll<HTMLDivElement>(5);
 
   return (
-    <div className="bg-brand-bg text-brand-text min-h-screen">
+    <div className="text-brand-text min-h-screen">
       <div className="px-6 sm:px-12 lg:px-20 xl:px-28 pt-32 pb-24">
         {/* Header: hero text + photo side by side, top-aligned */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-24 items-start">
@@ -124,7 +124,7 @@ export default function About() {
               About Me
             </h1>
             <p className="text-lg sm:text-xl text-brand-text-secondary leading-relaxed max-w-xl">
-              I&apos;m a CS student at Michigan who spends most of my time building things — internal tools at work, side projects on nights and weekends, and a lot of half-finished ideas in between.
+              I&apos;m a CS student at Michigan who spends most of my time building things: internal tools at work, side projects on nights and weekends, and a lot of half-finished ideas in between.
             </p>
           </div>
 
@@ -148,7 +148,7 @@ export default function About() {
         <div className="mb-24 space-y-6">
           <h2 className="text-2xl font-display font-bold">Ethan Saba</h2>
           <p className="text-lg text-brand-text-secondary leading-relaxed max-w-xl">
-            I&apos;m a junior studying Computer Science at the University of Michigan College of Engineering, with a minor in Real Estate. Right now that means internal tooling at Axonius, due-diligence infrastructure at Alias Intelligence, and consulting work through TAMID — plus a few side projects I ship on my own time.
+            I&apos;m a junior studying Computer Science at the University of Michigan College of Engineering, with a minor in Real Estate. Right now that means internal tooling at Axonius, due-diligence infrastructure at Alias Intelligence, and consulting work through TAMID, plus a few side projects I ship on my own time.
           </p>
 
           <div className="space-y-3 pt-2">

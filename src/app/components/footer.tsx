@@ -1,121 +1,58 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import { Linkedin, Github, Mail } from 'lucide-react';
-import Link from 'next/link';
+import { LAST_SHEET, REVISION, sheetFor } from '../lib/sheets';
 
-const navigation = [
-  { name: 'About', href: '/about' },
-  { name: 'Projects', href: '/projects' },
-  { name: 'Creative', href: '/creative' },
-  { name: 'Contact', href: '/contact' },
+const LINKS = [
+  { name: 'GitHub', href: 'https://github.com/esaba12' },
+  { name: 'LinkedIn', href: 'https://linkedin.com/in/ethansaba' },
+  { name: 'Email', href: 'mailto:essaba@umich.edu' },
 ];
 
-const socialLinks = [
-  {
-    name: 'LinkedIn',
-    href: 'https://linkedin.com/in/ethansaba',
-    icon: Linkedin,
-    ariaLabel: 'Visit LinkedIn profile',
-  },
-  {
-    name: 'GitHub',
-    href: 'https://github.com/esaba12',
-    icon: Github,
-    ariaLabel: 'Visit GitHub profile',
-  },
-  {
-    name: 'Email',
-    href: 'mailto:essaba@umich.edu',
-    icon: Mail,
-    ariaLabel: 'Send email',
-  },
-];
-
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(' ');
-}
-
+/** The drawing's title block, used as the site footer on every sheet. */
 export default function Footer() {
-  const pathname = usePathname();
+  const sheet = sheetFor(usePathname());
+
+  const cells = [
+    { k: 'Project', v: 'Ethan Saba · Portfolio', wide: true },
+    { k: 'Sheet', v: `${sheet.number} / ${LAST_SHEET} · ${sheet.title}` },
+    { k: 'Drawn', v: 'E. Saba' },
+    { k: 'Rev', v: REVISION },
+  ];
 
   return (
-    <footer className="bg-brand-bg border-t border-brand-border/20">
-      <div className="container mx-auto px-6 py-16">
-        <div className="flex flex-col lg:flex-row items-start justify-between gap-12 max-w-6xl mx-auto">
-          {/* Branding Section */}
-          <div className="flex flex-col items-start space-y-6">
-            <div>
-              <Link 
-                href="/" 
-                className="flex items-center justify-center w-16 h-16 hover:opacity-80 transition-opacity duration-200"
-                aria-label="Go to homepage"
+    <footer className="mt-[clamp(80px,9vw,120px)]">
+      <div className="grid grid-cols-2 border-t border-brand-border lg:grid-cols-[2fr_1.3fr_1fr_1fr_1.4fr]">
+        {cells.map((c) => (
+          <div
+            key={c.k}
+            className={`grid min-w-0 gap-1 border-b border-r border-brand-line px-[18px] py-3.5 lg:border-b-0 ${c.wide ? 'col-span-2 lg:col-span-1' : ''}`}
+          >
+            <span className="label text-[10px] text-brand-annot">{c.k}</span>
+            <span className="break-words font-display text-[17px] font-semibold">{c.v}</span>
+          </div>
+        ))}
+        <div className="grid min-w-0 gap-1 border-b border-brand-line px-[18px] py-3.5 lg:border-b-0">
+          <span className="label text-[10px] text-brand-annot">Links</span>
+          <span className="flex flex-wrap gap-x-4 gap-y-1 font-display text-[17px] font-semibold">
+            {LINKS.map((l) => (
+              <a
+                key={l.name}
+                href={l.href}
+                target={l.href.startsWith('http') ? '_blank' : undefined}
+                rel={l.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                className="rounded-sm text-brand-accent hover:underline hover:underline-offset-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent"
               >
-                <img
-                  src="/logo.svg"
-                  alt="ES Logo"
-                  className="w-12 h-12"
-                />
-              </Link>
-            </div>
-            
-            {/* Social Icons */}
-            <div className="flex space-x-4">
-              {socialLinks.map((social) => {
-                const IconComponent = social.icon;
-                return (
-                  <a
-                    key={social.name}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={social.ariaLabel}
-                    className="w-10 h-10 bg-brand-surface rounded-sm flex items-center justify-center text-brand-text/70 hover:text-brand-accent hover:bg-brand-surface-light transition-all duration-200"
-                  >
-                    <IconComponent className="w-5 h-5" aria-hidden="true" />
-                  </a>
-                );
-              })}
-            </div>
-            
-            <p className="text-brand-text/60 text-sm max-w-xs">
-              CS @ Michigan · Builder · Creative
-            </p>
-          </div>
-
-          {/* Navigation Links */}
-          <div className="flex flex-wrap gap-8">
-            {navigation.map((item) => {
-              const isActive = pathname === item.href;
-              return (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  aria-current={isActive ? 'page' : undefined}
-                  className={classNames(
-                    isActive ? 'text-brand-accent' : 'text-brand-text/70 hover:text-brand-text',
-                    'text-sm font-medium transition-colors duration-200',
-                  )}
-                >
-                  {item.name}
-                </Link>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Credits */}
-        <div className="border-t border-brand-border/20 mt-12 pt-8">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p className="text-brand-text/50 text-sm">
-              © {new Date().getFullYear()} Ethan Saba. All rights reserved.
-            </p>
-            <p className="text-brand-text/50 text-sm">
-              Built with Next.js & Tailwind
-            </p>
-          </div>
+                {l.name}
+                {l.href.startsWith('http') ? ' ↗' : ''}
+              </a>
+            ))}
+          </span>
         </div>
       </div>
+      <p className="label border-t border-brand-line px-[18px] py-4 text-brand-text-muted">
+        © {new Date().getFullYear()} Ethan Saba. Built with Next.js and Tailwind.
+      </p>
     </footer>
   );
 }

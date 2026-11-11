@@ -1,110 +1,101 @@
 'use client';
 
-import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import { usePathname } from 'next/navigation'
-import Link from 'next/link'
+import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { usePathname } from 'next/navigation';
+import Link from 'next/link';
+import { SHEETS, sheetFor } from '../lib/sheets';
 
-const navigation = [
-  { name: 'About', href: '/about' },
-  { name: 'Projects', href: '/projects' },
-  { name: 'Creative', href: '/creative' },
-  { name: 'Contact', href: '/contact' },
-]
+// Set once the résumé PDF is in /public. Until then the link is not shown.
+const RESUME_URL: string | null = null;
 
-// Chamfered/octagonal shell — all 4 corners cut at 45deg instead of rounded.
-const NAV_CLIP = '[clip-path:polygon(22px_0,calc(100%-22px)_0,100%_22px,100%_calc(100%-22px),calc(100%-22px)_100%,22px_100%,0_calc(100%-22px),0_22px)]';
-
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(' ')
-}
+const linkBase =
+  'label rounded-sm px-2.5 py-2 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent';
 
 export default function Navbar() {
   const pathname = usePathname();
+  const current = sheetFor(pathname);
 
   return (
-    <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-4xl px-4">
-      {/* Border layer: same chamfered clip-path, 1px larger — shows through as a
-          diagonal-following "border" since a rectangular border can't bend at the cuts. */}
-      <div className={classNames(NAV_CLIP, 'bg-brand-border p-px transition-all duration-300')}>
-        <Disclosure as="nav" className={classNames(NAV_CLIP, 'relative bg-brand-bg/95 transition-all duration-300')}>
-          <div className="px-4 py-3">
-          <div className="relative flex items-center justify-between">
-            <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-              {/* Mobile menu button*/}
-              <DisclosureButton className="group relative inline-flex items-center justify-center
-              rounded-sm p-2 text-brand-text hover:bg-brand-surface hover:text-white
-              focus:ring-2 focus:ring-brand-accent focus:outline-none focus:ring-offset-2 focus:ring-offset-transparent">
-                <span className="sr-only">Open main menu</span>
-                <Bars3Icon aria-hidden="true" className="block size-6 group-data-open:hidden" />
-                <XMarkIcon aria-hidden="true" className="hidden size-6 group-data-open:block" />
-              </DisclosureButton>
-            </div>
-            
-            <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-              <div className="flex shrink-0 items-center">
-                <Link 
-                  href='/'
-                  className="flex items-center justify-center hover:opacity-80 transition-opacity duration-200"
-                  aria-label="Go to homepage"
-                >
-                  <img
-                    src="/logo.svg"
-                    alt="ES Logo"
-                    className="w-10 h-10"
-                  />
-                </Link>
-              </div>
-            </div>
-            
-            <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-end">
-              <div className="hidden sm:ml-6 sm:block">
-                <div className="flex space-x-1">
-                  {navigation.map((item) => {
-                    const isActive = pathname === item.href;
-                    return (
-                      <Link
-                        key={item.name}
-                        href={item.href}
-                        aria-current={isActive ? 'page' : undefined}
-                        className={classNames(
-                          isActive ? 'bg-brand-accent text-white' : 'text-brand-text-secondary hover:text-brand-text hover:bg-brand-surface/50',
-                          'rounded-sm px-4 py-2 text-sm font-mono uppercase tracking-[0.04em] transition-all duration-200 focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-transparent',
-                        )}
-                      >
-                        {item.name}
-                      </Link>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-          </div>
+    <Disclosure
+      as="header"
+      className="fixed inset-x-0 top-0 z-50 border-b border-brand-line bg-brand-bg/90 pt-[env(safe-area-inset-top,0px)] backdrop-blur-md"
+    >
+      <div className="mx-auto flex h-16 max-w-[1320px] items-center justify-between gap-6 px-4 md:px-10">
+        <div className="flex items-center gap-4">
+          <Link
+            href="/"
+            aria-label="Ethan Saba, home"
+            className="rounded-sm transition-opacity hover:opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/logo.svg" alt="" className="h-9 w-9" />
+          </Link>
+          <span className="label hidden text-brand-annot sm:inline">Sheet {current.number}</span>
         </div>
 
-        <DisclosurePanel className="sm:hidden">
-          <div className="space-y-1 px-4 pb-4">
-            {navigation.map((item) => {
-              const isActive = pathname === item.href;
-              return (
-                <DisclosureButton
-                  key={item.name}
-                  as={Link}
-                  href={item.href}
-                  aria-current={isActive ? 'page' : undefined}
-                  className={classNames(
-                    isActive ? 'bg-brand-accent text-white' : 'text-brand-text-secondary hover:text-brand-text hover:bg-brand-surface/50',
-                    'block rounded-sm px-4 py-2 text-base font-mono uppercase tracking-[0.04em] transition-all duration-200 focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-transparent',
-                  )}
-                >
-                  {item.name}
-                </DisclosureButton>
-              );
-            })}
-          </div>
-        </DisclosurePanel>
-      </Disclosure>
+        <nav aria-label="Sheets" className="hidden items-center gap-1 md:flex">
+          {SHEETS.map((s) => {
+            const active = s.href === pathname;
+            return (
+              <Link
+                key={s.href}
+                href={s.href}
+                aria-current={active ? 'page' : undefined}
+                className={`${linkBase} border-b-2 ${
+                  active ? 'border-brand-accent text-brand-text' : 'border-transparent text-brand-text-secondary hover:text-brand-accent'
+                }`}
+              >
+                <span className="text-brand-text-muted">{s.number}</span> {s.title}
+              </Link>
+            );
+          })}
+          {RESUME_URL && (
+            <a
+              href={RESUME_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${linkBase} ml-3 border border-brand-accent text-brand-accent hover:bg-brand-accent hover:text-brand-bg`}
+            >
+              Résumé ↗
+            </a>
+          )}
+        </nav>
+
+        <DisclosureButton className="group inline-flex items-center justify-center rounded-sm p-2 text-brand-text hover:text-brand-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent md:hidden">
+          <span className="sr-only">Open menu</span>
+          <Bars3Icon aria-hidden="true" className="block size-6 group-data-[open]:hidden" />
+          <XMarkIcon aria-hidden="true" className="hidden size-6 group-data-[open]:block" />
+        </DisclosureButton>
       </div>
-    </div>
-  )
+
+      <DisclosurePanel className="border-t border-brand-line md:hidden">
+        <ul className="m-0 list-none px-4 py-2">
+          {SHEETS.map((s) => {
+            const active = s.href === pathname;
+            return (
+              <li key={s.href} className="border-b border-brand-line last:border-b-0">
+                <DisclosureButton
+                  as={Link}
+                  href={s.href}
+                  aria-current={active ? 'page' : undefined}
+                  className={`label flex items-center gap-4 py-3.5 ${active ? 'text-brand-accent' : 'text-brand-text-secondary'}`}
+                >
+                  <span className="text-brand-text-muted">{s.number}</span>
+                  {s.title}
+                </DisclosureButton>
+              </li>
+            );
+          })}
+          {RESUME_URL && (
+            <li>
+              <a href={RESUME_URL} target="_blank" rel="noopener noreferrer" className="label flex py-3.5 text-brand-accent">
+                Résumé ↗
+              </a>
+            </li>
+          )}
+        </ul>
+      </DisclosurePanel>
+    </Disclosure>
+  );
 }

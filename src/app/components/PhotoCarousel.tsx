@@ -104,7 +104,7 @@ export default function PhotoCarousel({ photos }: PhotoCarouselProps) {
         </div>
       )}
 
-      {/* Hidden preload images — same sizes/quality as the main display so the
+      {/* Hidden preload images at the same sizes/quality as the main display so the
           browser cache is warm by the time each photo is swapped in */}
       <div className="sr-only">
         {photos.map((photo, index) => (
@@ -152,7 +152,7 @@ export default function PhotoCarousel({ photos }: PhotoCarouselProps) {
               quality={90}
             />
             
-            {/* Photo info overlay — technical-specimen annotation callouts */}
+            {/* Photo info overlay: technical-specimen annotation callouts */}
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-6 pt-12">
               <div className="flex flex-wrap gap-x-6 gap-y-1 font-mono text-[13px] uppercase tracking-[0.04em]">
                 {photos[currentIndex].camera && (

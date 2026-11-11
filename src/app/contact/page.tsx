@@ -120,7 +120,7 @@ export default function Contact() {
   };
 
   return (
-    <div className="bg-brand-bg text-brand-text min-h-screen">
+    <div className="text-brand-text min-h-screen">
       <div className="px-6 sm:px-12 lg:px-20 xl:px-28 pt-32 pb-24">
         {/* Header */}
         <CoordinateLabel className="block mb-4">{'[ 04 ] CONTACT'}</CoordinateLabel>

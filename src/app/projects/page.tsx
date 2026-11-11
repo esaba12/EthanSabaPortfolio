@@ -3,7 +3,7 @@ import CoordinateLabel from '../components/CoordinateLabel';
 
 export default function Projects() {
   return (
-    <div className="bg-brand-bg text-brand-text min-h-screen">
+    <div className="text-brand-text min-h-screen">
       <div className="px-6 sm:px-12 lg:px-20 xl:px-28 pt-32 pb-16">
         <CoordinateLabel className="block mb-4">{'[ 02 ] PROJECTS'}</CoordinateLabel>
         <h1 className="text-[40px] sm:text-[64px] lg:text-[88px] font-display font-bold leading-[0.95] tracking-tight max-w-4xl mb-8">

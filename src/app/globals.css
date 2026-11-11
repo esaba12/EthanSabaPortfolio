@@ -3,15 +3,9 @@
 @tailwind utilities;
 
 :root {
-  --background: #0a0a0a;
-  --foreground: #ffffff;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ffffff;
-  }
+  --background: #0b0a09;
+  --foreground: #ece6dd;
+  color-scheme: dark;
 }
 
 body {
@@ -24,6 +18,91 @@ body {
 }
 
 @layer components {
+  /* ---- The drawing: shared annotation language ---- */
+
+  /* Mono annotation label: sheet numbers, fig numbers, tags, dimension text. */
+  .label {
+    @apply font-mono text-[12px] uppercase leading-[1.4] tracking-[0.08em];
+  }
+
+  /* Registration marks: a "+" at both bottom corners of a figure. */
+  .reg-marks::before,
+  .reg-marks::after {
+    content: "+";
+    position: absolute;
+    bottom: -11px;
+    font: 400 18px/1 var(--font-geist-mono), ui-monospace, monospace;
+    color: theme(colors.brand.annot);
+    pointer-events: none;
+  }
+  .reg-marks::before { left: -6px; }
+  .reg-marks::after { right: -6px; }
+
+  /* Sheet frame: hairline margins with ruler ticks every grid cell (desktop). */
+  .sheet-frame { position: relative; }
+  @screen md {
+    .sheet-frame {
+      border-left: 1px solid theme(colors.brand.border);
+      border-right: 1px solid theme(colors.brand.border);
+    }
+    .sheet-frame::before,
+    .sheet-frame::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 9px;
+      pointer-events: none;
+      background: repeating-linear-gradient(to bottom, theme(colors.brand.annot-dim) 0 1px, transparent 1px 32px);
+    }
+    .sheet-frame::before { left: 0; }
+    .sheet-frame::after { right: 0; }
+  }
+
+  /* Film grain over everything, so black reads as paper instead of a void. */
+  .grain {
+    background-image: url("/textures/grain.png");
+    background-size: 192px 192px;
+    opacity: 0.045;
+  }
+  @screen md {
+    .grain { mix-blend-mode: overlay; opacity: 0.07; }
+  }
+
+  /* Outlined display word (one per H1 at most). */
+  .outline-word {
+    color: transparent;
+    -webkit-text-stroke: 1.5px theme(colors.brand.text);
+  }
+
+  /* Ghost sheet numeral: the stroke draws itself in on load. */
+  .ghost-numeral text {
+    fill: rgba(143, 180, 198, 0.03);
+    stroke: rgba(143, 180, 198, 0.45);
+    stroke-width: 2;
+    stroke-dasharray: 2600;
+    stroke-dashoffset: 0;
+    animation: ghost-draw 2.4s cubic-bezier(0.6, 0, 0.2, 1) both;
+  }
+  @keyframes ghost-draw {
+    from { stroke-dashoffset: 2600; }
+  }
+
+  /* Live indicator pulse. */
+  .live-dot {
+    animation: live-pulse 2s infinite;
+  }
+  @keyframes live-pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 122, 26, 0.45); }
+    70% { box-shadow: 0 0 0 8px rgba(255, 122, 26, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 122, 26, 0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ghost-numeral text,
+    .live-dot { animation: none; }
+  }
+
   .container {
     @apply mx-auto px-4 sm:px-6 lg:px-8;
     max-width: 100%;
