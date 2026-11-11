@@ -24,6 +24,19 @@
       "Live talking-video counterpart (Tavus over Daily) voiced by ElevenLabs",
       "Private notes never reach the model: counterpart context is built from an allowlist",
       "About 795 unit tests plus Playwright; CI checks no secrets reach the client bundle"
+    ],
+    "pitch": "Rehearse a conversation you've been putting off, on a live video call with a counterpart that reacts, pushes back, and can be interrupted. Built solo at MHacks 2026.",
+    "metric": {
+      "value": "795",
+      "label": "unit tests, plus Playwright on a real sign-in path"
+    },
+    "callouts": [
+      {
+        "text": "Live talking-video counterpart (Tavus over Daily), voiced by ElevenLabs"
+      },
+      {
+        "text": "Private notes never reach the model. Its context is built from an allowlist."
+      }
     ]
   },
   {
@@ -50,6 +63,30 @@
       "Reply drafts propose three open times from call hours minus calendar busy blocks",
       "Job-board aggregator with per-job AI fit analysis and deadline extraction",
       "Multi-tenant on Supabase; each user brings their own AI keys and is never billed for anyone else"
+    ],
+    "loop": "/videos/loops/recruiting-os.mp4",
+    "loopPoster": "/videos/loops/recruiting-os.jpg",
+    "durationLabel": "0:20",
+    "pitch": "A recruiting CRM and application tracker that reads my Gmail, keeps every contact and application current, and drafts replies with real open times from my calendar.",
+    "metric": {
+      "value": "0",
+      "label": "emails sent on your behalf. It only drafts."
+    },
+    "callouts": [
+      {
+        "text": "A Gmail scan classifies recruiting mail and moves applications forward",
+        "x": 39,
+        "y": 38,
+        "bx": 62,
+        "by": 10
+      },
+      {
+        "text": "Stage history comes from a database trigger, so the funnel stays current",
+        "x": 44,
+        "y": 66,
+        "bx": 70,
+        "by": 90
+      }
     ]
   },
   {
@@ -76,6 +113,30 @@
       "20 Postgres tables with row-level security on every one",
       "Map discovery, RSVPs, potluck claiming, dinner threads, and reporting",
       "No-account /demo mode that runs the real flows for each role"
+    ],
+    "loop": "/videos/loops/shishi.mp4",
+    "loopPoster": "/videos/loops/shishi.jpg",
+    "durationLabel": "0:29",
+    "pitch": "A three-sided platform that funds and organizes Shabbat dinners in Tel Aviv: sponsors underwrite, hosts open their homes, attendees find a seat.",
+    "metric": {
+      "value": "20",
+      "label": "Postgres tables, with row-level security on every one"
+    },
+    "callouts": [
+      {
+        "text": "Attendees find dinners on a map and RSVP",
+        "x": 77,
+        "y": 40,
+        "bx": 94,
+        "by": 30
+      },
+      {
+        "text": "Potluck claiming, so ten people don't all bring hummus",
+        "x": 40,
+        "y": 62,
+        "bx": 60,
+        "by": 86
+      }
     ]
   },
   {
@@ -99,7 +160,10 @@
       "Institution-isolated ingestion: each school gets its own database",
       "Adapter pattern: a school is a JSON config of sources and measurement definitions",
       "Scoped explicitly as a planning signal, not a capacity forecast"
-    ]
+    ],
+    "loop": "/videos/loops/course-signal.mp4",
+    "loopPoster": "/videos/loops/course-signal.jpg",
+    "durationLabel": "0:18"
   },
   {
     "slug": "outpost",
@@ -121,7 +185,10 @@
       "Price comparison and price-drop alerts across 18+ retailers",
       "\"Product DNA\" tagging over about 8,000 products",
       "31-table Postgres schema with row-level security throughout, plus CI and a test harness"
-    ]
+    ],
+    "loop": "/videos/loops/outpost.mp4",
+    "loopPoster": "/videos/loops/outpost.jpg",
+    "durationLabel": "0:22"
   },
   {
     "slug": "kitcreator",
@@ -144,7 +211,10 @@
       "Source separation via Demucs, denoising via DeepFilterNet3",
       "Automatic drum sub-stem splitting (kick/snare/hi-hat/toms/cymbals) via LarsNet",
       "Outputs ready-to-load SFZ and DecentSampler presets"
-    ]
+    ],
+    "loop": "/videos/loops/kitcreator.mp4",
+    "loopPoster": "/videos/loops/kitcreator.jpg",
+    "durationLabel": "0:21"
   },
   {
     "slug": "openrestore",
@@ -168,6 +238,9 @@
       "REST, WebSocket, and MQTT interfaces plus a web UI; nothing phones home",
       "Defined behavior for DST changes, restarts, an unreachable bulb, and a dead network",
       "Mock drivers so the whole system runs and is tested without hardware; mypy --strict"
-    ]
+    ],
+    "loop": "/videos/loops/openrestore.mp4",
+    "loopPoster": "/videos/loops/openrestore.jpg",
+    "durationLabel": "0:24"
   }
 ]
