@@ -1,281 +1,112 @@
-'use client';
+import Image from 'next/image';
+import SheetHero from '../components/drawing/SheetHero';
+import SectionHead from '../components/drawing/SectionHead';
+import Figure from '../components/drawing/Figure';
+import DimensionLine from '../components/drawing/DimensionLine';
+import SpecTable from '../components/drawing/SpecTable';
+import about from '../../content/about.json';
+import skills from '../../content/skills.json';
 
-import { useRef } from "react";
-import Image from "next/image";
-import Saba_Ethan_Photo from "../../../public/Saba_Ethan_Photo.jpg";
-import Badge from "../components/Badge";
-import Panel from "../components/Panel";
-import CoordinateLabel from "../components/CoordinateLabel";
-import HairlineRule from "../components/HairlineRule";
-import { gsap, useGSAP, prefersReducedMotion } from "../lib/motion-utils";
-import { GraduationCap, MapPin, Calendar, Code, Building, Users, Award } from 'lucide-react';
-
-const skills = {
-  programming: ['C++', 'Java', 'Python', 'TypeScript', 'JavaScript', 'SQL'],
-  design: ['Photoshop', 'Figma', 'CAD'],
-  tools: ['Git', 'React', 'Node.js', 'Postgres'],
-  languages: ['English', 'Farsi (Persian)', 'Hebrew']
+export const metadata = {
+  title: 'About · Sheet 01 · Ethan Saba',
+  description: 'Computer science at Michigan. Experience building developer tools, data systems, and software for everyday problems.',
 };
 
-const experiences = [
-  {
-    title: 'Software Engineering Intern',
-    company: 'Axonius',
-    period: 'June 2026 - Present',
-    description: 'Building internal developer tooling with MCP, Claude Skills, and LangGraph to automate low-priority bug fixes from Jira tickets. Joined the front-end testing suite migration, cutting suite runtime 40%+, and shipped accessible reusable front-end components.',
-    skills: ['TypeScript', 'Python', 'YAML', 'MCP', 'LangGraph']
-  },
-  {
-    title: 'Software Engineer',
-    company: 'Alias Intelligence',
-    period: 'October 2025 - May 2026',
-    description: "Built internal tools for Alias's due diligence platform. Implemented an automated scoring system that compares draft and final reports to flag missed findings and errors, and a coverage map that surfaces gaps in investigative data.",
-    skills: ['Python', 'SQL', 'TypeScript', 'Postgres']
-  },
+const roles = [
+  ...about.experiences.map((role) => ({ ...role, kind: 'Work' })),
+  ...about.leadership.map((role) => ({ ...role, kind: 'Leadership' })),
 ];
 
-const leadership = [
-  {
-    title: 'Consulting Analyst and Associate Project Manager',
-    company: 'TAMID at Michigan',
-    period: 'September 2025 - Present',
-    description: 'Advising EIT Hub Israel on European startup benchmarking, pricing, and VC partnership strategy. Also consulting for Tailor Brands, an LLC formation service, on market entry for the college-aged demographic.',
-    skills: ['Consulting', 'Market Research', 'Project Management']
-  },
-  {
-    title: 'Member',
-    company: "City of Beverly Hills - Mayor's Innovation Circle",
-    period: 'May 2025 - Present',
-    description: "Planned citywide events for LA Tech Week and helped create Beverly Blends, a music and coffee meetup that brought 1000+ young professionals, artists, and entrepreneurs together with local firms.",
-    skills: ['Event Planning', 'Community Building']
-  },
-  {
-    title: 'Fellow',
-    company: 'Birthright Israel Excel',
-    period: 'June 2026 - Present',
-    description: 'One of 80 selected from 2,000+ applicants to join a community of entrepreneurs and 15+ unicorn founders.',
-    skills: ['Entrepreneurship']
-  },
-  {
-    title: 'Student Body President, Vice President, and House Representative',
-    company: 'Milken Student Government',
-    period: 'August 2021 - May 2024',
-    description: 'Organized school-wide events, served as liaison for student-faculty relations, and directed student media and communications.',
-    skills: ['Leadership', 'Event Planning', 'Media Management']
-  },
-];
+function monthIndex(date: string) {
+  const [year, month] = date.split('-').map(Number);
+  return (year - about.timeline.startYear) * 12 + month - 1;
+}
 
-const education = [
-  {
-    degree: 'Bachelor of Science in Engineering in Computer Science',
-    school: 'University of Michigan College of Engineering',
-    period: 'August 2024 - May 2028',
-    details: 'Real Estate Minor • GPA: 3.90/4.0'
-  },
-  {
-    degree: 'High School Diploma',
-    school: 'Milken Community School',
-    period: 'June 2024',
-    details: 'GPA: 4.49/4.0 • SAT: 1530/1600 • Rank: 3/130'
-  }
-];
-
-const coursework = [
-  'EECS 484', 'EECS 445', 'EECS 376', 'EECS 370',
-  'EECS 281', 'EECS 280', 'EECS 203', 'ROB 101',
-];
-
-const skillPanels = [
-  { label: 'A', icon: Code, title: 'Programming', items: skills.programming },
-  { label: 'B', icon: Award, title: 'Design & Tools', items: skills.design },
-  { label: 'C', icon: Building, title: 'Tools & Hardware', items: skills.tools },
-  { label: 'D', icon: Users, title: 'Languages', items: skills.languages },
-];
-
-function useRevealOnScroll<T extends HTMLElement>(count: number) {
-  const refs = useRef<(T | null)[]>([]);
-  useGSAP(() => {
-    if (prefersReducedMotion()) return;
-    refs.current.forEach((el) => {
-      if (!el) return;
-      gsap.from(el, {
-        opacity: 0,
-        y: 24,
-        duration: 0.5,
-        ease: 'power2.out',
-        scrollTrigger: { trigger: el, start: 'top 85%' },
-      });
-    });
-  }, [count]);
-  return refs;
+function RecordTimeline() {
+  const months = (about.timeline.endYear - about.timeline.startYear + 1) * 12;
+  return (
+    <div className="mb-12" aria-label={`Experience timeline, ${about.timeline.startYear} to ${about.timeline.endYear}`}>
+      <div className="mb-5 flex flex-wrap justify-between gap-3">
+        <span className="label text-brand-annot">Work / leadership</span>
+        <span className="label text-brand-text-muted">As of Nov 2026 · spans link to details</span>
+      </div>
+      <div className="hidden md:block">
+        <div className="mb-4 flex justify-between border-b border-brand-annot pb-3 font-mono text-xs text-brand-annot"><span>Jan 2025</span><span>Jan 2026</span><span>Dec 2026</span></div>
+        <div className="space-y-3 border-x border-brand-line" style={{ backgroundImage: 'linear-gradient(to right, transparent 49.9%, rgba(143,180,198,0.15) 50%, transparent 50.1%)' }}>
+          {roles.map((role) => (
+            <div key={role.id} className="relative h-11">
+              <a href={`#${role.id}`} style={{ left: `${monthIndex(role.start) / months * 100}%`, width: `${(monthIndex(role.end ?? about.timeline.asOf) + 1 - monthIndex(role.start)) / months * 100}%` }} className={`absolute flex h-full items-center justify-center border px-2 font-mono text-xs focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent ${role.kind === 'Work' ? 'border-brand-accent text-brand-accent hover:bg-brand-accent/10' : 'border-brand-annot text-brand-annot hover:bg-brand-annot/10'}`}>
+                {role.shortName}<span className="sr-only">: {role.period}. {role.kind}. Read details.</span>
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+      <ol className="ml-2 space-y-6 border-l border-brand-annot pl-6 md:hidden">
+        {[...roles].sort((a, b) => a.start.localeCompare(b.start)).map((role) => (
+          <li key={role.id} className="relative">
+            <span aria-hidden="true" className="absolute -left-[29px] top-2 h-2 w-2 border border-brand-annot bg-brand-bg" />
+            <a href={`#${role.id}`} className="inline-block py-1 text-brand-accent underline decoration-brand-border underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-accent">{role.shortName}</a>
+            <p className="font-mono text-xs leading-relaxed text-brand-text-muted">{role.period} · {role.kind}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  );
 }
 
 export default function About() {
-  const sectionRefs = useRevealOnScroll<HTMLDivElement>(5);
-
   return (
-    <div className="text-brand-text min-h-screen">
-      <div className="px-6 sm:px-12 lg:px-20 xl:px-28 pt-32 pb-24">
-        {/* Header: hero text + photo side by side, top-aligned */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-24 items-start">
-          <div className="lg:col-span-7">
-            <CoordinateLabel className="block mb-4">{'[ 01 ] ABOUT'}</CoordinateLabel>
-            <h1 className="text-[40px] sm:text-[64px] lg:text-[88px] font-display font-bold leading-[0.95] tracking-tight mb-6">
-              About Me
-            </h1>
-            <p className="text-lg sm:text-xl text-brand-text-secondary leading-relaxed max-w-xl">
-              I&apos;m a CS student at Michigan who spends most of my time building things: internal tools at work, side projects on nights and weekends, and a lot of half-finished ideas in between.
-            </p>
-          </div>
-
-          <div className="lg:col-span-5 flex justify-start lg:justify-end">
-            <div className="relative w-full max-w-sm">
-              <span aria-hidden="true" className="absolute -top-3 -left-3 w-8 h-8 border-t-2 border-l-2 border-brand-accent" />
-              <span aria-hidden="true" className="absolute -bottom-3 -right-3 w-8 h-8 border-b-2 border-r-2 border-brand-accent" />
-              <Image
-                src={Saba_Ethan_Photo}
-                alt="Ethan Saba"
-                width={400}
-                height={400}
-                priority
-                className="w-full bg-brand-surface p-1 rounded-sm"
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* Bio */}
-        <div className="mb-24 space-y-6">
-          <h2 className="text-2xl font-display font-bold">Ethan Saba</h2>
-          <p className="text-lg text-brand-text-secondary leading-relaxed max-w-xl">
-            I&apos;m a junior studying Computer Science at the University of Michigan College of Engineering, with a minor in Real Estate. Right now that means internal tooling at Axonius, due-diligence infrastructure at Alias Intelligence, and consulting work through TAMID, plus a few side projects I ship on my own time.
-          </p>
-
-          <div className="space-y-3 pt-2">
-            <div className="flex items-center gap-3">
-              <GraduationCap className="w-5 h-5 text-brand-accent" />
-              <span className="text-brand-text-secondary">University of Michigan</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <MapPin className="w-5 h-5 text-brand-accent" />
-              <span className="text-brand-text-secondary">Ann Arbor, MI &amp; Los Angeles, CA</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <Calendar className="w-5 h-5 text-brand-accent" />
-              <span className="text-brand-text-secondary">Class of 2028</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Skills & Expertise */}
-        <div ref={(el) => { sectionRefs.current[0] = el; }} className="mb-24">
-          <CoordinateLabel className="block mb-2">{'[ SKILLS ]'}</CoordinateLabel>
-          <h2 className="text-[28px] sm:text-[40px] font-display font-bold leading-[1.05] mb-10">Skills &amp; Expertise</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {skillPanels.map(({ label, icon: Icon, title, items }, i) => (
-              <Panel key={title} className={`p-6 ${i % 2 === 1 ? 'lg:mt-8' : ''}`}>
-                <div className="flex items-center justify-between mb-4">
-                  <CoordinateLabel>{label}</CoordinateLabel>
-                  <Icon className="w-5 h-5 text-brand-accent" />
-                </div>
-                <h3 className="text-lg font-display font-bold mb-4">{title}</h3>
-                <div className="flex flex-wrap gap-2">
-                  {items.map((skill) => (
-                    <Badge key={skill}>{skill}</Badge>
-                  ))}
-                </div>
-              </Panel>
-            ))}
-          </div>
-        </div>
-
-        {/* Experience */}
-        <div ref={(el) => { sectionRefs.current[1] = el; }} className="mb-24">
-          <CoordinateLabel className="block mb-2">{'[ EXPERIENCE ]'}</CoordinateLabel>
-          <h2 className="text-[28px] sm:text-[40px] font-display font-bold leading-[1.05] mb-10">Experience</h2>
-          <div className="space-y-4">
-            {experiences.map((experience, index) => (
-              <Panel key={index} className="p-6" bracketsOnHover>
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3 gap-2">
-                  <div>
-                    <h3 className="text-lg font-semibold text-brand-accent">{experience.title}</h3>
-                    <p className="text-brand-text-secondary">{experience.company}</p>
-                  </div>
-                  <CoordinateLabel>{experience.period}</CoordinateLabel>
-                </div>
-                {experience.description && (
-                  <p className="text-brand-text-secondary mb-4">{experience.description}</p>
-                )}
-                <div className="flex flex-wrap gap-2">
-                  {experience.skills.map((skill) => (
-                    <Badge key={skill}>{skill}</Badge>
-                  ))}
-                </div>
-              </Panel>
-            ))}
-          </div>
-        </div>
-
-        {/* Leadership & Involvement */}
-        <div ref={(el) => { sectionRefs.current[2] = el; }} className="mb-24">
-          <CoordinateLabel className="block mb-2">{'[ LEADERSHIP ]'}</CoordinateLabel>
-          <h2 className="text-[28px] sm:text-[40px] font-display font-bold leading-[1.05] mb-10">Leadership &amp; Involvement</h2>
-          <div className="space-y-4">
-            {leadership.map((role, index) => (
-              <Panel key={index} className="p-6" bracketsOnHover>
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3 gap-2">
-                  <div>
-                    <h3 className="text-lg font-semibold text-brand-accent">{role.title}</h3>
-                    <p className="text-brand-text-secondary">{role.company}</p>
-                  </div>
-                  <CoordinateLabel>{role.period}</CoordinateLabel>
-                </div>
-                <p className="text-brand-text-secondary mb-4">{role.description}</p>
-                <div className="flex flex-wrap gap-2">
-                  {role.skills.map((skill) => (
-                    <Badge key={skill}>{skill}</Badge>
-                  ))}
-                </div>
-              </Panel>
-            ))}
-          </div>
-        </div>
-
-        {/* Education */}
-        <div ref={(el) => { sectionRefs.current[3] = el; }} className="mb-24">
-          <CoordinateLabel className="block mb-2">{'[ EDUCATION ]'}</CoordinateLabel>
-          <h2 className="text-[28px] sm:text-[40px] font-display font-bold leading-[1.05] mb-10">Education</h2>
-          <div className="space-y-4">
-            {education.map((edu, index) => (
-              <Panel key={index} className="p-6">
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
-                  <div>
-                    <h3 className="text-lg font-semibold text-brand-accent">{edu.degree}</h3>
-                    <p className="text-brand-text-secondary">{edu.school}</p>
-                    <p className="text-brand-text-muted text-sm">{edu.details}</p>
-                  </div>
-                  <CoordinateLabel>{edu.period}</CoordinateLabel>
-                </div>
-              </Panel>
-            ))}
-          </div>
-        </div>
-
-        {/* Relevant Coursework */}
-        <div ref={(el) => { sectionRefs.current[4] = el; }}>
-          <HairlineRule className="mb-12" />
-          <CoordinateLabel className="block mb-2">{'[ COURSEWORK ]'}</CoordinateLabel>
-          <h2 className="text-[28px] sm:text-[40px] font-display font-bold leading-[1.05] mb-10">Relevant Coursework</h2>
-          <Panel className="p-6 max-w-xl">
-            <CoordinateLabel className="block mb-3">EECS &amp; Robotics</CoordinateLabel>
-            <div className="flex flex-wrap gap-2">
-              {coursework.map((course) => (
-                <Badge key={course}>{course}</Badge>
-              ))}
-            </div>
-          </Panel>
+    <div className="px-4 pb-16 md:px-10">
+      <div className="grid items-start gap-x-12 lg:grid-cols-[1.4fr_1fr]">
+        <SheetHero sheet="01" sheetTitle="About" title="About" dimension={about.location} lede={about.lede} glow="35% 0%" />
+        <div className="mb-12 w-full max-w-md lg:ml-auto lg:pt-44">
+          <Figure number={1} title="E. Saba" aspect="portrait" callouts={[{ text: about.location, x: 76, y: 75, bx: 88, by: 90 }]}>
+            <Image src="/Saba_Ethan_Photo.jpg" alt="Portrait of Ethan Saba" fill priority sizes="(max-width: 1023px) 90vw, 36vw" className="object-cover object-top" />
+          </Figure>
+          <p className="mt-4 flex items-center gap-3 text-sm text-brand-text-secondary"><span className="label grid h-6 w-6 shrink-0 place-items-center rounded-full border border-brand-annot text-brand-annot">1</span>{about.location}</p>
         </div>
       </div>
+      <p className="mb-16 max-w-[65ch] text-lg leading-relaxed text-brand-text-secondary">{about.bio}</p>
+
+      <section aria-labelledby="numbers" className="mb-20">
+        <SectionHead letter="A" tag="In numbers" title="A few results" id="numbers" />
+        <dl className="grid grid-cols-1 gap-x-8 sm:grid-cols-2 xl:grid-cols-4">
+          {about.metrics.map((metric) => <div key={metric.value} className="flex flex-col border-y border-brand-line py-6"><dt className="mt-4 max-w-[30ch] text-sm leading-relaxed text-brand-text-secondary">{metric.label}</dt><dd className="order-first font-display text-4xl font-semibold tabular-nums">{metric.value}</dd></div>)}
+        </dl>
+      </section>
+
+      <section aria-labelledby="record" className="mb-20">
+        <SectionHead letter="B" tag="Record" title="Experience and leadership" id="record" />
+        <RecordTimeline />
+        <div className="border-t border-brand-border">
+          {roles.map((role) => (
+            <article key={role.id} id={role.id} className="grid scroll-mt-28 gap-4 border-b border-brand-border py-8 md:grid-cols-[210px_1fr] lg:gap-12">
+              <div><p className="label text-brand-annot">{role.kind}</p><p className="mt-3 font-mono text-xs leading-relaxed text-brand-text-muted">{role.period}</p></div>
+              <div><h3 className="font-display text-2xl font-semibold">{role.company}</h3><p className="mt-2 text-brand-text-secondary">{role.title}</p><p className="mt-4 max-w-[65ch] text-base leading-relaxed text-brand-text-secondary">{role.description}</p></div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section aria-labelledby="education" className="mb-20">
+        <SectionHead letter="C" tag="Education" title="Michigan" id="education" />
+        {about.education.map((entry) => <div key={entry.school} className="border-t border-brand-border py-6"><h3 className="font-display text-2xl font-semibold">{entry.degree}</h3><p className="mt-2 text-brand-text-secondary">{entry.school}</p><p className="mt-3 text-sm text-brand-text-muted">{entry.details}</p><p className="sr-only">{entry.period}</p><DimensionLine label={entry.period} className="mt-8 max-w-xl" /></div>)}
+      </section>
+
+      <section aria-labelledby="coursework" className="mb-20">
+        <SectionHead letter="D" tag="Coursework" title="What I've studied" id="coursework" />
+        <div className="border border-brand-border">
+          <table className="w-full border-collapse text-left"><caption className="sr-only">University coursework</caption><thead><tr className="border-b border-brand-line"><th scope="col" className="label px-4 py-3 font-normal text-brand-annot">Course</th><th scope="col" className="label px-4 py-3 font-normal text-brand-annot">Name</th></tr></thead><tbody>
+            {about.coursework.map((course) => <tr key={course.code} className="border-b border-brand-line last:border-0"><th scope="row" className="whitespace-nowrap px-4 py-4 align-top font-mono text-xs font-normal text-brand-annot">{course.code}</th><td className="px-4 py-4 text-sm text-brand-text-secondary">{course.name}{course.note && <span className="mt-1 block font-mono text-xs text-brand-text-muted">{course.note}</span>}</td></tr>)}
+          </tbody></table>
+        </div>
+      </section>
+
+      <section aria-labelledby="toolkit">
+        <SectionHead letter="E" tag="Bill of materials" title="What I build with" id="toolkit" note="Pulled from shipped projects, plus design and spoken languages." />
+        <SpecTable rows={skills} caption="Languages, frameworks, tools, design and spoken languages" />
+      </section>
     </div>
   );
 }

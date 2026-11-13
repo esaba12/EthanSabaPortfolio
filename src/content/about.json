@@ -1,0 +1,34 @@
+{
+  "lede": "I'm a junior studying computer science at the University of Michigan, with a minor in real estate. Most of what I build starts as something that annoyed me: a job search I couldn't keep track of, a $170 alarm clock I didn't want to buy, a song I wanted to play as an instrument.",
+  "bio": "At work I've built internal tools: developer tooling with MCP and LangGraph at Axonius, and report scoring and coverage mapping at Alias Intelligence. Outside of work I consult with startups through TAMID and help run events with the Beverly Hills Mayor's Innovation Circle.",
+  "location": "Ann Arbor, MI ↔ Los Angeles, CA",
+  "timeline": { "startYear": 2025, "endYear": 2026, "asOf": "2026-11" },
+  "metrics": [
+    { "value": "40%+", "label": "faster front-end test suite after the migration I joined at Axonius" },
+    { "value": "1,000+", "label": "people at Beverly Blends, the meetup I helped create" },
+    { "value": "80 / 2,000+", "label": "selected for Birthright Israel Excel" },
+    { "value": "2", "label": "prizes at MHacks 2026 for SpeakEasy" }
+  ],
+  "experiences": [
+    { "id": "axonius", "title": "Software Engineering Intern", "company": "Axonius", "shortName": "Axonius", "period": "Jun 2026 to Aug 2026", "start": "2026-06", "end": "2026-08", "description": "Built internal developer tooling with MCP, Claude Skills, and LangGraph that turns low-priority Jira tickets into bug fixes. Helped migrate the front-end test suite, cutting its runtime by more than 40%, and shipped accessible shared front-end components." },
+    { "id": "alias", "title": "Software Engineer", "company": "Alias Intelligence", "shortName": "Alias", "period": "Oct 2025 to May 2026", "start": "2025-10", "end": "2026-05", "description": "Built internal tools for a due-diligence platform: an automated scorer that compares draft and final reports to flag missed findings and errors, and a coverage map that shows gaps in investigative data." }
+  ],
+  "leadership": [
+    { "id": "tamid", "title": "Consulting Analyst and Associate Project Manager", "company": "TAMID at Michigan", "shortName": "TAMID", "period": "Sep 2025 to present", "start": "2025-09", "end": null, "description": "Advising EIT Hub Israel on European startup benchmarking, pricing, and VC partnerships, and Tailor Brands on reaching college-age founders." },
+    { "id": "innovation-circle", "title": "Member", "company": "City of Beverly Hills, Mayor's Innovation Circle", "shortName": "Innovation Circle", "period": "May 2025 to present", "start": "2025-05", "end": null, "description": "Planned citywide events for LA Tech Week and helped create Beverly Blends, a music and coffee meetup that brought 1,000+ young professionals, artists, and founders together with local firms." },
+    { "id": "excel", "title": "Fellow", "company": "Birthright Israel Excel", "shortName": "Excel", "period": "Summer 2026, alumni since", "start": "2026-06", "end": "2026-08", "description": "One of 80 selected from 2,000+ applicants for a summer fellowship whose network includes 15+ unicorn founders. I still go to the community's events." }
+  ],
+  "education": [
+    { "degree": "B.S.E. Computer Science", "school": "University of Michigan College of Engineering", "period": "Aug 2024 → May 2028", "details": "Real Estate minor · GPA 3.90" }
+  ],
+  "coursework": [
+    { "code": "EECS 484", "name": "Database Management Systems", "note": "In progress, Fall 2026" },
+    { "code": "EECS 445", "name": "Introduction to Machine Learning" },
+    { "code": "EECS 376", "name": "Foundations of Computer Science" },
+    { "code": "EECS 370", "name": "Introduction to Computer Organization" },
+    { "code": "EECS 281", "name": "Data Structures and Algorithms" },
+    { "code": "EECS 280", "name": "Programming and Introductory Data Structures" },
+    { "code": "EECS 203", "name": "Discrete Mathematics" },
+    { "code": "ROB 101", "name": "Computational Linear Algebra" }
+  ]
+}

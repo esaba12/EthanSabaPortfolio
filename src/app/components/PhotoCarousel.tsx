@@ -1,286 +1,57 @@
 'use client';
 
-import { useState, useEffect, useRef, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState } from 'react';
 import Image from 'next/image';
-import { PhotoItem } from '../../types/creative';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
+import type { PhotoItem } from '../../types/creative';
 import { formatShotDate } from '../lib/format';
 
-interface PhotoCarouselProps {
-  photos: PhotoItem[];
-}
-
-export default function PhotoCarousel({ photos }: PhotoCarouselProps) {
+export default function PhotoCarousel({ photos }: { photos: PhotoItem[] }) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-  const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set());
-  const [isInitialLoading, setIsInitialLoading] = useState(true);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
-
-  const nextPhoto = () => {
-    setCurrentIndex((prev) => (prev + 1) % photos.length);
-  };
-
-  const prevPhoto = () => {
-    setCurrentIndex((prev) => (prev - 1 + photos.length) % photos.length);
-  };
-
-  const goToPhoto = (index: number) => {
-    setCurrentIndex(index);
-  };
-
-  const handleImageLoad = useCallback((index: number) => {
-    setLoadedImages(prev => {
-      if (prev.has(index)) return prev;
-      const next = new Set(prev);
-      next.add(index);
-      return next;
-    });
-  }, []);
-
-  // Stop gating autoplay/spinner once every photo has reported in (loaded or
-  // errored), with a timeout fallback in case a request stalls.
-  useEffect(() => {
-    if (loadedImages.size >= photos.length) {
-      setIsInitialLoading(false);
-      return;
-    }
-    const timeout = setTimeout(() => setIsInitialLoading(false), 10000);
-    return () => clearTimeout(timeout);
-  }, [loadedImages, photos.length]);
-
-  const startAutoPlay = useCallback(() => {
-    if (photos.length > 1) {
-      intervalRef.current = setInterval(() => {
-        setCurrentIndex((prev) => (prev + 1) % photos.length);
-      }, 4000); // Change photo every 4 seconds
-    }
-  }, [photos.length]);
-
-  const stopAutoPlay = useCallback(() => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-      intervalRef.current = null;
-    }
-  }, []);
-
-  const toggleAutoPlay = () => {
-    setIsAutoPlaying(!isAutoPlaying);
-  };
-
-  useEffect(() => {
-    if (isAutoPlaying && !isInitialLoading) {
-      startAutoPlay();
-    } else {
-      stopAutoPlay();
-    }
-
-    return () => stopAutoPlay();
-  }, [isAutoPlaying, isInitialLoading, startAutoPlay, stopAutoPlay]);
-
-  const handleMouseEnter = () => {
-    if (isAutoPlaying) {
-      stopAutoPlay();
-    }
-  };
-
-  const handleMouseLeave = () => {
-    if (isAutoPlaying) {
-      startAutoPlay();
-    }
-  };
+  const [failedSrc, setFailedSrc] = useState<string | null>(null);
+  if (!photos.length) return <p className="text-brand-text-secondary">Photographs coming soon.</p>;
+  const index = currentIndex % photos.length;
+  const photo = photos[index];
+  const frame = (n: number) => `${String(n + 1).padStart(2, '0')}A`;
+  const select = (n: number) => setCurrentIndex((n + photos.length) % photos.length);
+  const annotations = [
+    { label: 'Cam', value: photo.camera },
+    { label: 'Stock', value: photo.stock },
+    { label: 'Loc', value: photo.location },
+    { label: 'Date', value: photo.date ? formatShotDate(photo.date) : undefined },
+  ].filter((item) => item.value);
+  const controls = 'inline-flex min-h-11 items-center gap-2 px-3 font-mono text-xs uppercase tracking-wider text-brand-accent hover:bg-brand-accent/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-accent disabled:opacity-40';
 
   return (
-    <div className="relative w-full max-w-4xl mx-auto">
-      {/* Loading indicator */}
-      {isInitialLoading && (
-        <div className="absolute inset-0 z-10 flex items-center justify-center bg-brand-surface rounded-sm">
-          <div className="flex flex-col items-center gap-4">
-            <div className="w-8 h-8 border-2 border-brand-accent border-t-transparent rounded-full animate-spin"></div>
-            <p className="text-brand-text-secondary text-sm">
-              Loading images... ({loadedImages.size}/{photos.length})
-            </p>
+    <div role="region" aria-label="Film photographs" aria-roledescription="carousel" onKeyDown={(event) => {
+      if (event.altKey || event.ctrlKey || event.metaKey) return;
+      if (event.key === 'ArrowRight') { event.preventDefault(); select(index + 1); }
+      if (event.key === 'ArrowLeft') { event.preventDefault(); select(index - 1); }
+    }}>
+      <figure className="m-0">
+        <figcaption className="label mb-4 flex flex-wrap justify-between gap-2 text-brand-annot"><span>Fig. 1 · Film specimens</span><span className="text-brand-text-muted">35 mm · Frame {frame(index)}</span></figcaption>
+        <div className="reg-marks relative border border-brand-border bg-brand-surface">
+          <div className="relative aspect-[3/2] w-full">
+            {failedSrc === photo.src ? <p role="status" className="absolute inset-0 flex items-center justify-center px-6 text-center text-brand-text-secondary">This photograph couldn&apos;t load. Choose another frame below.</p> : <Image key={photo.src} src={photo.src} alt={photo.alt} fill sizes="(max-width: 767px) 100vw, 90vw" quality={90} className="object-contain" onError={() => setFailedSrc(photo.src)} />}
           </div>
         </div>
-      )}
+        <dl className="grid grid-cols-2 gap-x-6 gap-y-5 px-2 pb-6 pt-5 lg:grid-cols-4">
+          {annotations.map((item) => <div key={item.label} className="relative border-t border-brand-annot/40 pt-3"><span aria-hidden="true" className="absolute -top-5 left-0 h-5 w-px bg-brand-annot/40" /><dt className="label text-brand-annot">{item.label}</dt><dd className="mt-1 text-sm text-brand-text-secondary">{item.value}</dd></div>)}
+        </dl>
+      </figure>
 
-      {/* Hidden preload images at the same sizes/quality as the main display so the
-          browser cache is warm by the time each photo is swapped in */}
-      <div className="sr-only">
-        {photos.map((photo, index) => (
-          <div key={`preload-${index}`} className="relative w-full h-96 md:h-[500px]">
-            <Image
-              src={photo.src}
-              alt=""
-              fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1000px"
-              quality={90}
-              priority={index < 2}
-              onLoad={() => handleImageLoad(index)}
-              onError={() => handleImageLoad(index)}
-            />
-          </div>
-        ))}
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-2 border-y border-brand-line py-2">
+        <button type="button" className={controls} disabled={photos.length < 2} onClick={() => select(index - 1)} aria-label="Previous photo"><ArrowLeft size={16} aria-hidden="true" />Previous</button>
+        <p className="label text-brand-text-muted" role="status" aria-live="polite" aria-atomic="true">Frame {frame(index)} · {index + 1} / {photos.length}<span className="sr-only">: {photo.alt}</span></p>
+        <button type="button" className={controls} disabled={photos.length < 2} onClick={() => select(index + 1)} aria-label="Next photo">Next<ArrowRight size={16} aria-hidden="true" /></button>
       </div>
 
-      {/* Main photo display */}
-      <div
-        className="relative h-96 md:h-[500px] bg-brand-surface rounded-sm overflow-hidden border border-brand-border"
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
-        <span aria-hidden="true" className="absolute top-2 left-2 w-6 h-6 border-t-2 border-l-2 border-brand-accent z-20" />
-        <span aria-hidden="true" className="absolute top-2 right-2 w-6 h-6 border-t-2 border-r-2 border-brand-accent z-20" />
-        <span aria-hidden="true" className="absolute bottom-2 left-2 w-6 h-6 border-b-2 border-l-2 border-brand-accent z-20" />
-        <span aria-hidden="true" className="absolute bottom-2 right-2 w-6 h-6 border-b-2 border-r-2 border-brand-accent z-20" />
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentIndex}
-            initial={{ opacity: 0, x: 100 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -100 }}
-            transition={{ duration: 0.3 }}
-            className="relative w-full h-full"
-          >
-            <Image
-              src={photos[currentIndex].src}
-              alt={photos[currentIndex].alt}
-              fill
-              className="object-cover"
-              priority={currentIndex === 0}
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1000px"
-              quality={90}
-            />
-            
-            {/* Photo info overlay: technical-specimen annotation callouts */}
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-6 pt-12">
-              <div className="flex flex-wrap gap-x-6 gap-y-1 font-mono text-[13px] uppercase tracking-[0.04em]">
-                {photos[currentIndex].camera && (
-                  <span className="text-white/90">
-                    <span className="text-brand-accent">CAM</span> {photos[currentIndex].camera}
-                  </span>
-                )}
-                {photos[currentIndex].stock && (
-                  <span className="text-white/90">
-                    <span className="text-brand-accent">STOCK</span> {photos[currentIndex].stock}
-                  </span>
-                )}
-                {photos[currentIndex].location && (
-                  <span className="text-white/90">
-                    <span className="text-brand-accent">LOC</span> {photos[currentIndex].location}
-                  </span>
-                )}
-                {photos[currentIndex].date && (
-                  <span className="text-white/90">
-                    <span className="text-brand-accent">DATE</span> {formatShotDate(photos[currentIndex].date!)}
-                  </span>
-                )}
-              </div>
-            </div>
-          </motion.div>
-        </AnimatePresence>
-
-        {/* Navigation buttons */}
-        {photos.length > 1 && (
-          <>
-            <button
-              onClick={prevPhoto}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black/80 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-brand-accent"
-              aria-label="Previous photo"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-
-            <button
-              onClick={nextPhoto}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black/80 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-brand-accent"
-              aria-label="Next photo"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-
-            {/* Play/Pause button */}
-            <button
-              onClick={toggleAutoPlay}
-              className="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black/80 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-brand-accent"
-              aria-label={isAutoPlaying ? "Pause slideshow" : "Play slideshow"}
-            >
-              {isAutoPlaying ? (
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6" />
-                </svg>
-              ) : (
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M8 5v14l11-7z"/>
-                </svg>
-              )}
-            </button>
-          </>
-        )}
-      </div>
-
-      {/* Thumbnail navigation */}
-      {photos.length > 1 && (
-        <div className="mt-6">
-          {/* Thumbnail strip */}
-          <div className="flex justify-center space-x-2 mb-4 overflow-x-auto pb-2">
-            {photos.map((photo, index) => (
-              <button
-                key={index}
-                onClick={() => goToPhoto(index)}
-                className={`relative flex-shrink-0 w-16 h-12 rounded-sm overflow-hidden transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-accent ${
-                  index === currentIndex 
-                    ? 'ring-2 ring-brand-accent scale-110' 
-                    : 'opacity-70 hover:opacity-100 hover:scale-105'
-                }`}
-                aria-label={`Go to photo ${index + 1}`}
-              >
-                <Image
-                  src={photo.src}
-                  alt=""
-                  fill
-                  className="object-cover"
-                  sizes="64px"
-                  quality={60}
-                />
-                {!loadedImages.has(index) && (
-                  <div className="absolute inset-0 bg-brand-surface flex items-center justify-center">
-                    <div className="w-4 h-4 border border-brand-accent border-t-transparent rounded-full animate-spin"></div>
-                  </div>
-                )}
-              </button>
-            ))}
-          </div>
-
-          {/* Dot navigation (fallback) */}
-          <div className="flex justify-center space-x-2">
-            {photos.map((_, index) => (
-              <button
-                key={`dot-${index}`}
-                onClick={() => goToPhoto(index)}
-                className={`w-2 h-2 rounded-full transition-colors duration-200 focus:outline-none focus:ring-1 focus:ring-brand-accent ${
-                  index === currentIndex ? 'bg-brand-accent' : 'bg-brand-border hover:bg-brand-border-light'
-                }`}
-                aria-label={`Go to photo ${index + 1}`}
-              />
-            ))}
-          </div>
-          
-          {/* Photo counter */}
-          <div className="text-center mt-2 text-sm text-brand-text-muted">
-            {currentIndex + 1} / {photos.length}
-            {isInitialLoading && (
-              <span className="ml-2 text-brand-accent">
-                • Loading...
-              </span>
-            )}
-          </div>
+      <div className="border-y border-brand-border px-2 py-5" style={{ backgroundImage: 'repeating-linear-gradient(to right, transparent 0 10px, rgba(143,180,198,0.18) 10px 18px, transparent 18px 28px), repeating-linear-gradient(to right, transparent 0 10px, rgba(143,180,198,0.18) 10px 18px, transparent 18px 28px)', backgroundSize: '100% 5px', backgroundPosition: 'top 4px left, bottom 4px left', backgroundRepeat: 'no-repeat' }}>
+        <div className="flex gap-3 overflow-x-auto p-1" role="group" aria-label="Choose a film frame">
+          {photos.map((item, n) => <button key={item.src} type="button" aria-label={`Show frame ${frame(n)}: ${item.alt}`} aria-pressed={n === index} onClick={() => select(n)} className={`w-24 shrink-0 border p-1 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent sm:w-32 ${n === index ? 'border-brand-accent text-brand-accent' : 'border-brand-border text-brand-text-muted hover:border-brand-annot'}`}><span className="relative block aspect-[3/2]"><Image src={item.src} alt="" fill sizes="128px" quality={60} className="object-cover" /></span><span className="mt-2 block font-mono text-xs">{frame(n)}</span></button>)}
         </div>
-      )}
+      </div>
+      <p className="mt-4 font-mono text-xs text-brand-text-muted">Choose a frame, or use the left and right arrow keys while the controls are focused.</p>
     </div>
   );
 }

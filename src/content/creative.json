@@ -1,11 +1,11 @@
 {
   "photography": {
-    "title": "Photography",
-    "description": "Capturing moments through the lens of my Canon AE-1. I focus on automotive photography, landscapes, and candid moments that tell stories of everyday life.",
+    "title": "Photographs",
+    "description": "Canon AE-1, mostly Portra 400.",
     "photos": [
       {
         "src": "/creative/Photos/photo-1.webp",
-        "alt":"Desert landscape at Glamis sand dunes with dramatic lighting", 
+        "alt": "Desert landscape at Glamis sand dunes with dramatic lighting",
         "camera": "Canon AE-1",
         "stock": "Kodak Portra 400",
         "location": "Glamis, CA",
@@ -13,7 +13,7 @@
       },
       {
         "src": "/creative/Photos/photo-2.webp",
-        "alt":"Urban street scene in Los Angeles with vintage aesthetic",
+        "alt": "Urban street scene in Los Angeles with vintage aesthetic",
         "camera": "Canon AE-1",
         "stock": "Kodak ColorPlus 200",
         "location": "Los Angeles, CA",
@@ -46,17 +46,17 @@
     ]
   },
   "music": {
-    "title": "What I've Been Listening To",
-    "description": "A curated collection of tracks that have been inspiring me lately.",
+    "title": "On repeat",
+    "description": "Mostly melodic house. Each track opens in Spotify.",
     "tracks": [
-      { 
-        "title": "New Sky - Live from Joshua Tree", 
-        "artist": "Rüfüs Du Sol", 
+      {
+        "title": "New Sky - Live from Joshua Tree",
+        "artist": "Rüfüs Du Sol",
         "platform": "spotify",
-        "url": "https://open.spotify.com/track/0ebu8hPrbhvVNeH9RTsDA2?si=c17cddf97de54869", 
-        "cover": "/creative/NewSky.jpeg", 
-        "duration": "5:27", 
-        "genre": "Melodic House" 
+        "url": "https://open.spotify.com/track/0ebu8hPrbhvVNeH9RTsDA2?si=c17cddf97de54869",
+        "cover": "/creative/NewSky.jpeg",
+        "duration": "5:27",
+        "genre": "Melodic House"
       },
       {
         "title": "Silenced",

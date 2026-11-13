@@ -1,20 +1,28 @@
 import ProjectsGrid from '../components/ProjectsGrid';
-import CoordinateLabel from '../components/CoordinateLabel';
+import SheetHero from '../components/drawing/SheetHero';
+import SectionHead from '../components/drawing/SectionHead';
+import projects from '../../content/projects.json';
+
+export const metadata = {
+  title: 'Projects · Sheet 02 · Ethan Saba',
+  description: 'Software, data, audio, and hardware projects by Ethan Saba, with demos and source code.',
+};
 
 export default function Projects() {
   return (
-    <div className="text-brand-text min-h-screen">
-      <div className="px-6 sm:px-12 lg:px-20 xl:px-28 pt-32 pb-16">
-        <CoordinateLabel className="block mb-4">{'[ 02 ] PROJECTS'}</CoordinateLabel>
-        <h1 className="text-[40px] sm:text-[64px] lg:text-[88px] font-display font-bold leading-[0.95] tracking-tight max-w-4xl mb-8">
-          Projects
-        </h1>
-        <p className="text-lg sm:text-xl text-brand-text-secondary leading-relaxed max-w-xl mb-16">
-          A mix of internal tools I&apos;ve built at work and side projects I&apos;ve shipped on my own time.
-        </p>
-
+    <div className="px-4 md:px-10">
+      <SheetHero
+        sheet="02"
+        sheetTitle="Projects"
+        title="Projects"
+        dimension={`${Math.min(...projects.map((p) => p.year))} · ${projects.length} projects`}
+        lede="Tools for a job search, a dinner table, a song, and the things in between. Explore the live apps, browse the code, or watch a demo."
+        glow="15% 10%"
+      />
+      <section aria-labelledby="project-index" className="pb-16 pt-12">
+        <SectionHead letter="A" tag="Project index" title="The full set" id="project-index" note="Filter by field. Open a project to try it yourself." />
         <ProjectsGrid showFilter />
-      </div>
+      </section>
     </div>
   );
 }

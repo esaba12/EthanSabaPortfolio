@@ -11,17 +11,20 @@ Phase 5 (SEO) and Phase 7 (hygiene) still run after it; see "Order" at the end.
 
 Implementation status is tracked in the Status section below.
 
-## Status (updated 2026-11-11)
+## Status (updated 2026-11-12)
 
 | Phase | State | Where |
 |---|---|---|
-| V0 Foundations | Built, verified, **awaiting your review** | branch `feat/v0-v1-drawing` (commit 2750d02) |
-| V1 Home | Built, verified, **awaiting your review** | same branch (commit da07ffc) |
-| V2 Projects to V6 sweep | Not started | |
+| V0 Foundations | On local `main` | commit 2750d02 |
+| V1 Home | On local `main` | commit da07ffc |
+| V2 Projects | Implemented locally; build and copy checks pass; browser review pending | branch `feat/v2-projects-sheet` |
+| V3 About | Implemented locally; build/copy pass; portrait treatment and browser review pending | same working branch |
+| V4 Creative | Implemented locally; build/copy pass; browser review pending | same working branch |
+| V5 Contact to V6 sweep | Not started | |
 
-**Next action for you:** open the Vercel preview for `feat/v0-v1-drawing`, look at Home at
-desktop and phone width, then say "merge" or list changes. V0 restyles the shell on every
-page, so About / Projects / Creative / Contact keep their old insides until V2 to V5.
+**Current execution checklist:** `.planning/NEXT.md`. Local `main` matched the recorded
+`origin/main` when this work started; production deployment has not been verified.
+The old feature-branch review instruction is superseded by the current repository state.
 
 **Notes from the build:**
 - Résumé link is wired but hidden: set `RESUME_URL` in `src/app/components/navbar.tsx` once the PDF is in `/public`.
