@@ -1,6 +1,6 @@
 # Portfolio execution plan
 
-Updated 2026-11-12. Follow the approved visual identity plan for detailed layout and copy.
+Updated 2026-11-13. Follow the approved visual identity plan for detailed layout and copy.
 
 ## Projects (V2): implemented, browser review pending
 
@@ -49,13 +49,26 @@ Neither page has been merged; deployment and browser review remain unverified.
 V4 joins V2/V3 in the current working branch. No deployment yet.
 The featured music section is labeled On repeat, with no simulated playback indicator.
 
+## Contact (V5): implemented, browser review pending
+
+- [x] Sheet 04 hero with internship focus, ruled channel rows and numbered form fields.
+- [x] Copy-email control with accessible success and manual-copy failure feedback.
+- [x] Retain Formspree endpoint and contact links; location is plain text.
+- [x] Inline idle/sending/sent/error states; prevent duplicate submits and preserve drafts
+      on failure. Abort requests after 20 seconds and handle rate limiting.
+- [x] Add Contact metadata; keep resume link absent until the PDF is available.
+- [x] Build, copy, whitespace and generated-HTML checks pass.
+- [x] `node scripts/check-contact.mjs`: seven mocked cases pass (success, validation
+      rejection, server failure, rate limit, network failure, timeout, blank input).
+- [ ] Browser checks: mobile layout, keyboard focus, clipboard success/denial, duplicate
+      submission, draft preservation and inline feedback. No browser is available.
+- [ ] Real form delivery is unverified; tests made no external submissions.
+
 ## Next implementation passes
 
-1. **V5 Contact:** channel rows, copy-email action and drafting-style form with inline
-   sending/success/error states. Keep the existing Formspree destination.
-2. **V6 sweep:** drawing-style 404, cross-page mobile/keyboard/reduced-motion checks,
+1. **V6 sweep:** drawing-style 404, cross-page mobile/keyboard/reduced-motion checks,
    contrast and performance checks. Audit the existing video modal focus handling.
-3. **Release cleanup:** resume PDF/link once supplied, share image and per-page metadata,
+2. **Release cleanup:** resume PDF/link once supplied, share image and per-page metadata,
    metadataBase/crawling, tooling and README cleanup. The build currently warns about
    metadataBase and an old Browserslist database; resolve in this pass.
 

@@ -11,7 +11,7 @@ Phase 5 (SEO) and Phase 7 (hygiene) still run after it; see "Order" at the end.
 
 Implementation status is tracked in the Status section below.
 
-## Status (updated 2026-11-12)
+## Status (updated 2026-11-13)
 
 | Phase | State | Where |
 |---|---|---|
@@ -20,7 +20,8 @@ Implementation status is tracked in the Status section below.
 | V2 Projects | Implemented locally; build and copy checks pass; browser review pending | branch `feat/v2-projects-sheet` |
 | V3 About | Implemented locally; build/copy pass; portrait treatment and browser review pending | same working branch |
 | V4 Creative | Implemented locally; build/copy pass; browser review pending | same working branch |
-| V5 Contact to V6 sweep | Not started | |
+| V5 Contact | Implemented; build/copy and mocked request checks pass; browser review pending | same working branch |
+| V6 sweep | Not started | |
 
 **Current execution checklist:** `.planning/NEXT.md`. Local `main` matched the recorded
 `origin/main` when this work started; production deployment has not been verified.
