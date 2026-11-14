@@ -11,21 +11,18 @@ Phase 5 (SEO) and Phase 7 (hygiene) still run after it; see "Order" at the end.
 
 Implementation status is tracked in the Status section below.
 
-## Status (updated 2026-11-13)
+## Status (updated 2026-11-14)
 
 | Phase | State | Where |
 |---|---|---|
 | V0 Foundations | On local `main` | commit 2750d02 |
 | V1 Home | On local `main` | commit da07ffc |
-| V2 Projects | Implemented locally; build and copy checks pass; browser review pending | branch `feat/v2-projects-sheet` |
-| V3 About | Implemented locally; build/copy pass; portrait treatment and browser review pending | same working branch |
-| V4 Creative | Implemented locally; build/copy pass; browser review pending | same working branch |
-| V5 Contact | Implemented; build/copy and mocked request checks pass; browser review pending | same working branch |
-| V6 sweep | Not started | |
+| V2 Projects through V5 Contact | Merged into main in PR #1; browser checks pending | 51a1622 |
+| V6 sweep | 404, modal focus, reduced-motion and metadata-base fixes implemented; browser checks pending | feat/portfolio-accessibility-sweep |
 
-**Current execution checklist:** `.planning/NEXT.md`. Local `main` matched the recorded
-`origin/main` when this work started; production deployment has not been verified.
-The old feature-branch review instruction is superseded by the current repository state.
+**Current execution checklist:** `.planning/NEXT.md`. The user explicitly requested
+merging V2–V5. Vercel's preview status passed before the merge. Browser review remains
+outstanding; do not treat successful builds as visual or interaction verification.
 
 **Notes from the build:**
 - Résumé link is wired but hidden: set `RESUME_URL` in `src/app/components/navbar.tsx` once the PDF is in `/public`.

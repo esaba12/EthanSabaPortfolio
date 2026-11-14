@@ -1,6 +1,6 @@
 # Portfolio execution plan
 
-Updated 2026-11-13. Follow the approved visual identity plan for detailed layout and copy.
+Updated 2026-11-14. Follow the approved visual identity plan for detailed layout and copy.
 
 ## Projects (V2): implemented, browser review pending
 
@@ -15,7 +15,7 @@ Updated 2026-11-13. Follow the approved visual identity plan for detailed layout
 - [ ] Browser review: 1440, 1024 and 390px; filter each category; open/close demos;
       keyboard order; reduced motion; no horizontal overflow. Browser runtime currently
       reports no available browsers, so these checks remain unverified.
-- [ ] Push preview, review and merge after browser verification.
+- [x] Pushed and merged in PR #1 at the user's explicit request; browser checks remain open.
 
 ## About (V3): implemented, browser review pending
 
@@ -30,8 +30,8 @@ Updated 2026-11-13. Follow the approved visual identity plan for detailed layout
 - [ ] Desktop/phone/reduced-motion visual and keyboard review. Browser discovery still
       returns no available browsers on November 12.
 
-V2 and V3 are tracked on `feat/v2-projects-sheet`.
-Neither page has been merged; deployment and browser review remain unverified.
+V2–V5 merged into main in PR #1 (51a1622), at the user's request.
+Vercel reported a successful preview before merging; browser review remains pending.
 
 ## Creative (V4): implemented, browser review pending
 
@@ -46,7 +46,7 @@ Neither page has been merged; deployment and browser review remain unverified.
 - [ ] Browser review: narrow/wide layouts, photo controls, focus, reduced motion and Spotify links.
       Browser discovery still returns no available browsers.
 
-V4 joins V2/V3 in the current working branch. No deployment yet.
+V4 merged with V2/V3/V5 in PR #1.
 The featured music section is labeled On repeat, with no simulated playback indicator.
 
 ## Contact (V5): implemented, browser review pending
@@ -63,6 +63,22 @@ The featured music section is labeled On repeat, with no simulated playback indi
 - [ ] Browser checks: mobile layout, keyboard focus, clipboard success/denial, duplicate
       submission, draft preservation and inline feedback. No browser is available.
 - [ ] Real form delivery is unverified; tests made no external submissions.
+
+## V6 accessibility pass (2026-11-14)
+
+Branch: `feat/portfolio-accessibility-sweep`, based on merged main.
+
+- [x] Drawing-style 404 with all five sheet links.
+- [x] Native modal video dialog for focus containment, Escape, focus restoration and
+      top-layer placement; remove dialog motion and decorative corner brackets.
+- [x] Make skip-link target focusable; expose dimension-line information to assistive tech.
+- [x] Home loops defer video source assignment until visible and respond to reduced-motion
+      and document-visibility changes. Smooth wheel scrolling respects reduced motion.
+- [x] Set production metadataBase; build no longer warns about localhost social URLs.
+- [x] Production build, copy and whitespace checks; generated HTML checks for 404 routes,
+      skip target and deferred Home video sources. Existing contact mock checks pass.
+- [ ] Browser keyboard/modal, viewport, reduced-motion, contrast and performance checks.
+      Browser discovery still reports no available browser on November 14.
 
 ## Next implementation passes
 
