@@ -10,13 +10,14 @@ interface FigureProps {
   callouts?: Callout[];
   children: React.ReactNode;
   className?: string;
+  aspect?: 'video' | 'portrait' | 'square';
 }
 
 /**
  * A framed figure in the drawing: "Fig. N · Title" above, registration marks at
  * the bottom corners, and optional numbered callouts whose leader lines draw in.
  */
-export default function Figure({ number, title, callouts = [], children, className = '' }: FigureProps) {
+export default function Figure({ number, title, callouts = [], children, className = '', aspect = 'video' }: FigureProps) {
   const rootRef = useRef<HTMLElement>(null);
   const placed = callouts
     .map((c, i) => ({ ...c, n: i + 1 }))
@@ -40,7 +41,7 @@ export default function Figure({ number, title, callouts = [], children, classNa
         </span>
         <span className="text-brand-text-muted">Scale 1:1</span>
       </figcaption>
-      <div className="reg-marks relative aspect-video max-w-full border border-brand-border bg-brand-surface">
+      <div className={`reg-marks relative max-w-full border border-brand-border bg-brand-surface ${aspect === 'portrait' ? 'aspect-[4/5]' : aspect === 'square' ? 'aspect-square' : 'aspect-video'}`}>
         <div className="absolute inset-0 overflow-hidden">{children}</div>
         {placed.length > 0 && (
           <div aria-hidden="true" className="pointer-events-none absolute inset-0">
