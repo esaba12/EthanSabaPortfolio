@@ -1,7 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import { prefersReducedMotion } from '../../lib/motion-utils';
+import { useEffect, useRef } from 'react';
 
 interface LoopVideoProps {
   src: string;
@@ -9,53 +8,47 @@ interface LoopVideoProps {
   className?: string;
 }
 
-/**
- * Silent product loop. Downloads nothing until it is near the viewport, plays
- * only while visible, and stays on its poster frame under reduced motion.
- */
+/** Silent loops load only when visible and respect changes to reduced motion. */
 export default function LoopVideo({ src, poster, className = '' }: LoopVideoProps) {
   const ref = useRef<HTMLVideoElement>(null);
-  const [still, setStill] = useState(false);
 
   useEffect(() => {
     const video = ref.current;
     if (!video) return;
-    if (prefersReducedMotion()) {
-      setStill(true);
-      return;
-    }
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          video.play().catch(() => {
-            /* Autoplay refused (e.g. low-power mode): the poster stays up. */
-          });
-        } else {
-          video.pause();
+    const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let visible = false;
+    let disposed = false;
+    const update = () => {
+      if (preference.matches) {
+        video.pause();
+        if (video.hasAttribute('src')) {
+          video.removeAttribute('src');
+          video.load();
         }
-      },
-      { threshold: 0.25 },
-    );
+      } else if (visible && !document.hidden) {
+        if (!video.hasAttribute('src')) video.src = src;
+        void video.play().then(() => {
+          if (disposed || !visible || preference.matches || document.hidden) video.pause();
+        }).catch(() => { /* Keep the poster if autoplay is unavailable. */ });
+      } else {
+        video.pause();
+      }
+    };
+    const observer = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      update();
+    }, { threshold: 0.25 });
     observer.observe(video);
-    return () => observer.disconnect();
-  }, []);
+    preference.addEventListener('change', update);
+    document.addEventListener('visibilitychange', update);
+    return () => {
+      disposed = true;
+      observer.disconnect();
+      preference.removeEventListener('change', update);
+      document.removeEventListener('visibilitychange', update);
+      video.pause();
+    };
+  }, [src]);
 
-  if (still) {
-    // eslint-disable-next-line @next/next/no-img-element
-    return <img src={poster} alt="" className={`h-full w-full object-cover ${className}`} />;
-  }
-
-  return (
-    <video
-      ref={ref}
-      src={src}
-      poster={poster}
-      muted
-      loop
-      playsInline
-      preload="none"
-      aria-hidden="true"
-      className={`h-full w-full object-cover ${className}`}
-    />
-  );
+  return <video ref={ref} poster={poster} muted loop playsInline preload="none" aria-hidden="true" className={`h-full w-full object-cover ${className}`} />;
 }

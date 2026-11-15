@@ -34,7 +34,6 @@ export default function DimensionLine({ label, className = '' }: DimensionLinePr
     <div
       ref={rootRef}
       className={`relative flex h-6 w-full items-center text-brand-annot ${className}`}
-      aria-hidden="true"
     >
       <span className="absolute left-0 top-0 h-6 w-px bg-brand-annot" />
       <span className="absolute right-0 top-0 h-6 w-px bg-brand-annot" />

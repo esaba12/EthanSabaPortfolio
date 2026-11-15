@@ -91,7 +91,7 @@ export default function About() {
 
       <section aria-labelledby="education" className="mb-20">
         <SectionHead letter="C" tag="Education" title="Michigan" id="education" />
-        {about.education.map((entry) => <div key={entry.school} className="border-t border-brand-border py-6"><h3 className="font-display text-2xl font-semibold">{entry.degree}</h3><p className="mt-2 text-brand-text-secondary">{entry.school}</p><p className="mt-3 text-sm text-brand-text-muted">{entry.details}</p><p className="sr-only">{entry.period}</p><DimensionLine label={entry.period} className="mt-8 max-w-xl" /></div>)}
+        {about.education.map((entry) => <div key={entry.school} className="border-t border-brand-border py-6"><h3 className="font-display text-2xl font-semibold">{entry.degree}</h3><p className="mt-2 text-brand-text-secondary">{entry.school}</p><p className="mt-3 text-sm text-brand-text-muted">{entry.details}</p><DimensionLine label={entry.period} className="mt-8 max-w-xl" /></div>)}
       </section>
 
       <section aria-labelledby="coursework" className="mb-20">

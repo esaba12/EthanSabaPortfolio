@@ -25,6 +25,7 @@ const chakraPetch = Chakra_Petch({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.ethansaba.com"),
   title: "Ethan Saba - Computer Science Student & Developer",
   description: "Portfolio of Ethan Saba, Computer Science student at University of Michigan with interests in technology, real estate, and creative projects.",
   keywords: ["Ethan Saba", "Computer Science", "University of Michigan", "Developer", "Real Estate", "Portfolio"],
@@ -83,7 +84,7 @@ export default function RootLayout({
         <Navbar />
         <SmoothScrollProvider>
           <div className="sheet-frame mx-auto max-w-[1320px]">
-            <main id="main">{children}</main>
+            <main id="main" tabIndex={-1}>{children}</main>
             <Footer />
           </div>
         </SmoothScrollProvider>
